@@ -1,0 +1,22 @@
+{
+  "name": "webpack-boilerplate",
+  "author": "Christoph von Gellhorn",
+  "version": "0.0.1",
+  "description": "webpack boilerplate with bower, SASS, jQuery and lodash on board",
+  "prvate": true,
+  "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
+  "main": [
+    "./dist/bundle.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.9.3"
+  }
+}
