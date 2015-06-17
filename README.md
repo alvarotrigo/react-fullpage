@@ -16,7 +16,7 @@ $ bower install
 ```
 
 # Development
-Run the local webpack dev server with livereload and autocompile
+Run the local webpack-dev-server with livereload and autocompile
 ```sh
 $ npm run dev
 ```
