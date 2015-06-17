@@ -26,6 +26,6 @@ Build the current application
 $ npm run build
 ```
 
-# [webpack](http://webpack.github.io/docs/)
+# [webpack](http://webpack.github.io/)
 If you're not familiar with webpack, the [webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html) will serve the static files in your build folder and watch your source files for changes.
 When changes are made the bundle will be recompiled. This modified bundle is served from memory at the relative path specified in publicPath.
