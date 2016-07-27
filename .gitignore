@@ -1,12 +1,14 @@
-.DS_Store
+## System and generated files
 .idea
+.DS_Store
 .sass-cache
 
-bower_components
-node_modules
-npm-debug.log
-build
-dist
-log
+## Directories
+log/
+dist/
+node_modules/
+bower_components/
 
-bundle.js
+## Files
+result.xml
+npm-debug.log

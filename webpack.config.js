@@ -1,57 +1,78 @@
-var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var node_dir = path.join(__dirname, 'node_modules');
-var bower_dir = path.join(__dirname, 'bower_components');
-var assets_dir = path.join(__dirname, 'assets');
-var app_dir = path.join(__dirname, 'app');
+var dirApp = path.join(__dirname, 'app');
+var dirAssets = path.join(__dirname, 'assets');
 
 module.exports = {
-    devtool: 'eval',
-    entry: [
-        // For hot style updates
-        'webpack/hot/dev-server',
-
-        // The script refreshing the browser on none hot updates
-        'webpack-dev-server/client?http://localhost:8080',
-
-        // Application entry point
-        app_dir + '/main.js'
-    ],
-    output: {
-        publicPath: '/dist/',
-        filename: 'bundle.js'
+    entry: {
+        vendor: [
+            'jquery',
+            'lodash'
+        ],
+        bundle: dirApp + '/main'
     },
     resolve: {
+        modulesDirectories: [
+            'node_modules'
+        ],
         root: [
-            bower_dir,
-            assets_dir,
-            app_dir
+            dirApp,
+            dirAssets
         ]
     },
     plugins: [
-        new webpack.ResolverPlugin(
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-        ),
-        new ExtractTextPlugin('main.css')
+        new webpack.optimize.DedupePlugin(),
+
+        new webpack.optimize.OccurenceOrderPlugin(true),
+
+        new webpack.ProvidePlugin({
+            // jQuery
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'root.jQuery': 'jquery',
+
+            // lodash
+            '_': 'lodash'
+        }),
+
+        new webpack.optimize.CommonsChunkPlugin('vendor', '[name].[hash].js'),
+
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'index.ejs'),
+            filename: 'index.html',
+            inject: true
+        })
     ],
     module: {
         loaders: [
-            // CSS
+            // Babel loader
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015'],
+                    compact: true
+                }
             },
 
-            // SASS
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract(
-                    'style',
-                    'css!sass'
-                )
-            }
+            // EJS
+            { test: /\.ejs$/, loader: 'ejs' },
+
+            // STYLES
+            { test: /\.css$/, loader: 'style!css' },
+
+            // CSS / SASS
+            { test: /\.scss/, loader: 'style!css?sourceMap!sass?sourceMap' },
+
+            // Image loader
+            { test: /\.(jpe*g|png|gif)$/, loader: 'file?name=assets/images/[hash].[ext]' }
         ]
+    },
+    sassLoader: {
+        includePaths: [dirAssets]
     }
 };

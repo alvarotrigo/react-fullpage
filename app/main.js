@@ -3,8 +3,7 @@
  */
 
 // Load application styles
-require('styles/main.scss');
-
+import 'styles/main.scss';
 
 // ================================
 // PUT YOUR CODE HERE
