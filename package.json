@@ -14,24 +14,24 @@
     "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
   },
   "dependencies": {
-    "babel-core": "^6.11.4",
+    "jquery": "^3.1.0",
+    "lodash": "^4.14.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015": "^6.13.2",
     "clean-webpack-plugin": "^0.1.10",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
     "ejs-loader": "^0.3.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
-    "jquery": "^3.1.0",
-    "lodash": "^4.14.0",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
-  },
-  "devDependencies": {
+    "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }
 }
