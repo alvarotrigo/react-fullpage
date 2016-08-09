@@ -6,5 +6,5 @@
 import 'styles/main.scss';
 
 // ================================
-// PUT YOUR CODE HERE
+// START YOUR APP HERE
 // ================================
