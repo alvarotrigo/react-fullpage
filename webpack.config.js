@@ -11,7 +11,7 @@ module.exports = {
             'jquery',
             'lodash'
         ],
-        bundle: dirApp + '/main'
+        bundle: path.join(dirApp, 'index')
     },
     resolve: {
         modulesDirectories: [
