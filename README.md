@@ -1,7 +1,7 @@
-Webpack Boilerplate
+Webpack 2 Boilerplate
 ===========
 
-> Webpack Boilerplate with Babel, SASS, jQuery and lodash on board
+> Webpack 2 Boilerplate with Babel, SASS, jQuery and lodash on board
 
 # Requirements
 You only need <b>node.js</b> pre-installed and you’re good to go. If you don’t want to work with jQuery or lodash, just remove it from the node packages and the webpack config.
@@ -12,7 +12,7 @@ $ npm install
 ```
 
 # Development
-Run the local webpack-dev-server with livereload and autocompile on [http://localhost:8080/](http://localhost:8080/)
+Run the local webpack-dev-server with livereload and autocompile on [http://localhost:8081/](http://localhost:8081/)
 ```sh
 $ npm run dev
 ```

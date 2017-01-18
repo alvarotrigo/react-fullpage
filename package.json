@@ -1,13 +1,13 @@
 {
   "name": "webpack-boilerplate",
-  "version": "1.0.0",
-  "description": "Webpack Boilerplate with Babel, SASS, jQuery and lodash on board",
+  "version": "2.0.0",
+  "description": "Webpack 2 Boilerplate with Babel, SASS, jQuery and lodash on board",
   "author": "Christoph von Gellhorn",
   "license": "MIT",
   "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --inline --progress --config webpack.config.dev.js",
-    "build": "NODE_ENV=production webpack -p --config webpack.config.build.js"
+    "build": "webpack -p --config webpack.config.build.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }
