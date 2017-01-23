@@ -1,11 +1,11 @@
 var webpackConfig = require('./webpack.config');
 
-webpackConfig.devtool = '#cheap-module-eval-source-map';
+webpackConfig.devtool = 'eval';
 
 webpackConfig.output = {
     pathinfo: true,
     publicPath: '/',
-    filename: '[name].[hash].js'
+    filename: '[name].js'
 };
 
 module.exports = webpackConfig;

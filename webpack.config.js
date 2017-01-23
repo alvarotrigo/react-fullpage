@@ -5,15 +5,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var dirApp = path.join(__dirname, 'app');
 var dirAssets = path.join(__dirname, 'assets');
 
-var cssLoader = 'css-loader';
-var sassLoader = 'sass-loader';
-var styleLoader = 'style-loader';
+// Is the current build a development build
+var isDev = (process.env.NODE_ENV === 'dev');
 
 // Add style source maps on dev mode
-if (process.env.NODE_ENV === 'dev') {
-    cssLoader += '?sourceMap';
-    sassLoader += '?sourceMap'
-}
+var sassLoader = isDev ? 'sass-loader?sourceMap' : 'sass-loader';
+var cssLoader = isDev ? 'css-loader?sourceMap' : 'css-loader';
+var styleLoader = 'style-loader';
 
 module.exports = {
     entry: {
@@ -40,11 +38,6 @@ module.exports = {
 
             // lodash
             '_': 'lodash'
-        }),
-
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: '[name].[hash].js'
         }),
 
         new HtmlWebpackPlugin({
@@ -100,7 +93,7 @@ module.exports = {
                 test: /\.(jpe*g|png|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'assets/images/[hash].[ext]'
+                    name: '[path][name].[ext]'
                 }
             }
         ]

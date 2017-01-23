@@ -1,24 +1,23 @@
 var path = require('path');
+var webpack = require('webpack');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpackConfig = require('./webpack.config');
 
 webpackConfig.devtool = 'cheap-module-source-map';
 
 webpackConfig.plugins.push(
-    new CleanWebpackPlugin(['dist'])
+    new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest']
+    })
 );
 
-// Copy files from assets/images to dist/assets/images
 webpackConfig.plugins.push(
-    new CopyWebpackPlugin([
-        { from: 'assets/images', to: 'assets/images' }
-    ])
+    new CleanWebpackPlugin(['dist'])
 );
 
 webpackConfig.output = {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[hash].js'
+    filename: '[name].[chunkhash].js'
 };
 
 module.exports = webpackConfig;
