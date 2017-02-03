@@ -6,12 +6,7 @@ var dirApp = path.join(__dirname, 'app');
 var dirAssets = path.join(__dirname, 'assets');
 
 // Is the current build a development build
-var isDev = (process.env.NODE_ENV === 'dev');
-
-// Add style source maps on dev mode
-var sassLoader = isDev ? 'sass-loader?sourceMap' : 'sass-loader';
-var cssLoader = isDev ? 'css-loader?sourceMap' : 'css-loader';
-var styleLoader = 'style-loader';
+var IS_DEV = (process.env.NODE_ENV === 'dev');
 
 module.exports = {
     entry: {
@@ -51,8 +46,8 @@ module.exports = {
             // BABEL
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
                 loader: 'babel-loader',
+                exclude: /(node_modules)/,
                 options: {
                     compact: true
                 }
@@ -62,8 +57,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    styleLoader,
-                    cssLoader
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: IS_DEV
+                        }
+                    },
                 ]
             },
 
@@ -71,11 +71,17 @@ module.exports = {
             {
                 test: /\.scss/,
                 use: [
-                    styleLoader,
-                    cssLoader,
+                    'style-loader',
                     {
-                        loader: sassLoader,
+                        loader: 'css-loader',
                         options: {
+                            sourceMap: IS_DEV
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: IS_DEV,
                             includePaths: [dirAssets]
                         }
                     }
