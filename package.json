@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
   "scripts": {
-    "dev": "NODE_ENV=dev webpack-dev-server --inline --progress --config webpack.config.dev.js",
+    "dev": "NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
     "build": "webpack -p --progress --config webpack.config.build.js"
   },
   "repository": {
