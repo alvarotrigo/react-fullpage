@@ -27,7 +27,7 @@
     "file-loader": "^0.10.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.0",
-    "sass-loader": "^4.1.1",
+    "sass-loader": "^5.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
