@@ -41,8 +41,7 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'),
-            filename: 'index.html',
-            inject: true
+            title: 'Webpack Boilerplate'
         })
     ],
     module: {
