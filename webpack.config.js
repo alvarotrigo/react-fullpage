@@ -24,6 +24,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            IS_DEV: IS_DEV
+        }),
+
         new webpack.ProvidePlugin({
             // jQuery
             $: 'jquery',
