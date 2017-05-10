@@ -1,12 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var dirApp = path.join(__dirname, 'app');
-var dirAssets = path.join(__dirname, 'assets');
+const dirApp = path.join(__dirname, 'app');
+const dirAssets = path.join(__dirname, 'assets');
 
 // Is the current build a development build
-var IS_DEV = (process.env.NODE_ENV === 'dev');
+const IS_DEV = (process.env.NODE_ENV === 'dev');
 
 module.exports = {
     entry: {

@@ -1,4 +1,4 @@
-var webpackConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config');
 
 webpackConfig.devtool = 'eval';
 

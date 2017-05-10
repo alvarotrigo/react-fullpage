@@ -1,7 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var webpackConfig = require('./webpack.config');
+const path = require('path');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpackConfig = require('./webpack.config');
 
 webpackConfig.devtool = 'cheap-module-source-map';
 
