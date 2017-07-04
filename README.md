@@ -1,7 +1,7 @@
-Webpack 2 Boilerplate
+Webpack 3 Boilerplate
 ===========
 
-> Plain webpack 2 boilerplate with Babel, SASS, jQuery and lodash on board
+> Plain webpack 3 boilerplate with Babel, SASS, jQuery and lodash on board
 
 ## Requirements
 You only need <b>node.js</b> pre-installed and you’re good to go. 
