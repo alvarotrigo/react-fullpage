@@ -17,7 +17,6 @@ const appHtmlTitle = 'Webpack Boilerplate';
 module.exports = {
     entry: {
         vendor: [
-            'jquery',
             'lodash'
         ],
         bundle: path.join(dirApp, 'index')
@@ -35,12 +34,6 @@ module.exports = {
         }),
 
         new webpack.ProvidePlugin({
-            // jQuery
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            'root.jQuery': 'jquery',
-
             // lodash
             '_': 'lodash'
         }),

@@ -1,12 +1,12 @@
 Webpack 3 Boilerplate
 ===========
 
-> Plain webpack 3 boilerplate with Babel, SASS, jQuery and lodash on board
+> Plain webpack 3 boilerplate with Babel, SASS and lodash on board
 
 ## Requirements
 You only need <b>node.js</b> pre-installed and you’re good to go. 
 
-If you don’t want to work with jQuery or lodash, just remove it from the node packages and the webpack config.
+If you don’t want to work with lodash, just remove it from the node packages and the webpack config.
 
 ## Download
 Download in current directory
