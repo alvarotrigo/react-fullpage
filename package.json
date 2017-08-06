@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
   "scripts": {
-    "dev": "NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
     "build": "webpack -p --progress --config webpack.config.build.js"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.0.4",
     "css-loader": "^0.28.3",
     "ejs-loader": "^0.3.0",
     "file-loader": "^0.11.2",
