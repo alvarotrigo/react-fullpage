@@ -22,7 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
     "cross-env": "^5.0.4",
-    "css-loader": "^0.28.5",
+    "css-loader": "^0.28.7",
     "ejs-loader": "^0.3.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
