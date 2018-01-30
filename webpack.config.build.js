@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpackConfig = require('./webpack.config');
 
-module.exports = Object.assign(webpackConfig, {
+module.exports = merge(webpackConfig, {
 
     devtool: 'cheap-module-source-map',
 
@@ -12,12 +13,11 @@ module.exports = Object.assign(webpackConfig, {
         filename: '[name].[chunkhash].js'
     },
 
-    plugins: webpackConfig.plugins.concat([
+    plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest']
         }),
-
         new CleanWebpackPlugin(['dist'])
-    ])
+    ]
 
 });

@@ -1,6 +1,7 @@
+const merge = require('webpack-merge');
 const webpackConfig = require('./webpack.config');
 
-module.exports = Object.assign(webpackConfig, {
+module.exports = merge(webpackConfig, {
 
     devtool: 'eval',
 
