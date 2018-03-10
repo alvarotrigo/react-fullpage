@@ -1,7 +1,7 @@
 {
   "name": "webpack-boilerplate",
-  "version": "3.0.0",
-  "description": "Plain webpack 3 Boilerplate with Babel, SASS and lodash on board",
+  "version": "4.0.0",
+  "description": "Plain webpack 4 Boilerplate with Babel, SASS and lodash on board",
   "author": "Christoph von Gellhorn",
   "license": "MIT",
   "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
