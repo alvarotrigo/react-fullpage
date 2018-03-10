@@ -1,10 +1,10 @@
-Webpack 3 Boilerplate
+Webpack 4 Boilerplate
 ===========
 
 [![Dependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate) 
 [![devDependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate/dev-status.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate)
 
-> Plain webpack 3 boilerplate with Babel, SASS and lodash on board
+> Plain webpack 4 boilerplate with Babel, SASS and lodash on board
 
 ## Requirements
 You only need <b>node.js</b> pre-installed and you’re good to go. 
