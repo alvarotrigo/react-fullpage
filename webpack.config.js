@@ -33,11 +33,6 @@ module.exports = {
             IS_DEV: IS_DEV
         }),
 
-        new webpack.ProvidePlugin({
-            // lodash
-            '_': 'lodash'
-        }),
-
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'),
             title: appHtmlTitle
