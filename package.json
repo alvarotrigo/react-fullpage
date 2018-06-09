@@ -15,8 +15,7 @@
     "url": "https://github.com/alvarotrigo/react-fullpage.js"
   },
   "dependencies": {
-    "fullpage.js": "^2.9.7",
-    "prop-types": "^15.6.1"
+    "fullpage.js": "^2.9.7"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
