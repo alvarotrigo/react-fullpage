@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
+  "main": "./dist/react-fullpage.js",
   "license": "MIT",
   "homepage": "https://github.com/alvarotrigo/react-fullpage.js",
   "scripts": {

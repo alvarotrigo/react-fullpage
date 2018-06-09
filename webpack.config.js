@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { name } = require('./package.json');
 
 // Is the current build a development build
 const { NODE_ENV } = process.env;
@@ -9,8 +10,7 @@ const IS_DEV = (NODE_ENV === 'dev');
 const dirNode = 'node_modules';
 const dirApp = path.join(__dirname, 'example');
 const dirAssets = path.join(__dirname, 'assets');
-
-const appHtmlTitle = 'react-fullpage.js';
+const appHtmlTitle = name;
 
 /**
  * Webpack Configuration
