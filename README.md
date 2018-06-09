@@ -1,8 +1,8 @@
 # react-fullpage.js
 
-Official React wrapper for the [fullpage.js library](https://github.com/alvarotrigo/fullPage.js/)
+![preview](https://alvarotrigo.com/fullPage/react-fullpage/assets/images/react-fullpage-logo.png)
 
-![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
+Official React wrapper for the [fullpage.js library](https://github.com/alvarotrigo/fullPage.js/)
 
 ## Table of Contents
 - [Installation](https://github.com/alvarotrigo/react-fullPage.js#installation)
