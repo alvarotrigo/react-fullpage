@@ -31,6 +31,48 @@ This wrapper creates a <ReactFullpage /> component , which you can use like othe
 For example:
 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactFullpage from 'react-fullpage.js'
+
+const fullpageOptions = {
+  anchors: [
+    'firstPage', 'secondPage', 'thirdPage',
+  ],
+  callbacks: ['onLeave'],
+};
+
+const FullpageWrapper = (fullpageProps) => {
+  return (
+    <ReactFullpage {...fullpageProps}
+      render={({ state }) => {
+        return (
+          <div>
+            <div className="section">
+              <p>Section 1</p>
+            </div>
+            <div className="section">
+              <div className="slide">
+                <p>Slide 1</p>
+              </div>
+              <div className="slide">
+                <p>Slide 2</p>
+              </div>
+              <div className="slide">
+                <p>Slide 3</p>
+              </div>
+            </div>
+            <div className="section">
+              <p>Section 3</p>
+            </div>
+          </div>
+        );
+    }}/>
+  );
+};
+
+ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementById('react-root'));
+
 ```
 
 ## State
