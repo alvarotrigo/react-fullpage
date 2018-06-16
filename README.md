@@ -16,12 +16,17 @@
 ## Installation
 
 ```sh
+npm i fullpage.js
 npm i react-fullpage.js
 ```
 
-This will install the wrapper as well as [fullpage.js](https://github.com/alvarotrigo/fullPage.js/) as a dependency.
-CSS is included by default.
-The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually.
+This will install the wrapper as well as [fullpage.js](https://github.com/alvarotrigo/fullPage.js/)
+
+The fullpage.js library and CSS must be included manually.
+
+The fullpage.js libarary is a required prop for the react wrapper.
+
+The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually. An example can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/examples/extensionExample)
 
 ## Usage
 
@@ -32,9 +37,12 @@ For example:
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactFullpage from 'react-fullpage.js'
+import fp from 'fullpage.js';
+import fpStyles from 'fullpage.js/dist/javascript.fullpage.css';
+import ReactFullpage from 'react-fullpage.js';
 
 const fullpageOptions = {
+  fp,
   anchors: [
     'firstPage', 'secondPage', 'thirdPage',
   ],

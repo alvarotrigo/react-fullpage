@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import fp from '../components/ReactFullpage/raw';
-import fpStyles from '../components/ReactFullpage/raw.css';
+import fp from 'fullpage.js/dist/javascript.fullpage.extensions.min';
+import fpStyles from 'fullpage.js/dist/javascript.fullpage.css'; // eslint-disable-line no-unused-vars
+
 import styles from './styles.scss'; // eslint-disable-line no-unused-vars
 import ReactFullpage from '../components/ReactFullpage';
 
@@ -23,7 +24,7 @@ const FullpageWrapper = (fullpageProps) => {
     return (
       <div>
         <div className="section turquoise">
-          <p>Section 1 (fullpage.js)</p>
+          <p>Section 1 (fullpage.js with extensions)</p>
           <button onClick={() => ReactFullpage.moveSectionDown()}></button>
         </div>
         <div className="section">
