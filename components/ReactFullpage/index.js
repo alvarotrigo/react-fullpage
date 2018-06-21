@@ -50,6 +50,8 @@ class ReactFullpage extends React.Component {
   componentDidMount() {
     const {
       fp,
+      $,
+      v2compatible = false,
       callbacks: cbs = [],
     } = this.props;
 
@@ -71,11 +73,24 @@ class ReactFullpage extends React.Component {
       ...listeners,
     };
 
-    fp.initialize('#fullpage', finalOpts);
+    if (v2compatible) {
+      $(document).ready(() => { // eslint-disable-line
+        $('#fullpage').fullpage(finalOpts);
+      });
+    } else {
+      const FP = fp;
+      new FP('#fullpage', finalOpts); // eslint-disable-line
+    }
   }
 
   mapMethods() {
-    const { fp, responsiveSlides } = this.props;
+    // TODO: remap methods as v3 compatible (coming from either prop or global) v2 =
+    // fp[method] v3 = fullpage_api[method]
+    const {
+      fp,
+      responsiveSlides,
+      v2compatible = false,
+    } = this.props;
 
     // NOTE: remapping methods https://github.com/alvarotrigo/fullPage.js#methods
     [
@@ -104,6 +119,10 @@ class ReactFullpage extends React.Component {
   }
 
   update(lastEvent, ...args) {
+    const {
+      v2compatible = false,
+    } = this.props;
+
     let state = {
       ...this.state,
     };
@@ -117,7 +136,6 @@ class ReactFullpage extends React.Component {
         ...state,
         ...flattened,
         callback: lastEvent,
-        callbackParameters,
       };
     };
 
@@ -133,31 +151,70 @@ class ReactFullpage extends React.Component {
       asArray: [],
     });
 
-    // NOTE: remapping callback args
-    // https://github.com/alvarotrigo/fullPage.js#callbacks
-    switch (lastEvent) {
-      case 'afterLoad':
-        state = makeState(fromArgs(['anchorLink', 'index']));
-        break;
+    // TODO: change all fromArgs to constants After-*
+    if (v2compatible) {
+      // NOTE: remapping callback args for v2
+      // https://github.com/alvarotrigo/fullPage.js#callbacks
+      switch (lastEvent) {
+        // After-*
+        case 'afterLoad':
+          state = makeState(fromArgs(['anchorLink', 'index']));
+          break;
 
-      case 'onLeave':
-        state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
-        break;
+        case 'afterResponsive':
+          state = makeState(fromArgs(['isResponsive']));
+          break;
 
-      case 'afterResponsive':
-        state = makeState(fromArgs(['isResponsive']));
-        break;
+        case 'afterSlideLoad':
+          state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
+          break;
 
-      case 'afterSlideLoad':
-        state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
-        break;
+          // On-*
+        case 'onLeave':
+          state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
+          break;
 
-      case 'onSlideLeave':
-        state = makeState(fromArgs(['anchorLink', 'index', 'slideIndex', 'direction', 'nextSlideIndex']));
-        break;
+        case 'onSlideLeave':
+          state = makeState(fromArgs(['anchorLink', 'index', 'slideIndex', 'direction', 'nextSlideIndex']));
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+    } else {
+      // NOTE: remapping callback args to v3
+      // https://github.com/alvarotrigo/fullPage.js#callbacks
+      switch (lastEvent) {
+        // After-*
+        case 'afterLoad':
+          state = makeState(fromArgs(['origin', 'destination', 'direction']));
+          break;
+
+          // TODO: update accoding to new API
+        case 'afterResize':
+          state = makeState(fromArgs(['']));
+          break;
+
+        case 'afterResponsive':
+          state = makeState(fromArgs(['isResponsive']));
+          break;
+
+        case 'afterSlideLoad':
+          state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
+          break;
+
+          // On-*
+        case 'onLeave':
+          state = makeState(fromArgs(['origin', 'destination', 'direction']));
+          break;
+
+        case 'onSlideLeave':
+          state = makeState(fromArgs(['section', 'origin', 'slideIndex', 'destination', 'direction']));
+          break;
+
+        default:
+          break;
+      }
     }
 
     this.setState(state);
