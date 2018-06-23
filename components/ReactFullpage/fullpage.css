@@ -1,9 +1,12 @@
-/**
- * fullPage Pure Javascript v.0.0.9 (Alpha) - Not support given until Beta version.
+/*!
+ * fullPage 3.0.0
  * https://github.com/alvarotrigo/fullPage.js
- * MIT licensed
  *
- * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ * @license GPLv3 for open source use only
+ * or Fullpage Commercial License for commercial use
+ * http://alvarotrigo.com/fullPage/pricing/
+ *
+ * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
  html.fp-enabled,
  .fp-enabled body {
@@ -14,22 +17,11 @@
      /*Avoid flicker on slides transitions for mobile phones #336 */
      -webkit-tap-highlight-color: rgba(0,0,0,0);
  }
- #superContainer {
-     height: 100%;
-     position: relative;
-
-     /* Touch detection for Windows 8 */
-     -ms-touch-action: none;
-
-     /* IE 11 on Windows Phone 8.1*/
-     touch-action: none;
- }
  .fp-section {
      position: relative;
      -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
      -moz-box-sizing: border-box; /* <=28 */
      box-sizing: border-box;
-     height:100%;
  }
  .fp-slide {
      float: left;
@@ -50,7 +42,6 @@
      display: table;
      table-layout:fixed;
      width: 100%;
-     height:100%;
  }
  .fp-tableCell {
      display: table-cell;
@@ -63,6 +54,10 @@
      position: relative;
  }
  .fp-controlArrow {
+     -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+     -moz-user-select: none; /* mozilla browsers */
+     -khtml-user-select: none; /* webkit (konqueror) browsers */
+     -ms-user-select: none; /* IE10+ */
      position: absolute;
      z-index: 4;
      top: 50%;
@@ -71,6 +66,9 @@
      height: 0;
      border-style: solid;
      margin-top: -38px;
+     -webkit-transform: translate3d(0,0,0);
+     -ms-transform: translate3d(0,0,0);
+     transform: translate3d(0,0,0);
  }
  .fp-controlArrow.fp-prev {
      left: 15px;
@@ -84,8 +82,14 @@
      border-color: transparent transparent transparent #fff;
  }
  .fp-scrollable {
-     overflow: scroll;
-
+     overflow: hidden;
+     position: relative;
+ }
+ .fp-scroller{
+     overflow: hidden;
+ }
+ .iScrollIndicator{
+     border: 0 !important;
  }
  .fp-notransition {
      -webkit-transition: none !important;
@@ -97,23 +101,29 @@
      margin-top: -32px;
      top: 50%;
      opacity: 1;
+     -webkit-transform: translate3d(0,0,0);
  }
- #fp-nav.right {
+ #fp-nav.fp-right {
      right: 17px;
  }
- #fp-nav.left {
+ #fp-nav.fp-left {
      left: 17px;
  }
  .fp-slidesNav{
      position: absolute;
      z-index: 4;
-     left: 50%;
      opacity: 1;
+     -webkit-transform: translate3d(0,0,0);
+     -ms-transform: translate3d(0,0,0);
+     transform: translate3d(0,0,0);
+     left: 0 !important;
+     right: 0;
+     margin: 0 auto !important;
  }
- .fp-slidesNav.bottom {
+ .fp-slidesNav.fp-bottom {
      bottom: 17px;
  }
- .fp-slidesNav.top {
+ .fp-slidesNav.fp-top {
      top: 17px;
  }
  #fp-nav ul,
@@ -150,7 +160,7 @@
      width: 12px;
      margin: -6px 0 0 -6px;
      border-radius: 100%;
- }
+  }
  #fp-nav ul li a span,
  .fp-slidesNav ul li a span {
      border-radius: 50%;
@@ -168,6 +178,12 @@
      -o-transition: all 0.1s ease-in-out;
      transition: all 0.1s ease-in-out;
  }
+ #fp-nav ul li:hover a span,
+ .fp-slidesNav ul li:hover a span{
+     width: 10px;
+     height: 10px;
+     margin: -5px 0px 0px -5px;
+ }
  #fp-nav ul li .fp-tooltip {
      position: absolute;
      top: -2px;
@@ -180,17 +196,29 @@
      display: block;
      opacity: 0;
      width: 0;
+     cursor: pointer;
  }
  #fp-nav ul li:hover .fp-tooltip,
- #fp-nav.fp-show-active a.active + .fp-tooltip{
+ #fp-nav.fp-show-active a.active + .fp-tooltip {
      -webkit-transition: opacity 0.2s ease-in;
      transition: opacity 0.2s ease-in;
      width: auto;
      opacity: 1;
  }
- #fp-nav ul li .fp-tooltip.right {
+ #fp-nav ul li .fp-tooltip.fp-right {
      right: 20px;
  }
- #fp-nav ul li .fp-tooltip.left {
+ #fp-nav ul li .fp-tooltip.fp-left {
      left: 20px;
+ }
+ .fp-auto-height.fp-section,
+ .fp-auto-height .fp-slide,
+ .fp-auto-height .fp-tableCell{
+     height: auto !important;
+ }
+
+ .fp-responsive .fp-auto-height-responsive.fp-section,
+ .fp-responsive .fp-auto-height-responsive .fp-slide,
+ .fp-responsive .fp-auto-height-responsive .fp-tableCell {
+     height: auto !important;
  }

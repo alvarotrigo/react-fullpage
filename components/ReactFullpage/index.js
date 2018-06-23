@@ -4,13 +4,14 @@
 import React from 'react';
 
 const isFunc = val => typeof val === 'function';
-const callbacks = [
+const fpCallbacks = [
   'afterLoad',
-  'onLeave',
   'afterRender',
   'afterResize',
   'afterResponsive',
   'afterSlideLoad',
+
+  'onLeave',
   'onSlideLeave',
 ];
 
@@ -19,7 +20,7 @@ class ReactFullpage extends React.Component {
     super(props);
     const { fp, render } = this.props;
 
-    if (!fp || !fp.initialize) {
+    if (!fp || !isFunc(fp)) {
       throw new Error('must provide fp prop (fullpage.js library) to <ReactFullage />');
     }
 
@@ -44,7 +45,6 @@ class ReactFullpage extends React.Component {
      * @property {number}  state.callbackParameters  - Formatted parameters the callback received (Object and Array options available)
      */
     this.state = {};
-    this.mapMethods();
   }
 
   componentDidMount() {
@@ -55,7 +55,7 @@ class ReactFullpage extends React.Component {
       callbacks: cbs = [],
     } = this.props;
 
-    const registered = callbacks.filter(key => !!cbs.find(cb => cb === key));
+    const registered = fpCallbacks.filter(key => !!cbs.find(cb => cb === key));
     const listeners = registered.reduce((result, key) => {
       result[key] = (...args) => { // eslint-disable-line no-param-reassign
         const newArgs = [
@@ -74,48 +74,22 @@ class ReactFullpage extends React.Component {
     };
 
     if (v2compatible) {
+      if (!$ || $ instanceof window.jQuery === false) {
+        throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
+      }
+
       $(document).ready(() => { // eslint-disable-line
         $('#fullpage').fullpage(finalOpts);
       });
     } else {
       const FP = fp;
       new FP('#fullpage', finalOpts); // eslint-disable-line
+      this.markInitialized();
     }
   }
 
-  mapMethods() {
-    // TODO: remap methods as v3 compatible (coming from either prop or global) v2 =
-    // fp[method] v3 = fullpage_api[method]
-    const {
-      fp,
-      responsiveSlides,
-      v2compatible = false,
-    } = this.props;
-
-    // NOTE: remapping methods https://github.com/alvarotrigo/fullPage.js#methods
-    [
-      'moveSectionUp',
-      'moveSectionDown',
-      'moveTo',
-      'silentMoveTo',
-      'moveSlideRight',
-      'moveSlideLeft',
-      'setAutoScrolling',
-      'setFitToSection',
-      'fitToSection',
-      'setLockAnchors',
-      'setAllowScrolling',
-      'setKeyboardScrolling',
-      'setRecordHistory',
-      'setScrollingSpeed',
-      'destroy',
-      'reBuild',
-      'setResponsive',
-    ].forEach(method => ReactFullpage[method] = fp[method]); // eslint-disable-line
-
-    if (responsiveSlides) {
-      ['toSections', 'toSlides'].forEach(method => ReactFullpage.responsiveSlides[method] = fp.responsiveSlides[method]); // eslint-disable-line
-    }
+  markInitialized() {
+    this.setState({ fullpageApi: window.fullpage_api, fullpage: window.fullpage });
   }
 
   update(lastEvent, ...args) {
@@ -127,29 +101,17 @@ class ReactFullpage extends React.Component {
       ...this.state,
     };
 
-    const makeState = (callbackParameters) => {
-      const { asObject } = callbackParameters;
-      const flattened = {
-        ...asObject,
-      };
-      return {
-        ...state,
-        ...flattened,
-        callback: lastEvent,
-      };
-    };
+    const makeState = callbackParameters => ({
+      ...state,
+      ...callbackParameters,
+      callback: lastEvent,
+    });
 
     const fromArgs = argList => argList.reduce((result, key, i) => {
       const value = args[i];
-      result.asObject[key] = value; // eslint-disable-line
-      result
-        .asArray
-        .push(value);
+      result[key] = value; // eslint-disable-line
       return result;
-    }, {
-      asObject: {},
-      asArray: [],
-    });
+    }, {});
 
     // TODO: change all fromArgs to constants After-*
     if (v2compatible) {
