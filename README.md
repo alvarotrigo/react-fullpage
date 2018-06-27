@@ -23,17 +23,17 @@ This will install the wrapper as well as [fullpage.js](https://github.com/alvaro
 
 The fullpage.js library and CSS must be included manually.
 
-The fullpage.js libarary is a required prop for the react wrapper.
+The fullpage.js library is a required prop for the react wrapper.
 
-The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually. An example can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/examples/extensionExample)
+The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually. An example can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/example/extensionExample.js)
 
 ## Usage
 
-This wrapper creates a <ReactFullpage /> component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties [state](https://github.com/alvarotrigo/fullPage.js#state), context, etc.
+This wrapper creates a <ReactFullpage /> component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
 
 ## Examples
 
-In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/examples)
+In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage.js/tree/master/example)
 
 Quickstart Example:
 
@@ -102,10 +102,9 @@ State changes will only trigger for callbacks registered via the callbacks prop
 
 ## Props
 
-You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library.
-Pass options object into this wrapper as react props. You can see this in the example below.
+You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
 
-Options object can contain simple [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
+Options object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
 The only difference in API is that callbacks should be an array of strings containing the callback name you'd like to subscribe to.
 More on callbacks [here](https://github.com/alvarotrigo/react-fullPage.js#callbacks)
@@ -133,9 +132,9 @@ You can use any of them. These are made available as properties on the imported 
 
 ## Callbacks
 
-As mentioned [above](#options) you can pass callbacks through options object as an array of strings:
+As mentioned [above](#props) you can pass callbacks through options object as an array of strings:
 Each callback name passed to the component will maintain state itself and this will be reflected via the [render prop](#usage)
-Callback parameters and the latest callback fired by fullpage.js will be reflected in [state](#state)
+Callback parameters and the latest callback fired by fullpage.js will be reflected in [state](#state).
 
 ## Contributing
 
