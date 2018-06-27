@@ -4,7 +4,7 @@
 import React from 'react';
 
 const isFunc = val => typeof val === 'function';
-const fpCallbacks = [
+const fullpageCallbacks = [
   'afterLoad',
   'afterRender',
   'afterResize',
@@ -18,44 +18,28 @@ const fpCallbacks = [
 class ReactFullpage extends React.Component {
   constructor(props) {
     super(props);
-    const { fp, render } = this.props;
+    const { fullpage, render } = this.props;
 
-    if (!fp || !isFunc(fp)) {
-      throw new Error('must provide fp prop (fullpage.js library) to <ReactFullage />');
+    if (!fullpage || !isFunc(fullpage)) {
+      throw new Error('must provide fullpage prop (fullpage.js library) to <ReactFullage />');
     }
 
     if (!isFunc(render)) {
       throw new Error('must provide render prop to <ReactFullpage />');
     }
 
-    /**
-     * @property {object}  state
-     * @property {number}  state.index
-     * @property {number}  state.nextIndex
-     * @property {string}  state.direction
-     * @property {string}  state.anchorLink
-     *
-     * @property {number}  state.slideIndex
-     * @property {number}  state.nextSlideIndex
-     * @property {string}  state.slideAnchor
-     *
-     * @property {boolean} state.isResponsive
-     *
-     * @property {number}  state.callback            - The latest callback event
-     * @property {number}  state.callbackParameters  - Formatted parameters the callback received (Object and Array options available)
-     */
     this.state = {};
   }
 
   componentDidMount() {
     const {
-      fp,
+      fullpage,
       $,
       v2compatible = false,
       callbacks: cbs = [],
     } = this.props;
 
-    const registered = fpCallbacks.filter(key => !!cbs.find(cb => cb === key));
+    const registered = fullpageCallbacks.filter(key => !!cbs.find(cb => cb === key));
     const listeners = registered.reduce((result, key) => {
       result[key] = (...args) => { // eslint-disable-line no-param-reassign
         const newArgs = [
@@ -82,8 +66,8 @@ class ReactFullpage extends React.Component {
         $('#fullpage').fullpage(finalOpts);
       });
     } else {
-      const FP = fp;
-      new FP('#fullpage', finalOpts); // eslint-disable-line
+      const Fullpage = fullpage;
+      new Fullpage('#fullpage', finalOpts); // eslint-disable-line
       this.markInitialized();
     }
   }
