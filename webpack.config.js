@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const { name } = require('./package.json');
 
 // Is the current build a development build
@@ -46,6 +47,7 @@ module.exports = {
         exclude: /(node_modules)/,
         options: {
           compact: true,
+          sourceMap: IS_DEV,
         },
       },
 

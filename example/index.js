@@ -1,29 +1,37 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+
+import fullpage from 'fullpage.js/dist/fullpage';
+import fullpageStyles from 'fullpage.js/dist/fullpage.css'; // eslint-disable-line no-unused-vars
 
 import styles from './styles.scss'; // eslint-disable-line no-unused-vars
 import ReactFullpage from '../components/ReactFullpage';
 
 const fullpageOptions = {
-  document,
-  $,
+  fullpage,
   anchors: [
     'firstPage', 'secondPage', 'thirdPage',
   ],
   callbacks: ['onLeave'],
 };
 
-const FullpageWrapper = (fullpageProps) => {
-  return (<ReactFullpage
-    {...fullpageProps}
-    render={({ state }) => {
+let fullpageApi; // NOTE: this will become available once the render prop fires
+
+const FullpageWrapper = fullpageProps => (<ReactFullpage
+  {...fullpageProps}
+  render={({ state }) => {
     console.log('render prop change', state);
+
+    if (!fullpageApi) {
+      ({ fullpageApi } = state);
+    }
+
     return (
       <div>
         <div className="section turquoise">
-          <p>Section 1</p>
+          <p>Section 1 (welcome to fullpage.js)</p>
+          <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
         </div>
         <div className="section">
           <div className="slide blue">
@@ -41,7 +49,9 @@ const FullpageWrapper = (fullpageProps) => {
         </div>
       </div>
     );
-  }}/>)
-};
+  }}
+/>);
 
 ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementById('react-root'));
+
+export default FullpageWrapper;

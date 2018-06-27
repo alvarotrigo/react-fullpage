@@ -3,62 +3,43 @@
 
 import React from 'react';
 
-import fp from 'fullpage.js/dist/jquery.fullpage.js'; // eslint-disable-line
-// TODO: replace fpextension w/ non jquery version
-import fpextension from 'fullpage.js/dist/jquery.fullpage.extensions.min.js'; // eslint-disable-line
-import fpStyles from 'fullpage.js/dist/jquery.fullpage.min.css'; // eslint-disable-line
-
 const isFunc = val => typeof val === 'function';
-const callbacks = [
+const fullpageCallbacks = [
   'afterLoad',
-  'onLeave',
   'afterRender',
   'afterResize',
   'afterResponsive',
   'afterSlideLoad',
+
+  'onLeave',
   'onSlideLeave',
 ];
 
 class ReactFullpage extends React.Component {
   constructor(props) {
     super(props);
-    const { $, render, document } = this.props;
+    const { fullpage, render } = this.props;
 
-    if (!$ || !$.prototype.jquery) {
-      throw new Error('must provide jquery instance to <ReactFullpage />');
+    if (!fullpage || !isFunc(fullpage)) {
+      throw new Error('must provide fullpage prop (fullpage.js library) to <ReactFullage />');
     }
 
     if (!isFunc(render)) {
       throw new Error('must provide render prop to <ReactFullpage />');
     }
 
-    /**
-     * @property {object}  state
-     * @property {number}  state.index
-     * @property {number}  state.nextIndex
-     * @property {string}  state.direction
-     * @property {string}  state.anchorLink
-     *
-     * @property {number}  state.slideIndex
-     * @property {number}  state.nextSlideIndex
-     * @property {string}  state.slideAnchor
-     *
-     * @property {boolean} state.isResponsive
-     *
-     * @property {number}  state.callback            - The latest callback event
-     * @property {number}  state.callbackParameters  - Formatted parameters the callback received (Object and Array options available)
-     */
     this.state = {};
   }
 
   componentDidMount() {
     const {
+      fullpage,
       $,
-      document,
+      v2compatible = false,
       callbacks: cbs = [],
     } = this.props;
 
-    const registered = callbacks.filter(key => !!cbs.find(cb => cb === key));
+    const registered = fullpageCallbacks.filter(key => !!cbs.find(cb => cb === key));
     const listeners = registered.reduce((result, key) => {
       result[key] = (...args) => { // eslint-disable-line no-param-reassign
         const newArgs = [
@@ -76,94 +57,110 @@ class ReactFullpage extends React.Component {
       ...listeners,
     };
 
-    $(document).ready(() => {
-      $('#fullpage').fullpage(finalOpts);
-      this.mapMethods();
-    });
-  }
+    if (v2compatible) {
+      if (!$ || $ instanceof window.jQuery === false) {
+        throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
+      }
 
-  mapMethods() {
-    const { $, responsiveSlides } = this.props;
-
-    // NOTE: remapping methods https://github.com/alvarotrigo/fullPage.js#methods
-    [
-      'moveSectionUp',
-      'moveSectionDown',
-      'moveTo',
-      'silentMoveTo',
-      'moveSlideRight',
-      'moveSlideLeft',
-      'setAutoScrolling',
-      'setFitToSection',
-      'fitToSection',
-      'setLockAnchors',
-      'setAllowScrolling',
-      'setKeyboardScrolling',
-      'setRecordHistory',
-      'setScrollingSpeed',
-      'destroy',
-      'reBuild',
-      'setResponsive',
-    ].forEach(method => ReactFullpage[method] = $.fn.fullpage[method]); // eslint-disable-line
-
-    if (responsiveSlides) {
-      ['toSections', 'toSlides'].forEach(method => ReactFullpage.responsiveSlides[method] = $.fn.fullpage.responsiveSlides[method]); // eslint-disable-line
+      $(document).ready(() => { // eslint-disable-line
+        $('#fullpage').fullpage(finalOpts);
+      });
+    } else {
+      const Fullpage = fullpage;
+      new Fullpage('#fullpage', finalOpts); // eslint-disable-line
+      this.markInitialized();
     }
   }
 
+  markInitialized() {
+    this.setState({ fullpageApi: window.fullpage_api, fullpage: window.fullpage });
+  }
+
   update(lastEvent, ...args) {
+    const {
+      v2compatible = false,
+    } = this.props;
+
     let state = {
       ...this.state,
     };
-    const makeState = (callbackParameters) => {
-      const { asObject } = callbackParameters;
-      const flattened = {
-        ...asObject,
-      };
-      return {
-        ...state,
-        ...flattened,
-        callback: lastEvent,
-        callbackParameters,
-      };
-    };
-    const fromArgs = argList => argList.reduce((result, key, i) => {
-      const value = args[i];
-      result.asObject[key] = value; // eslint-disable-line
-      result
-        .asArray
-        .push(value);
-      return result;
-    }, {
-      asObject: {},
-      asArray: [],
+
+    const makeState = callbackParameters => ({
+      ...state,
+      ...callbackParameters,
+      callback: lastEvent,
     });
 
-    // NOTE: remapping callback args
-    // https://github.com/alvarotrigo/fullPage.js#callbacks
-    switch (lastEvent) {
-      case 'afterLoad':
-        state = makeState(fromArgs(['anchorLink', 'index']));
-        break;
+    const fromArgs = argList => argList.reduce((result, key, i) => {
+      const value = args[i];
+      result[key] = value; // eslint-disable-line
+      return result;
+    }, {});
 
-      case 'onLeave':
-        state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
-        break;
+    // TODO: change all fromArgs to constants After-*
+    if (v2compatible) {
+      // NOTE: remapping callback args for v2
+      // https://github.com/alvarotrigo/fullPage.js#callbacks
+      switch (lastEvent) {
+        // After-*
+        case 'afterLoad':
+          state = makeState(fromArgs(['anchorLink', 'index']));
+          break;
 
-      case 'afterResponsive':
-        state = makeState(fromArgs(['isResponsive']));
-        break;
+        case 'afterResponsive':
+          state = makeState(fromArgs(['isResponsive']));
+          break;
 
-      case 'afterSlideLoad':
-        state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
-        break;
+        case 'afterSlideLoad':
+          state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
+          break;
 
-      case 'onSlideLeave':
-        state = makeState(fromArgs(['anchorLink', 'index', 'slideIndex', 'direction', 'nextSlideIndex']));
-        break;
+          // On-*
+        case 'onLeave':
+          state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
+          break;
 
-      default:
-        break;
+        case 'onSlideLeave':
+          state = makeState(fromArgs(['anchorLink', 'index', 'slideIndex', 'direction', 'nextSlideIndex']));
+          break;
+
+        default:
+          break;
+      }
+    } else {
+      // NOTE: remapping callback args to v3
+      // https://github.com/alvarotrigo/fullPage.js#callbacks
+      switch (lastEvent) {
+        // After-*
+        case 'afterLoad':
+          state = makeState(fromArgs(['origin', 'destination', 'direction']));
+          break;
+
+          // TODO: update accoding to new API
+        case 'afterResize':
+          state = makeState(fromArgs(['']));
+          break;
+
+        case 'afterResponsive':
+          state = makeState(fromArgs(['isResponsive']));
+          break;
+
+        case 'afterSlideLoad':
+          state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
+          break;
+
+          // On-*
+        case 'onLeave':
+          state = makeState(fromArgs(['origin', 'destination', 'direction']));
+          break;
+
+        case 'onSlideLeave':
+          state = makeState(fromArgs(['section', 'origin', 'slideIndex', 'destination', 'direction']));
+          break;
+
+        default:
+          break;
+      }
     }
 
     this.setState(state);

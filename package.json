@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
+  "contributors": [
+    "cmswalker",
+    "alvarotrigo"
+  ],
   "main": "./dist/react-fullpage.js",
   "license": "MIT",
   "homepage": "https://github.com/alvarotrigo/react-fullpage.js",
@@ -14,8 +18,8 @@
     "type": "git",
     "url": "https://github.com/alvarotrigo/react-fullpage.js"
   },
-  "dependencies": {
-    "fullpage.js": "^2.9.7"
+  "peerDependencies": {
+    "fullpage.js": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
@@ -33,8 +37,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
     "file-loader": "1.1.11",
+    "fullpage.js": "^3.0.1",
     "html-webpack-plugin": "3.2.0",
-    "jquery": "^3.3.1",
     "node-sass": "4.9.0",
     "prettier-eslint": "^8.8.1",
     "react": "^16.4.0",
