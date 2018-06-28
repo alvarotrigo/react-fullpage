@@ -8,13 +8,13 @@
 - Brought by [@imac2](https://twitter.com/imac2) thanks to [Michael Walker](https://github.com/cmswalker).
 
 ## Table of Contents
-- [Installation](https://github.com/alvarotrigo/react-fullPage.js#installation)
-- [License](https://github.com/alvarotrigo/react-fullPage.js#license)
-- [Usage](https://github.com/alvarotrigo/react-fullPage.js#usage)
-- [Examples](https://github.com/alvarotrigo/react-fullPage.js#examples)
-- [Options](https://github.com/alvarotrigo/react-fullPage.js#options)
-- [Methods](https://github.com/alvarotrigo/react-fullPage.js#methods)
-- [Callbacks](https://github.com/alvarotrigo/react-fullPage.js#callbacks)
+- [Installation](https://github.com/alvarotrigo/react-fullpage.js#installation)
+- [License](https://github.com/alvarotrigo/react-fullpage.js#license)
+- [Usage](https://github.com/alvarotrigo/react-fullpage.js#usage)
+- [Examples](https://github.com/alvarotrigo/react-fullpage.js#examples)
+- [Options](https://github.com/alvarotrigo/react-fullpage.js#options)
+- [Methods](https://github.com/alvarotrigo/react-fullpage.js#methods)
+- [Callbacks](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 - [Contributing](https://github.com/alvarotrigo/fullPage.js#contributing)
 - [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 
@@ -124,7 +124,7 @@ You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) su
 Options object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
 The only difference in API is that callbacks should be an array of strings containing the callback name you'd like to subscribe to.
-More on callbacks [here](https://github.com/alvarotrigo/react-fullPage.js#callbacks)
+More on callbacks [here](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
 
