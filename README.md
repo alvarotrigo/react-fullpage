@@ -3,15 +3,20 @@
 
 <p align="center">Official React wrapper for the <a target="_blank" href=""https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
+- [Demo online](https://alvarotrigo.com/react-fullpage/) | [Codepen](https://codepen.io/alvarotrigo/pen/zpQmwq)
+- [fullpage.js Extensions](https://alvarotrigo.com/fullPage/extensions/)
+- Brought by [@imac2](https://twitter.com/imac2) thanks to [Michael Walker](https://github.com/cmswalker).
+
 ## Table of Contents
 - [Installation](https://github.com/alvarotrigo/react-fullPage.js#installation)
+- [License](https://github.com/alvarotrigo/react-fullPage.js#license)
 - [Usage](https://github.com/alvarotrigo/react-fullPage.js#usage)
 - [Examples](https://github.com/alvarotrigo/react-fullPage.js#examples)
 - [Options](https://github.com/alvarotrigo/react-fullPage.js#options)
 - [Methods](https://github.com/alvarotrigo/react-fullPage.js#methods)
 - [Callbacks](https://github.com/alvarotrigo/react-fullPage.js#callbacks)
-- [License](https://github.com/alvarotrigo/fullPage.js#license)
-
+- [Contributing](https://github.com/alvarotrigo/fullPage.js#contributing)
+- [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 
 ## Installation
 
@@ -26,6 +31,18 @@ The fullpage.js library and CSS must be included manually.
 The fullpage.js library is a required prop for the react wrapper.
 
 The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually. An example can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/example/extensionExample.js)
+
+## License
+
+### Commercial license
+Although react-fullpage.js is under the MIT license as can be seen on the [LICENSE file](https://github.com/alvarotrigo/react-fullpage.js/blob/master/LICENSE), notice [fullPage.js library](https://github.com/alvarotrigo/fullPage.js) is under GPLv3. Therefore you'll need to purchase a Commercial License for fullPage.js if you want to use fullPage to develop commercial sites, themes, projects, and applications. [[Purchase a Fullpage Commercial License]](https://alvarotrigo.com/fullPage/pricing/)
+
+### Open source license
+If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use fullPage under the terms of the GPLv3.
+
+**The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
+
+[Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
 ## Usage
 
@@ -139,3 +156,9 @@ Callback parameters and the latest callback fired by fullpage.js will be reflect
 ## Contributing
 
 Found an issue? Have an idea? Check out the [Contributing](https://github.com/alvarotrigo/react-fullpage.js/blob/master/CONTRIBUTING.md) guide and open a PR
+
+
+# Resources
+- [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
+- [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
