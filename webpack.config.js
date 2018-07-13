@@ -4,10 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { name } = require('./package.json');
 
-// Is the current build a development build
-const { NODE_ENV } = process.env;
+const { NODE_ENV = 'dev'} = process.env;
 const IS_DEV = (NODE_ENV === 'dev');
-
 const dirNode = 'node_modules';
 const dirApp = path.join(__dirname, 'example');
 const dirAssets = path.join(__dirname, 'assets');
@@ -29,6 +27,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       NODE_ENV,
       IS_DEV,
     }),

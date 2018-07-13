@@ -28,8 +28,8 @@ const FullpageWrapper = fullpageProps => (<ReactFullpage
     }
 
     return (
-      <div>
-        <div className="section turquoise">
+      <div id="fullpage-wrapper">
+        <div id="first-section" className="section turquoise">
           <p>Section 1 (welcome to fullpage.js)</p>
           <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
         </div>
