@@ -115,7 +115,7 @@ The wrapper maintains state in accordance to the latest version of fullpage.js [
 
 State changes will only trigger for callbacks registered via the callbacks prop
 
-*NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.7.5#callbacks)*
+*NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)*
 
 ## Props
 
