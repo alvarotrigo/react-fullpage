@@ -1,19 +1,30 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { name } = require('./package.json');
 const webpackConfig = require('./webpack.config');
 
+const dirApp = path.join(__dirname, 'components', 'ReactFullpage');
+
 module.exports = merge(webpackConfig, {
-  devtool: 'source-map',
+  entry: {
+    bundle: path.join(dirApp, 'index'),
+  },
+
+  optimization: {
+    minimize: false,
+  },
 
   output: {
     path: path.join(__dirname, 'dist'),
     filename: name,
   },
 
-  plugins: [new CleanWebpackPlugin(['dist'])],
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+  ],
 
   externals: {
     // Don't bundle react or react-dom
@@ -29,7 +40,5 @@ module.exports = merge(webpackConfig, {
       amd: 'ReactDOM',
       root: 'ReactDOM',
     },
-    $: 'jQuery',
-    jQuery: 'jQuery',
   },
 });

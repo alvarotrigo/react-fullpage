@@ -12,7 +12,9 @@
   "homepage": "https://github.com/alvarotrigo/react-fullpage.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
-    "build": "webpack -p --progress --mode production --config webpack.config.build.js"
+    "build": "webpack -p --progress --mode production --config webpack.config.build.js",
+    "test": "npx cypress run --spec 'cypress/integration/*'",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -31,8 +33,10 @@
     "clean-webpack-plugin": "0.1.19",
     "cross-env": "5.1.6",
     "css-loader": "0.28.11",
+    "cypress": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
