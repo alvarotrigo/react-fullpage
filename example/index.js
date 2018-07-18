@@ -9,6 +9,7 @@ import styles from './styles.scss'; // eslint-disable-line no-unused-vars
 import ReactFullpage from '../components/ReactFullpage';
 
 const fullpageOptions = {
+  licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
   fullpage,
   anchors: [
     'firstPage', 'secondPage', 'thirdPage',

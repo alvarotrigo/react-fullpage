@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -20,6 +19,9 @@ module.exports = merge(webpackConfig, {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: name,
+    library: 'ReactFullpage',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
 
   plugins: [
@@ -28,17 +30,7 @@ module.exports = merge(webpackConfig, {
 
   externals: {
     // Don't bundle react or react-dom
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React',
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM',
-    },
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
 });
