@@ -15,8 +15,8 @@
 - [Options](https://github.com/alvarotrigo/react-fullpage.js#options)
 - [Methods](https://github.com/alvarotrigo/react-fullpage.js#methods)
 - [Callbacks](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
-- [Contributing](https://github.com/alvarotrigo/fullPage.js#contributing)
-- [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
+- [Contributing](https://github.com/alvarotrigo/react-fullpage.js#contributing)
+- [Resources](https://github.com/alvarotrigo/react-fullpage.js#resources)
 
 ## Installation
 
@@ -117,7 +117,7 @@ State changes will only trigger for callbacks registered via the callbacks prop
 
 *NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)*
 
-## Props
+## Options
 
 You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
 
