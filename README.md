@@ -1,4 +1,5 @@
 # react-fullpage.js
+
 ![preview](./assets/images/react-fullpage-logo.png)
 
 <p align="center">Official React wrapper for the <a target="_blank" href=""https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
@@ -8,6 +9,7 @@
 - Brought by [@imac2](https://twitter.com/imac2) thanks to [Michael Walker](https://github.com/cmswalker).
 
 ## Table of Contents
+
 - [Installation](https://github.com/alvarotrigo/react-fullpage.js#installation)
 - [License](https://github.com/alvarotrigo/react-fullpage.js#license)
 - [Usage](https://github.com/alvarotrigo/react-fullpage.js#usage)
@@ -35,9 +37,11 @@ The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled b
 ## License
 
 ### Commercial license
+
 Although react-fullpage.js is under the MIT license as can be seen on the [LICENSE file](https://github.com/alvarotrigo/react-fullpage.js/blob/master/LICENSE), notice [fullPage.js library](https://github.com/alvarotrigo/fullPage.js) is under GPLv3. Therefore you'll need to purchase a Commercial License for fullPage.js if you want to use fullPage to develop commercial sites, themes, projects, and applications. [[Purchase a Fullpage Commercial License]](https://alvarotrigo.com/fullPage/pricing/)
 
 ### Open source license
+
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use fullPage under the terms of the GPLv3.
 
 **The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
@@ -46,7 +50,7 @@ If you are creating an open source application under a license compatible with t
 
 ## Usage
 
-This wrapper creates a <ReactFullpage /> component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
+This wrapper creates a ```<ReactFullpage />``` component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
 
 ## Examples
 
@@ -117,13 +121,13 @@ State changes will only trigger for callbacks registered via the callbacks prop
 
 *NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)*
 
-## Options
+## Props
 
 You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
 
 Options object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
-The only difference in API is that callbacks should be an array of strings containing the callback name you'd like to subscribe to.
+The only difference in API is that you must provide the standard fullpage.js library as a [prop](https://github.com/alvarotrigo/react-fullpage.js/blob/master/example/index.js#L13) and callbacks should be an array of strings containing the callback name you'd like to subscribe to.
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
@@ -157,8 +161,8 @@ Callback parameters and the latest callback fired by fullpage.js will be reflect
 
 Found an issue? Have an idea? Check out the [Contributing](https://github.com/alvarotrigo/react-fullpage.js/blob/master/CONTRIBUTING.md) guide and open a PR
 
+## Resources
 
-# Resources
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
