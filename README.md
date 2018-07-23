@@ -14,7 +14,8 @@
 - [License](https://github.com/alvarotrigo/react-fullpage.js#license)
 - [Usage](https://github.com/alvarotrigo/react-fullpage.js#usage)
 - [Examples](https://github.com/alvarotrigo/react-fullpage.js#examples)
-- [Options](https://github.com/alvarotrigo/react-fullpage.js#options)
+- [State](https://github.com/alvarotrigo/react-fullpage.js#state)
+- [Props](https://github.com/alvarotrigo/react-fullpage.js#props)
 - [Methods](https://github.com/alvarotrigo/react-fullpage.js#methods)
 - [Callbacks](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 - [Contributing](https://github.com/alvarotrigo/react-fullpage.js#contributing)
@@ -125,25 +126,25 @@ State changes will only trigger for callbacks registered via the callbacks prop
 
 You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
 
-Options object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
+Props object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
 The only difference in API is that you must provide the standard fullpage.js library as a [prop](https://github.com/alvarotrigo/react-fullpage.js/blob/master/example/index.js#L13) and callbacks should be an array of strings containing the callback name you'd like to subscribe to.
+
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
 
 ```js
 import ReactFullpage from 'react-fullpage.js';
+import fullpage from 'fullpage.js/dist/fullpage';
+import fullpageStyles from 'fullpage.js/dist/fullpage.css';
 
 const fullpageOptions = {
-  anchors: [
-    'firstPage', 'secondPage', 'thirdPage',
-  ],
+  fullpage,
   callbacks: ['onLeave'],
 };
 
 <ReactFullpage {...fullpageOptions} />;
-
 ```
 
 ## Methods
