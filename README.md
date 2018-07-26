@@ -24,16 +24,10 @@
 ## Installation
 
 ```sh
-npm i fullpage.js react-fullpage.js
+npm i react-fullpage.js
 ```
 
 This will install the wrapper as well as [fullpage.js](https://github.com/alvarotrigo/fullPage.js/)
-
-The fullpage.js library and CSS must be included manually.
-
-The fullpage.js library is a required prop for the react wrapper.
-
-The [extensions](https://alvarotrigo.com/fullPage/extensions/) are not bundled by default. You'll need to include these manually. An example can be found [here](https://github.com/alvarotrigo/react-fullpage.js/blob/master/example/extensionExample.js)
 
 ## License
 
@@ -62,30 +56,15 @@ Quickstart Example:
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import fullpage from 'fullpage.js/dist/fullpage';
-import fullpageStyles from 'fullpage.js/dist/fullpage.css';
 import ReactFullpage from 'react-fullpage.js';
 
 const fullpageOptions = {
-  fullpage,
-  anchors: [
-    'firstPage', 'secondPage', 'thirdPage',
-  ],
   callbacks: ['onLeave'],
 };
 
-let fullpageApi; // NOTE: this will become available once the render prop fires
-
 const FullpageWrapper = fullpageProps => (<ReactFullpage
   {...fullpageProps}
-  render={({ state }) => {
-    console.log('render prop change', state);
-
-    if (!fullpageApi) {
-      ({ fullpageApi } = state);
-    }
-
+  render={({ state, fullpageApi }) => {
     return (
       <div>
         <div className="section">
@@ -93,18 +72,7 @@ const FullpageWrapper = fullpageProps => (<ReactFullpage
           <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
         </div>
         <div className="section">
-          <div className="slide">
-            <p>Slide 1</p>
-          </div>
-          <div className="slide">
-            <p>Slide 2</p>
-          </div>
-          <div className="slide">
-            <p>Slide 3</p>
-          </div>
-        </div>
-        <div className="section">
-          <p>Section 3</p>
+          <p>Section 2</p>
         </div>
       </div>
     );
@@ -133,19 +101,6 @@ The only difference in API is that you must provide the standard fullpage.js lib
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage.js#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
-
-```js
-import ReactFullpage from 'react-fullpage.js';
-import fullpage from 'fullpage.js/dist/fullpage';
-import fullpageStyles from 'fullpage.js/dist/fullpage.css';
-
-const fullpageOptions = {
-  fullpage,
-  callbacks: ['onLeave'],
-};
-
-<ReactFullpage {...fullpageOptions} />;
-```
 
 ## Methods
 

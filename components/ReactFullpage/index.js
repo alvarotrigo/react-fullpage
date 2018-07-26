@@ -2,6 +2,8 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
+import fullpage from 'fullpage.js/dist/fullpage.extensions.min';
+import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
 
 const isFunc = val => typeof val === 'function';
 const fullpageCallbacks = [
@@ -18,11 +20,7 @@ const fullpageCallbacks = [
 class ReactFullpage extends React.Component {
   constructor(props) {
     super(props);
-    const { fullpage, render } = this.props;
-
-    if (!fullpage || !isFunc(fullpage)) {
-      throw new Error('must provide fullpage prop (fullpage.js library) to <ReactFullage />');
-    }
+    const { render } = this.props;
 
     if (!isFunc(render)) {
       throw new Error('must provide render prop to <ReactFullpage />');
@@ -33,7 +31,6 @@ class ReactFullpage extends React.Component {
 
   componentDidMount() {
     const {
-      fullpage,
       $,
       v2compatible = false,
       callbacks: cbs = [],
@@ -73,7 +70,8 @@ class ReactFullpage extends React.Component {
   }
 
   markInitialized() {
-    this.setState({ fullpageApi: window.fullpage_api, fullpage: window.fullpage });
+    this.fullpageApi = window.fullpage_api;
+    this.setState({ initialized: true });
   }
 
   update(lastEvent, ...args) {
