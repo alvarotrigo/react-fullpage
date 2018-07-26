@@ -1,3 +1,5 @@
+// NOTE: as of now, server must be manually run
+
 const host = 'http://localhost:8080/';
 const WAIT = 1000;
 
