@@ -1,14 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import styles from './styles.scss'; // eslint-disable-line no-unused-vars
-import ReactFullpage from '../components/ReactFullpage';
+import ReactFullpage from '@fullpage/react-fullpage';
 
 const fullpageOptions = {
-  licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
   anchors: ['firstPage', 'secondPage', 'thirdPage'],
-  callbacks: ['onLeave'],
+  sectionsColor: ['#282c34', '#ff5f45', '#0798ec'],
+  callbacks: ['onLeave']
 };
 
 const FullpageWrapper = fullpageProps => (
@@ -19,25 +17,25 @@ const FullpageWrapper = fullpageProps => (
 
       return (
         <div id="fullpage-wrapper">
-          <div id="first-section" className="section turquoise">
-            <p>Section 1 (welcome to fullpage.js)</p>
+          <div className="section section1">
+            <h3>Section 1</h3>
             <button onClick={() => fullpageApi.moveSectionDown()}>
-              Click me to move down
+              Move down
             </button>
           </div>
           <div className="section">
-            <div className="slide blue">
-              <p>Slide 1</p>
+            <div className="slide">
+              <h3>Slide 2.1</h3>
             </div>
-            <div className="slide red">
-              <p>Slide 2</p>
+            <div className="slide">
+              <h3>Slide 2.2</h3>
             </div>
-            <div className="slide yellow">
-              <p>Slide 3</p>
+            <div className="slide">
+              <h3>Slide 2.3</h3>
             </div>
           </div>
-          <div className="section green">
-            <p>Section 3</p>
+          <div className="section">
+            <h3>Section 3</h3>
           </div>
         </div>
       );
