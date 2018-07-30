@@ -1,6 +1,6 @@
 {
-  "name": "react-fullpage.js",
-  "version": "0.0.1",
+  "name": "@fullpage/react-fullpage",
+  "version": "0.0.2",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -9,7 +9,7 @@
   ],
   "main": "./dist/react-fullpage.js",
   "license": "MIT",
-  "homepage": "https://github.com/alvarotrigo/react-fullpage.js",
+  "homepage": "https://github.com/alvarotrigo/react-fullpage",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alvarotrigo/react-fullpage.js"
+    "url": "https://github.com/alvarotrigo/react-fullpage"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
