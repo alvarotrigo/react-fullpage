@@ -1,6 +1,13 @@
+/*!
+ * react-fullpage 0.0.3
+ * https://github.com/alvarotrigo/react-fullpage
+ * @license https://github.com/alvarotrigo/react-fullpage#license
+ *
+ * Copyright (C) 2018 alvarotrigo.com - A project by Alvaro Trigo
+ */
+
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
-
 import React from 'react';
 import fullpage from 'fullpage.js/dist/fullpage.extensions.min';
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
