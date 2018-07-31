@@ -5,15 +5,10 @@
   "dependencies": {
     "@fullpage/react-fullpage": "0.0.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-fullpage.js": "^0.1.19",
-    "react-scripts": "1.1.4"
+    "react-dom": "^16.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "npx webpack --config webpack.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
