@@ -2,7 +2,6 @@ const path = require('path');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const { name } = require('./package.json');
 const webpackConfig = require('./webpack.config');
 
 const dirApp = path.join(__dirname, 'components', 'ReactFullpage');
@@ -30,7 +29,7 @@ module.exports = merge(webpackConfig, {
 
   externals: {
     // Don't bundle react or react-dom
-    react: 'React',
-    'react-dom': 'ReactDOM',
+    react: 'react',
+    'react-dom': 'react-dom',
   },
 });
