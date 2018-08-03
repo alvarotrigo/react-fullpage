@@ -52,6 +52,6 @@
     "webpack-merge": "4.1.2"
   },
   "dependencies": {
-    "fullpage.js": "^3.0.1"
+    "fullpage.js": "^3.0.2"
   }
 }
