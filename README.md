@@ -88,7 +88,7 @@ const FullpageWrapper = fullpageProps => (<ReactFullpage
 ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementById('react-root'));
 ```
 
-Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `vue-fullpage` component.
+Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.
 
 ## State
 
