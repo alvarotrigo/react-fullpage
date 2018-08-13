@@ -2,7 +2,7 @@
 
 ![preview](./assets/images/react-fullpage-logo.png)
 
-<p align="center">Official React wrapper for the <a target="_blank" href=""https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
+<p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/react--fullpage-v0.0.6-brightgreen.svg" alt="react-fullpage version" />
