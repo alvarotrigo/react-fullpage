@@ -1,12 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'fullpage.js/vendors/scrolloverflow' // Optional. When using scrollOverflow:true
 import ReactFullpage from '@fullpage/react-fullpage';
 
 const fullpageOptions = {
   anchors: ['firstPage', 'secondPage', 'thirdPage'],
   sectionsColor: ['#282c34', '#ff5f45', '#0798ec'],
-  callbacks: ['onLeave']
+  callbacks: ['onLeave'],
+  scrollOverflow: true
 };
 
 const FullpageWrapper = fullpageProps => (

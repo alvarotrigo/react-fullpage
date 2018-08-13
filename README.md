@@ -60,6 +60,8 @@ Quickstart Example:
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'fullpage.js/vendors/scrolloverflow' // Optional. When using scrollOverflow:true
+import './fullpage.scrollHorizontally.min' // Optional. When using fullpage extensions
 import ReactFullpage from '@fullpage/react-fullpage';
 
 const fullpageOptions = {
@@ -85,6 +87,8 @@ const FullpageWrapper = fullpageProps => (<ReactFullpage
 
 ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementById('react-root'));
 ```
+
+Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `vue-fullpage` component.
 
 ## State
 
