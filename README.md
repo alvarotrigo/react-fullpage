@@ -90,6 +90,8 @@ ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementByI
 
 Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.
 
+Also, you'll have to add the fullPage CSS file (`fullpage.min.css`). Is up to you how you add it. You can add it on the HTML page or bundle it with other CSS files, or import it with Javascript.
+
 ## State
 
 The wrapper maintains state in accordance to the latest version of fullpage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
