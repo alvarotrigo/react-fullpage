@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/react--fullpage-v0.0.6-brightgreen.svg" alt="react-fullpage version" />
 </p>
 
-- [Demo online](https://alvarotrigo.com/react-fullpage/)
+- [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
 - [fullpage.js Extensions](https://alvarotrigo.com/fullPage/extensions/)
 - Brought by [@imac2](https://twitter.com/imac2) thanks to [Michael Walker](https://github.com/cmswalker).
 
