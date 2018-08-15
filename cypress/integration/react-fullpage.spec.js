@@ -21,23 +21,28 @@ describe('react-fullage.js', () => {
     it('Auto scrolls on window location change', () => {
       cy.visit(`${host}#secondPage`);
       cy.wait(WAIT);
-      cy.get('.blue > .fp-tableCell > p').contains('Slide 1');
+      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.1');
+      cy.url().should('eq', `${host}#secondPage`);
+    });
+
+    it('Scrolls Vertically on click', () => {
+      cy.visit(`${host}#firstPage`);
+      cy.wait(WAIT);
+      cy.get('button').click();
+      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.1');
       cy.url().should('eq', `${host}#secondPage`);
     });
 
     it('Scrolls horizontally on click', () => {
       cy.get('.fp-next').click();
       cy.wait(WAIT);
-      cy.get('.red > .fp-tableCell > p').contains('Slide 2');
+      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.2');
       cy.url().should('eq', `${host}#secondPage/1`);
-    });
 
-    it('Scrolls horizontally on click', () => {
-      cy.visit(`${host}#firstPage`);
+      cy.get('.fp-next').click();
       cy.wait(WAIT);
-      cy.get('button').click();
-      cy.get('.blue > .fp-tableCell > p').contains('Slide 1');
-      cy.url().should('eq', `${host}#secondPage`);
+      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.3');
+      cy.url().should('eq', `${host}#secondPage/2`);
     });
   });
 });

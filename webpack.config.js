@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { name } = require('./package.json');
 
-const { NODE_ENV = 'dev'} = process.env;
+const { NODE_ENV = 'dev' } = process.env;
 const IS_DEV = (NODE_ENV === 'dev');
 const dirNode = 'node_modules';
-const dirApp = path.join(__dirname, 'example');
+const dirApp = path.join(__dirname, 'example', 'src');
 const dirAssets = path.join(__dirname, 'assets');
 const appHtmlTitle = name;
 
