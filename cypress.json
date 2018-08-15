@@ -1,3 +1,5 @@
 {
-  "reporterWidth": 1000
+  "reporterWidth": 1000,
+  "viewportWidth": 1000,
+  "viewportHeight": 1000
 }
