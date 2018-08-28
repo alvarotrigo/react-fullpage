@@ -67,35 +67,33 @@ In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullp
 
 Quickstart Example:
 
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'fullpage.js/vendors/scrolloverflow' // Optional. When using scrollOverflow:true
 import './fullpage.scrollHorizontally.min' // Optional. When using fullpage extensions
 import ReactFullpage from '@fullpage/react-fullpage';
 
-const fullpageOptions = {
-  callbacks: ['onLeave'],
-};
 
-const FullpageWrapper = fullpageProps => (<ReactFullpage
-  {...fullpageProps}
-  render={({ state, fullpageApi }) => {
-    return (
-      <div>
-        <div className="section">
-          <p>Section 1 (welcome to fullpage.js)</p>
-          <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+const FullpageWrapper = () => (
+  <ReactFullpage
+    render={({ state, fullpageApi }) => {
+      return (
+        <div>
+          <div className="section">
+            <p>Section 1 (welcome to fullpage.js)</p>
+            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+          </div>
+          <div className="section">
+            <p>Section 2</p>
+          </div>
         </div>
-        <div className="section">
-          <p>Section 2</p>
-        </div>
-      </div>
-    );
-  }}
-/>);
+      );
+    }}
+  />
+);
 
-ReactDOM.render(<FullpageWrapper {...fullpageOptions} />, document.getElementById('react-root'));
+ReactDOM.render(<FullpageWrapper />, document.getElementById('react-root'));
 ```
 
 Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.
@@ -106,7 +104,7 @@ Also, you'll have to add the fullPage CSS file (`fullpage.min.css`). Is up to yo
 
 The wrapper maintains state in accordance to the latest version of fullpage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
 
-State changes will only trigger for callbacks registered via the callbacks prop
+The most recent callback event that triggered a state change will be available as `state.lastEvent`
 
 *NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)*
 
@@ -115,8 +113,6 @@ State changes will only trigger for callbacks registered via the callbacks prop
 You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
 
 Props object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
-
-The only difference in API is that you must provide the standard fullpage.js library as a [prop](https://github.com/alvarotrigo/react-fullpage/blob/master/example/index.js#L13) and callbacks should be an array of strings containing the callback name you'd like to subscribe to.
 
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage#callbacks)
 
@@ -129,7 +125,6 @@ You can use any of them. These are made available as properties on the imported 
 
 ## Callbacks
 
-As mentioned [above](#props) you can pass callbacks through options object as an array of strings:
 Each callback name passed to the component will maintain state itself and this will be reflected via the [render prop](#usage)
 Callback parameters and the latest callback fired by fullpage.js will be reflected in [state](#state).
 
