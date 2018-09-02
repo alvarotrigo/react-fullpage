@@ -51,6 +51,10 @@ If you are creating an open source application under a license compatible with t
 
 This wrapper creates a ```<ReactFullpage />``` component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
 
+## Server Side Rendering
+
+SSR is supported however the rendered html will not be styled, this is because window must be present in order to properly set height + width of slides. So long as you rehydrate your fullpage component in the browser environment, regular styles will be applied.
+
 ## Examples
 
 In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/example)

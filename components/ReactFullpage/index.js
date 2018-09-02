@@ -9,8 +9,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import fullpage from 'fullpage.js/dist/fullpage.extensions.min';
+
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
+
+let Fullpage;
+
+// NOTE: SSR detection, will bail on no window
+try {
+  const w = window; // eslint-disable-line no-unused-vars
+  Fullpage = require('fullpage.js/dist/fullpage.extensions.min'); // eslint-disable-line global-require
+} catch (e) { } // eslint-disable-line no-empty
 
 const isFunc = val => typeof val === 'function';
 const fullpageCallbacks = [
@@ -37,18 +45,12 @@ class ReactFullpage extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      $,
-      v2compatible = false,
-      callbacks: cbs = [],
-    } = this.props;
+    const { $, v2compatible = false, callbacks: cbs = [] } = this.props;
 
     const registered = fullpageCallbacks.filter(key => !!cbs.find(cb => cb === key));
     const listeners = registered.reduce((result, key) => {
       result[key] = (...args) => { // eslint-disable-line no-param-reassign
-        const newArgs = [
-          key, ...args,
-        ];
+        const newArgs = [key, ...args];
 
         this.update(...newArgs);
       };
@@ -66,13 +68,15 @@ class ReactFullpage extends React.Component {
         throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
       }
 
-      $(document).ready(() => { // eslint-disable-line
+      $(document).ready(() => {
+        // eslint-disable-line
         $('#fullpage').fullpage(finalOpts);
       });
     } else {
-      const Fullpage = fullpage;
-      new Fullpage('#fullpage', finalOpts); // eslint-disable-line
-      this.markInitialized();
+      if (Fullpage) { // eslint-disable-line
+        new Fullpage('#fullpage', finalOpts); // eslint-disable-line
+        this.markInitialized();
+      }
     }
   }
 
@@ -82,9 +86,7 @@ class ReactFullpage extends React.Component {
   }
 
   update(lastEvent, ...args) {
-    const {
-      v2compatible = false,
-    } = this.props;
+    const { v2compatible = false } = this.props;
 
     let state = {
       ...this.state,
@@ -96,11 +98,12 @@ class ReactFullpage extends React.Component {
       callback: lastEvent,
     });
 
-    const fromArgs = argList => argList.reduce((result, key, i) => {
-      const value = args[i];
-      result[key] = value; // eslint-disable-line
-      return result;
-    }, {});
+    const fromArgs = argList =>
+      argList.reduce((result, key, i) => {
+        const value = args[i];
+        result[key] = value; // eslint-disable-line
+        return result;
+      }, {});
 
     // TODO: change all fromArgs to constants After-*
     if (v2compatible) {
@@ -120,13 +123,19 @@ class ReactFullpage extends React.Component {
           state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
           break;
 
-          // On-*
+        // On-*
         case 'onLeave':
           state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
           break;
 
         case 'onSlideLeave':
-          state = makeState(fromArgs(['anchorLink', 'index', 'slideIndex', 'direction', 'nextSlideIndex']));
+          state = makeState(fromArgs([
+            'anchorLink',
+            'index',
+            'slideIndex',
+            'direction',
+            'nextSlideIndex',
+          ]));
           break;
 
         default:
@@ -141,7 +150,7 @@ class ReactFullpage extends React.Component {
           state = makeState(fromArgs(['origin', 'destination', 'direction']));
           break;
 
-          // TODO: update accoding to new API
+        // TODO: update accoding to new API
         case 'afterResize':
           state = makeState(fromArgs(['']));
           break;
@@ -154,13 +163,19 @@ class ReactFullpage extends React.Component {
           state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
           break;
 
-          // On-*
+        // On-*
         case 'onLeave':
           state = makeState(fromArgs(['origin', 'destination', 'direction']));
           break;
 
         case 'onSlideLeave':
-          state = makeState(fromArgs(['section', 'origin', 'slideIndex', 'destination', 'direction']));
+          state = makeState(fromArgs([
+            'section',
+            'origin',
+            'slideIndex',
+            'destination',
+            'direction',
+          ]));
           break;
 
         default:
@@ -175,9 +190,7 @@ class ReactFullpage extends React.Component {
     return (
       <div id="fullpage">
         {/* prettier-ignore */}
-        {this
-          .props
-          .render(this)}
+        {this.props.render(this)}
       </div>
     );
   }
