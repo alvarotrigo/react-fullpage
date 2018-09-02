@@ -41,7 +41,7 @@ class ReactFullpage extends React.Component {
       throw new Error('must provide render prop to <ReactFullpage />');
     }
 
-    this.state = {};
+    this.state = { initialized: false };
   }
 
   componentDidMount() {
@@ -72,12 +72,17 @@ class ReactFullpage extends React.Component {
         // eslint-disable-line
         $('#fullpage').fullpage(finalOpts);
       });
-    } else {
-      if (Fullpage) { // eslint-disable-line
-        new Fullpage('#fullpage', finalOpts); // eslint-disable-line
-        this.markInitialized();
-      }
+    } else if (Fullpage) {
+      new Fullpage('#fullpage', finalOpts); // eslint-disable-line
+      this.markInitialized();
     }
+  }
+
+  componentWillUnmount() {
+    // NOTE: need to check for init to support SSR
+    if (!this.state.initialized) return;
+
+    this.fullpageApi.destroy('all');
   }
 
   markInitialized() {
