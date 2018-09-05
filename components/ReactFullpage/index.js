@@ -11,14 +11,7 @@
 import React from 'react';
 
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
-
-let Fullpage;
-
-// NOTE: SSR detection, will bail on no window
-try {
-  const w = window; // eslint-disable-line no-unused-vars
-  Fullpage = require('fullpage.js/dist/fullpage.extensions.min'); // eslint-disable-line global-require
-} catch (e) { } // eslint-disable-line no-empty
+import Fullpage from 'fullpage.js/dist/fullpage.extensions.min';
 
 const isFunc = val => typeof val === 'function';
 const fullpageCallbacks = [

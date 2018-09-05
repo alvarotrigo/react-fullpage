@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"));
-	else if(typeof define === 'function' && define.amd)
-		define("ReactFullpage", ["react"], factory);
-	else if(typeof exports === 'object')
-		exports["ReactFullpage"] = factory(require("react"));
-	else
-		root["ReactFullpage"] = factory(root["react"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
-return /******/ (function(modules) { // webpackBootstrap
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -98,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+module.exports = require("react");
 
 /***/ }),
 /* 1 */
@@ -772,4 +763,3 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 /******/ ]);
-});
