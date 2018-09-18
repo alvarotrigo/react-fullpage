@@ -11,8 +11,7 @@
 import React from 'react';
 
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
-// import Fullpage from 'fullpage.js/dist/fullpage.extensions.min';
-import Fullpage from 'fullpage.js/dist/fullpage';
+import Fullpage from 'fullpage.js/dist/fullpage.extensions.min';
 
 const isFunc = val => typeof val === 'function';
 const fullpageCallbacks = [
@@ -39,7 +38,6 @@ class ReactFullpage extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounted Fullpage')
     const { $, v2compatible = false } = this.props;
     const opts = this.buildOptions();
 
@@ -58,22 +56,19 @@ class ReactFullpage extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log('calling update', this);
-    // return;
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.initialized === this.state.initialized) {
+      return;
+    }
 
     const { props, fpUtils } = this;
     const slideSelector = props.slideSelector || '.slide';
     const sectionSelector = props.sectionSelector || '.section';
 
-    console.log({ slideSelector, sectionSelector });
-
     const activeSection = document.querySelector(`${sectionSelector}.active`);
     const activeSectionIndex = activeSection ? fpUtils.index(activeSection): -1;
     const activeSlide = document.querySelector(`${sectionSelector}.active${slideSelector}.active`);
     const activeSlideIndex = activeSlide ? fpUtils.index(activeSlide) : -1;
-
-    console.log({ slideSelector, sectionSelector, activeSectionIndex, activeSlide, activeSlideIndex });
 
     this.destroy();
 
@@ -85,11 +80,10 @@ class ReactFullpage extends React.Component {
       fpUtils.addClass(activeSlide, 'active');
     }
 
-    this.fullpageApi.reBuild();
+    this.init(this.buildOptions());
   }
 
   componentWillUnmount() {
-    console.log('unmounting', this);
     this.destroy();
   }
 
@@ -235,8 +229,10 @@ class ReactFullpage extends React.Component {
   render() {
     return (
       <div id="fullpage">
-        {/* prettier-ignore */}
-        {this.props.render(this)}
+        {this.state.initialized
+          ? this.props.render(this)
+          : <div className="section" />
+        }
       </div>
     );
   }
