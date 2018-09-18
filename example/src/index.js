@@ -17,13 +17,14 @@ const FullpageWrapper = fullpageProps => (
     render={({ state, fullpageApi }) => {
       console.log('render prop change', state); // eslint-disable-line no-console
 
+
       return (
         <div id="fullpage-wrapper">
           <div className="section section1">
             <h3>Section 1</h3>
             <button onClick={() => fullpageApi.moveSectionDown()}>
               Move down
-            </button>
+	            </button>
           </div>
           <div className="section">
             <div className="slide">

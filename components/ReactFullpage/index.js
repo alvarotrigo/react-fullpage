@@ -38,7 +38,75 @@ class ReactFullpage extends React.Component {
   }
 
   componentDidMount() {
-    const { $, v2compatible = false, callbacks: cbs = [] } = this.props;
+    const { $, v2compatible = false } = this.props;
+    const opts = this.buildOptions();
+
+    if (v2compatible) {
+      if (!$ || $ instanceof window.jQuery === false) {
+        throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
+      }
+
+      $(document).ready(() => {
+        // eslint-disable-line
+        $('#fullpage').fullpage(opts);
+      });
+    } else if (Fullpage) {
+      this.init(opts);
+      this.markInitialized();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.initialized === this.state.initialized) {
+      return;
+    }
+
+    const { props, fpUtils } = this;
+    const slideSelector = props.slideSelector || '.slide';
+    const sectionSelector = props.sectionSelector || '.section';
+
+    const activeSection = document.querySelector(`${sectionSelector}.active`);
+    const activeSectionIndex = activeSection ? fpUtils.index(activeSection): -1;
+    const activeSlide = document.querySelector(`${sectionSelector}.active${slideSelector}.active`);
+    const activeSlideIndex = activeSlide ? fpUtils.index(activeSlide) : -1;
+
+    this.destroy();
+
+    if (activeSectionIndex > -1) {
+      fpUtils.addClass(document.querySelectorAll(sectionSelector)[activeSectionIndex], 'active');
+    }
+
+    if (activeSlideIndex > -1) {
+      fpUtils.addClass(activeSlide, 'active');
+    }
+
+    this.init(this.buildOptions());
+  }
+
+  componentWillUnmount() {
+    this.destroy();
+  }
+
+  init(opts) {
+    new Fullpage('#fullpage', opts); // eslint-disable-line
+    this.fullpageApi = window.fullpage_api;
+    this.fpUtils = window.fp_utils;
+    this.fpEasings = window.fp_easings;
+  }
+
+  destroy() {
+    // NOTE: need to check for init to support SSR
+    if (!this.state.initialized) return;
+
+    this.fullpageApi.destroy('all');
+  }
+
+  markInitialized() {
+    this.setState({ initialized: true });
+  }
+
+  buildOptions() {
+    const { callbacks: cbs = [] } = this.props;
 
     const registered = fullpageCallbacks.filter(key => !!cbs.find(cb => cb === key));
     const listeners = registered.reduce((result, key) => {
@@ -51,36 +119,10 @@ class ReactFullpage extends React.Component {
       return result;
     }, {});
 
-    const finalOpts = {
+    return {
       ...this.props,
       ...listeners,
     };
-
-    if (v2compatible) {
-      if (!$ || $ instanceof window.jQuery === false) {
-        throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
-      }
-
-      $(document).ready(() => {
-        // eslint-disable-line
-        $('#fullpage').fullpage(finalOpts);
-      });
-    } else if (Fullpage) {
-      new Fullpage('#fullpage', finalOpts); // eslint-disable-line
-      this.markInitialized();
-    }
-  }
-
-  componentWillUnmount() {
-    // NOTE: need to check for init to support SSR
-    if (!this.state.initialized) return;
-
-    this.fullpageApi.destroy('all');
-  }
-
-  markInitialized() {
-    this.fullpageApi = window.fullpage_api;
-    this.setState({ initialized: true });
   }
 
   update(lastEvent, ...args) {
@@ -187,8 +229,10 @@ class ReactFullpage extends React.Component {
   render() {
     return (
       <div id="fullpage">
-        {/* prettier-ignore */}
-        {this.props.render(this)}
+        {this.state.initialized
+          ? this.props.render(this)
+          : <div className="section" />
+        }
       </div>
     );
   }
