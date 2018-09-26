@@ -9,8 +9,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 import React from 'react';
-
-import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
 import Fullpage from 'fullpage.js/dist/fullpage.extensions.min';
 
 const isFunc = val => typeof val === 'function';
