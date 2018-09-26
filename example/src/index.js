@@ -21,22 +21,16 @@ class FullpageWrapper extends React.Component {
 
           return (
             <div id="fullpage-wrapper">
-              <div className="section section1">
+              <div className="section">
                 <h3>Section 1</h3>
                 <button onClick={() => fullpageApi.moveSectionDown()}>
                   Move down
                 </button>
               </div>
               <div className="section">
-                <div className="slide">
-                  <h3>Slide 2.1</h3>
-                </div>
-                <div className="slide">
-                  <h3>Slide 2.2</h3>
-                </div>
-                <div className="slide">
-                  <h3>Slide 2.3</h3>
-                </div>
+                <div className="slide"> Slide 1 </div>
+                <div className="slide"> Slide 2 </div>
+                <div className="slide"> Slide 3 </div>
               </div>
               <div className="section">
                 <h3>Section 3</h3>
@@ -50,5 +44,3 @@ class FullpageWrapper extends React.Component {
 }
 
 ReactDOM.render(<FullpageWrapper />, document.getElementById('react-root'));
-
-export default FullpageWrapper;
