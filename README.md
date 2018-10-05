@@ -71,7 +71,10 @@ Quickstart Example:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'fullpage.js/vendors/scrolloverflow' // Optional. When using scrollOverflow:true
-import './fullpage.scrollHorizontally.min' // Optional. When using fullpage extensions
+
+// Optional. When using fullpage extensions
+//import './fullpage.scrollHorizontally.min'
+
 import ReactFullpage from '@fullpage/react-fullpage';
 
 
