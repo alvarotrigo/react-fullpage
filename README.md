@@ -70,19 +70,13 @@ Quickstart Example:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'fullpage.js/vendors/scrolloverflow' // Optional. When using scrollOverflow:true
-
-// Optional. When using fullpage extensions
-//import './fullpage.scrollHorizontally.min'
-
 import ReactFullpage from '@fullpage/react-fullpage';
 
-
-const FullpageWrapper = () => (
+const Fullpage = () => (
   <ReactFullpage
     render={({ state, fullpageApi }) => {
       return (
-        <div>
+        <ReactFullpage.Wrapper>
           <div className="section">
             <p>Section 1 (welcome to fullpage.js)</p>
             <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
@@ -90,13 +84,46 @@ const FullpageWrapper = () => (
           <div className="section">
             <p>Section 2</p>
           </div>
-        </div>
+        </ReactFullpage.Wrapper>
       );
     }}
   />
 );
 
-ReactDOM.render(<FullpageWrapper />, document.getElementById('react-root'));
+ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
+```
+
+Fullpage.js Extension Example:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'fullpage.js/vendors/scrolloverflow' // Optional. When using the fullPage.js option scrollOverflow:true
+
+// Optional. When using add-on fullpage extensions
+//import './fullpage.scrollHorizontally.min'
+
+import ReactFullpage from '@fullpage/react-fullpage';
+
+const Fullpage = () => (
+  <ReactFullpage
+    render={({ state, fullpageApi }) => {
+      return (
+        <ReactFullpage.Wrapper>
+          <div className="section">
+            <p>Section 1 (welcome to fullpage.js)</p>
+            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+          </div>
+          <div className="section">
+            <p>Section 2</p>
+          </div>
+        </ReactFullpage.Wrapper>
+      );
+    }}
+  />
+);
+
+ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
 ```
 
 Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.

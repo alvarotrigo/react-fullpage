@@ -1,11 +1,14 @@
 /* eslint-disable */
+import Wrapper from './Wrapper';
 
-let e;
+let exported;
 
 if (typeof window !== 'undefined') {
-  e = require('./ReactFullpage').default;
+  exported = require('./ReactFullpage').default;
 } else {
-  e = require('./ReactFullpageShell').default;
+  exported = require('./ReactFullpageShell').default;
 }
 
-export default e;
+exported.Wrapper = Wrapper;
+
+export default exported;

@@ -2,9 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../components';
+
 import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
 
-class FullpageWrapper extends React.Component {
+class Fullpage extends React.Component {
   onLeave(origin, destination, direction) {
     // arguments are mapped in order of fullpage.js callback arguments
     // do something with the event
@@ -20,7 +21,7 @@ class FullpageWrapper extends React.Component {
           console.log('render prop change', state);
 
           return (
-            <div id="fullpage-wrapper">
+            <ReactFullpage.Wrapper>
               <div className="section">
                 <h3>Section 1</h3>
                 <button onClick={() => fullpageApi.moveSectionDown()}>
@@ -35,7 +36,7 @@ class FullpageWrapper extends React.Component {
               <div className="section">
                 <h3>Section 3</h3>
               </div>
-            </div>
+            </ReactFullpage.Wrapper>
           );
         }}
       />
@@ -43,4 +44,4 @@ class FullpageWrapper extends React.Component {
   }
 }
 
-ReactDOM.render(<FullpageWrapper />, document.getElementById('react-root'));
+ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
