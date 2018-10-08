@@ -11,6 +11,8 @@ const dirApp = path.join(__dirname, 'example', 'src');
 const dirAssets = path.join(__dirname, 'assets');
 const appHtmlTitle = name;
 
+const {banner} = require('./components/Utils')
+
 /**
  * Webpack Configuration
  */
@@ -35,6 +37,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.ejs'),
       title: appHtmlTitle,
+    }),
+
+    new webpack.BannerPlugin({
+      banner: banner,
+      raw: true,
+      entryOnly: true
     }),
   ],
   module: {
