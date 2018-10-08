@@ -1,6 +1,6 @@
 # react-fullpage
 
-![preview](./assets/images/react-fullpage-logo.png)
+![preview](https://raw.githubusercontent.com/alvarotrigo/react-fullpage/master/assets/images/react-fullpage-logo.png)
 
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
