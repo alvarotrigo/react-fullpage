@@ -5,7 +5,7 @@ const {
 } = require('../../package.json')
 
 exports.banner = `/*!
- * ${name} ${version} alalalala
+ * ${name} ${version}
  * https://github.com/alvarotrigo/react-fullpage
  * @license https://github.com/alvarotrigo/react-fullpage#license
  *
