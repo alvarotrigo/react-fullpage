@@ -1,6 +1,6 @@
 # Demo using Webpack
 
-> A Reac.js project
+> A React.js project
 
 ## Build Setup
 
