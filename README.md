@@ -142,6 +142,8 @@ You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) su
 
 Props object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
+[Example](https://codesandbox.io/s/8lpo68lp28)
+
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
