@@ -31,7 +31,12 @@
 npm install @fullpage/react-fullpage
 ```
 
-This will install the wrapper as well as [fullpage.js](https://github.com/alvarotrigo/fullPage.js/)
+This will install the wrapper as well as [fullpage.js](https://github.com/alvarotrigo/fullPage.js/).
+
+After that, add the following CSS link to your public/index.html file.
+```
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/fullpage.js@3.0.1/dist/fullpage.min.css">
+```
 
 ## License
 
