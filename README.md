@@ -55,10 +55,10 @@ This wrapper creates a ```<ReactFullpage />``` component. It exposes a render-pr
 
 SSR is supported however the server-rendered html will not be styled, this is because window must be present in order to properly set height + width of slides. So long as you rehydrate your fullpage component in the browser environment, regular styles will be applied.
 
-When using SSR or a framework such as next.js, you should import the commonjs lib vs the standard umd lib, so your import statement should read
+When using SSR or a framework such as next.js, the component adjusts itself dynamically according to the presence of `window`
 
 ```js
-import ReactFullpage from '@fullpage/react-fullpage/dist/react-fullpage-commonjs';
+import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
 ```
 
 ## Examples
