@@ -223,7 +223,7 @@ class ReactFullpage extends React.Component {
       <div id="fullpage">
         {this.state.initialized
           ? this.props.render(this)
-          : <div className="section" />
+          : <div className="section fp-section active" />
         }
       </div>
     );
