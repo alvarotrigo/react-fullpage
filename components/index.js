@@ -11,7 +11,6 @@ export default (() => {
     exported = require('./ReactFullpageShell').default;
   }
 
-  console.log({ exported })
   exported.Wrapper = Wrapper;
 
   return exported;
