@@ -11,7 +11,7 @@ const dirApp = path.join(__dirname, 'example', 'src');
 const dirAssets = path.join(__dirname, 'assets');
 const appHtmlTitle = name;
 
-const { banner } = require('./components/Utils')
+const { banner } = require('./components/Utils');
 
 /**
  * Webpack Configuration
@@ -40,7 +40,7 @@ module.exports = {
     }),
 
     new webpack.BannerPlugin({
-      banner: banner,
+      banner,
       raw: true,
       entryOnly: true
     }),

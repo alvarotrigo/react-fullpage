@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactFullpage from '../../dist/react-fullpage';
+import ReactFullpage from '../../components';
 
 import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
 
