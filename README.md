@@ -55,10 +55,10 @@ This wrapper creates a ```<ReactFullpage />``` component. It exposes a render-pr
 
 SSR is supported however the server-rendered html will not be styled, this is because window must be present in order to properly set height + width of slides. So long as you rehydrate your fullpage component in the browser environment, regular styles will be applied.
 
-It is also worth noting that when using SSR or a framework such as next.js, you should import the commonjs lib vs the standard umd lib, so your import statement should read
+When using SSR or a framework such as next.js, the component adjusts itself dynamically according to the presence of `window`
 
 ```js
-import ReactFullpage from '@fullpage/react-fullpage/dist/react-fullpage-commonjs';
+import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
 ```
 
 ## Examples
@@ -142,6 +142,8 @@ You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) su
 
 Props object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
 
+[Example](https://codesandbox.io/s/8lpo68lp28)
+
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage#callbacks)
 
 *NOTE: jquery must be passed as a prop ($) if using the v2 API*
@@ -155,6 +157,10 @@ You can use any of them. These are made available as properties on the imported 
 
 Each callback name passed to the component will maintain state itself and this will be reflected via the [render prop](#usage)
 Callback parameters and the latest callback fired by fullpage.js will be reflected in [state](#state).
+
+## Styles
+
+All fullpage.js styles are loaded from the component via a `<style/>` tag created with javascript. To override fullpage.js styles you must match specificity. Example [here](https://codesandbox.io/s/z2q912835l) in the `overrides.css` file
 
 ## Contributing
 
