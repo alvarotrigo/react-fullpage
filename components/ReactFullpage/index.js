@@ -39,16 +39,28 @@ class ReactFullpage extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
-    console.log({ sectionCount, newSectionCount })
+
+    /* TODO: add a list of fullpage.js specific props to subscribe too
+      similar to how callbacks are handled)
+    */
+
+    if (this.props.sectionsColor !== prevProps.sectionsColor) {
+      console.log('rebuilding due to a change in fullpage.js props');
+      // NOTE: if fullpage props have changed we need to rebuild
+      this.destroy();
+      this.init(this.buildOptions());
+      return;
+    }
 
     if (sectionCount === newSectionCount && slideCount === newSlideCount) {
       return;
     }
 
+    console.log('rebuilding due to a change in fullpage.js sections/slides');
     // NOTE: if sections have changed we need to rebuild
     this.destroy();
     this.init(this.buildOptions());
@@ -59,14 +71,16 @@ class ReactFullpage extends React.Component {
   }
 
   getSectionCount() {
+    const { sectionSelector = '.section' } = this.props;
     return document
-      .querySelectorAll('.section')
+      .querySelectorAll(sectionSelector)
       .length;
   }
 
   getSlideCount() {
+    const { slideSelector = '.slide' } = this.props;
     return document
-      .querySelectorAll('.slide')
+      .querySelectorAll(slideSelector)
       .length;
   }
 
@@ -87,7 +101,6 @@ class ReactFullpage extends React.Component {
   }
 
   markInitialized() {
-    console.log('marking initialized');
     this.setState({
       initialized: true,
       sectionCount: this.getSectionCount(),
