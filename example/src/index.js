@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../components';
 
-// NOTE: works fine without scroll overflow extension but breaks when included (classList of undefined)
-// import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
+//import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
 
 const originalColors = ['#282c34', '#ff5f45', '#0798ec'];
 
@@ -90,14 +89,13 @@ class App extends React.Component {
         <Menu />
         <ReactFullpage
           navigation
-          scrollOverflow
           onLeave={this.onLeave.bind(this)}
           sectionsColor={this.state.sectionsColor}
           render={comp => console.log('render prop change') || (
             <ReactFullpage.Wrapper>
               {fullpages.map(({ text, id }) => (
                 <div key={id} className="section">
-                  <p>{text}</p>
+                  <h1>{text}</h1>
                 </div>
               ))}
             </ReactFullpage.Wrapper>
