@@ -25,57 +25,63 @@ class ReactFullpage extends React.Component {
       throw new Error('must provide render prop to <ReactFullpage />');
     }
 
-    this.state = { initialized: false };
+    this.state = {
+      initialized: false,
+    };
   }
 
   componentDidMount() {
-    const { $, v2compatible = false } = this.props;
     const opts = this.buildOptions();
 
-    if (v2compatible) {
-      if (!$ || $ instanceof window.jQuery === false) {
-        throw new Error('Must provide $ (jQuery) as a prop if using v2 API');
-      }
-
-      $(document).ready(() => {
-        // eslint-disable-line
-        $('#fullpage').fullpage(opts);
-      });
-    } else if (Fullpage) {
+    if (Fullpage) {
       this.init(opts);
       this.markInitialized();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.initialized === this.state.initialized) {
+    const newSectionCount = this.getSectionCount();
+    const newSlideCount = this.getSlideCount();
+    const { sectionCount, slideCount } = this.state;
+
+    /* TODO: add a list of fullpage.js specific props to subscribe too
+      similar to how callbacks are handled)
+    */
+
+    if (this.props.sectionsColor !== prevProps.sectionsColor) {
+      console.log('rebuilding due to a change in fullpage.js props');
+      // NOTE: if fullpage props have changed we need to rebuild
+      this.destroy();
+      this.init(this.buildOptions());
       return;
     }
 
-    const { props, fpUtils } = this;
-    const slideSelector = props.slideSelector || '.slide';
-    const sectionSelector = props.sectionSelector || '.section';
+    if (sectionCount === newSectionCount && slideCount === newSlideCount) {
+      return;
+    }
 
-    const activeSection = document.querySelector(`${sectionSelector}.active`);
-    const activeSectionIndex = activeSection ? fpUtils.index(activeSection): -1;
-    const activeSlide = document.querySelector(`${sectionSelector}.active${slideSelector}.active`);
-    const activeSlideIndex = activeSlide ? fpUtils.index(activeSlide) : -1;
-
+    console.log('rebuilding due to a change in fullpage.js sections/slides');
+    // NOTE: if sections have changed we need to rebuild
     this.destroy();
-
-    if (activeSectionIndex > -1) {
-      fpUtils.addClass(document.querySelectorAll(sectionSelector)[activeSectionIndex], 'active');
-    }
-
-    if (activeSlideIndex > -1) {
-      fpUtils.addClass(activeSlide, 'active');
-    }
-
     this.init(this.buildOptions());
   }
 
   componentWillUnmount() {
     this.destroy();
+  }
+
+  getSectionCount() {
+    const { sectionSelector = '.section' } = this.props;
+    return document
+      .querySelectorAll(sectionSelector)
+      .length;
+  }
+
+  getSlideCount() {
+    const { slideSelector = '.slide' } = this.props;
+    return document
+      .querySelectorAll(slideSelector)
+      .length;
   }
 
   init(opts) {
@@ -87,22 +93,34 @@ class ReactFullpage extends React.Component {
 
   destroy() {
     // NOTE: need to check for init to support SSR
-    if (!this.state.initialized) return;
-
-    this.fullpageApi.destroy('all');
+    if (typeof window !== 'undefined') {
+      this
+        .fullpageApi
+        .destroy('all');
+    }
   }
 
   markInitialized() {
-    this.setState({ initialized: true });
+    this.setState({
+      initialized: true,
+      sectionCount: this.getSectionCount(),
+      slideCount: this.getSlideCount(),
+    });
   }
 
   buildOptions() {
-    const filterCb = key => !!Object.keys(this.props).find(cb => cb === key);
+    const filterCb = key => !!Object
+      .keys(this.props)
+      .find(cb => cb === key);
     const registered = fullpageCallbacks.filter(filterCb);
     const listeners = registered.reduce((result, key) => {
-      const agg = { ...result };
+      const agg = {
+        ...result,
+      };
       agg[key] = (...args) => {
-        const newArgs = [key, ...args];
+        const newArgs = [
+          key, ...args,
+        ];
         this.update(...newArgs);
       };
 
@@ -116,10 +134,10 @@ class ReactFullpage extends React.Component {
   }
 
   update(lastEvent, ...args) {
-    const { v2compatible = false } = this.props;
-
     let state = {
       ...this.state,
+      sectionCount: this.getSectionCount(),
+      getSlideCount: this.getSlideCount(),
     };
 
     const makeState = callbackParameters => ({
@@ -128,89 +146,43 @@ class ReactFullpage extends React.Component {
       lastEvent,
     });
 
-    const fromArgs = argList =>
-      argList.reduce((result, key, i) => {
-        const value = args[i];
-        result[key] = value; // eslint-disable-line
-        return result;
-      }, {});
+    const fromArgs = argList => argList.reduce((result, key, i) => {
+      const value = args[i];
+      result[key] = value; // eslint-disable-line
+      return result;
+    }, {});
 
-    // TODO: change all fromArgs to constants After-*
-    if (v2compatible) {
-      // NOTE: remapping callback args for v2
-      // https://github.com/alvarotrigo/fullPage.js#callbacks
-      switch (lastEvent) {
-        // After-*
-        case 'afterLoad':
-          state = makeState(fromArgs(['anchorLink', 'index']));
-          break;
+    // NOTE: remapping callback args to v3
+    // https://github.com/alvarotrigo/fullPage.js#callbacks
+    switch (lastEvent) {
+      // After-*
+      case 'afterLoad':
+        state = makeState(fromArgs(['origin', 'destination', 'direction']));
+        break;
 
-        case 'afterResponsive':
-          state = makeState(fromArgs(['isResponsive']));
-          break;
+      case 'afterResize':
+        state = makeState(fromArgs(['']));
+        break;
 
-        case 'afterSlideLoad':
-          state = makeState(fromArgs(['anchorLink', 'index', 'slideAnchor', 'slideIndex']));
-          break;
+      case 'afterResponsive':
+        state = makeState(fromArgs(['isResponsive']));
+        break;
 
-        // On-*
-        case 'onLeave':
-          state = makeState(fromArgs(['index', 'nextIndex', 'direction']));
-          break;
-
-        case 'onSlideLeave':
-          state = makeState(fromArgs([
-            'anchorLink',
-            'index',
-            'slideIndex',
-            'direction',
-            'nextSlideIndex',
-          ]));
-          break;
-
-        default:
-          break;
-      }
-    } else {
-      // NOTE: remapping callback args to v3
-      // https://github.com/alvarotrigo/fullPage.js#callbacks
-      switch (lastEvent) {
-        // After-*
-        case 'afterLoad':
-          state = makeState(fromArgs(['origin', 'destination', 'direction']));
-          break;
-
-        // TODO: update accoding to new API
-        case 'afterResize':
-          state = makeState(fromArgs(['']));
-          break;
-
-        case 'afterResponsive':
-          state = makeState(fromArgs(['isResponsive']));
-          break;
-
-        case 'afterSlideLoad':
-          state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
-          break;
+      case 'afterSlideLoad':
+        state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
+        break;
 
         // On-*
-        case 'onLeave':
-          state = makeState(fromArgs(['origin', 'destination', 'direction']));
-          break;
+      case 'onLeave':
+        state = makeState(fromArgs(['origin', 'destination', 'direction']));
+        break;
 
-        case 'onSlideLeave':
-          state = makeState(fromArgs([
-            'section',
-            'origin',
-            'slideIndex',
-            'destination',
-            'direction',
-          ]));
-          break;
+      case 'onSlideLeave':
+        state = makeState(fromArgs(['section', 'origin', 'slideIndex', 'destination', 'direction']));
+        break;
 
-        default:
-          break;
-      }
+      default:
+        break;
     }
 
     this.setState(state, () => {
@@ -221,10 +193,7 @@ class ReactFullpage extends React.Component {
   render() {
     return (
       <div id="fullpage">
-        {this.state.initialized
-          ? this.props.render(this)
-          : <div className="section fp-section active" />
-        }
+        {this.props.render(this)}
       </div>
     );
   }

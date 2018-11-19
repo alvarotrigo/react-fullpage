@@ -1,47 +1,112 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../components';
 
-import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
+// NOTE: works fine without scroll overflow extension but breaks when included (classList of undefined)
+// import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
 
-class Fullpage extends React.Component {
+const originalColors = ['#282c34', '#ff5f45', '#0798ec'];
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sectionsColor: [...originalColors],
+      fullpages: [
+        {
+          text: 'section 1',
+          id: Math.random(),
+        },
+      ],
+    };
+  }
+
   onLeave(origin, destination, direction) {
-    // arguments are mapped in order of fullpage.js callback arguments
-    // do something with the event
+    console.log('onLeave', { origin, destination, direction });
+    // arguments are mapped in order of fullpage.js callback arguments do something
+    // with the event
+  }
+
+  handleChangeColors() {
+    const newColors = this.state.sectionsColor[0] === 'yellow' ? [...originalColors] : ['yellow', 'blue', 'white']
+    this.setState({
+      sectionsColor: newColors,
+    });
+  }
+
+  handleAddSection() {
+    this.setState((state) => {
+      const { fullpages } = state;
+      const { length } = fullpages;
+      fullpages.push({
+        text: `section ${length + 1}`,
+        id: Math.random(),
+      });
+
+      return {
+        fullpages: [...fullpages],
+      };
+    });
+  }
+
+  handleRemoveSection() {
+    this.setState((state) => {
+      const { fullpages } = state;
+      const newPages = [...fullpages];
+      newPages.pop();
+
+      return { fullpages: newPages };
+    });
   }
 
   render() {
-    return (
-      <ReactFullpage
-        anchors={['firstPage', 'secondPage', 'thirdPage']}
-        sectionsColor={['#282c34', '#ff5f45', '#0798ec']}
-        onLeave={this.onLeave.bind(this)}
-        render={({ state, fullpageApi }) => {
-          console.log('render prop change', state);
+    const { fullpages } = this.state;
 
-          return (
+    if (!fullpages.length) {
+      return null;
+    }
+
+    const Menu = () => (
+      <div
+        className="menu"
+        style={{
+        position: 'fixed',
+        top: 0,
+        zIndex: 100,
+      }}
+      >
+        <ul>
+          <li>
+            <button onClick={() => this.handleAddSection()}>+ Section</button>
+            <button onClick={() => this.handleRemoveSection()}>- Section</button>
+            <button onClick={() => this.handleChangeColors()}>Change colors</button>
+          </li>
+        </ul>
+      </div>
+    );
+
+    return (
+      <div className="App">
+        <Menu />
+        <ReactFullpage
+          navigation
+          scrollOverflow
+          onLeave={this.onLeave.bind(this)}
+          sectionsColor={this.state.sectionsColor}
+          render={comp => console.log('render prop change') || (
             <ReactFullpage.Wrapper>
-              <div className="section">
-                <h3>Section 1</h3>
-                <button onClick={() => fullpageApi.moveSectionDown()}>
-                  Move down
-                </button>
-              </div>
-              <div className="section">
-                <div className="slide"> Slide 1 </div>
-                <div className="slide"> Slide 2 </div>
-                <div className="slide"> Slide 3 </div>
-              </div>
-              <div className="section">
-                <h3>Section 3</h3>
-              </div>
+              {fullpages.map(({ text, id }) => (
+                <div key={id} className="section">
+                  <p>{text}</p>
+                </div>
+              ))}
             </ReactFullpage.Wrapper>
-          );
-        }}
-      />
+          )}
+        />
+      </div>
     );
   }
 }
 
-ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
+const rootElement = document.getElementById('react-root');
+ReactDOM.render(<App />, rootElement);
