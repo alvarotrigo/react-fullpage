@@ -128,8 +128,8 @@ class ReactFullpage extends React.Component {
     }, {});
 
     return {
-      ...this.props,
       ...listeners,
+      ...this.props,
     };
   }
 
