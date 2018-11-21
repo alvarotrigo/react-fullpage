@@ -5,8 +5,17 @@
  *
  * Copyright (C) 2018 alvarotrigo.com - A project by Alvaro Trigo & Michael Walker
  */
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("React"));
+	else if(typeof define === 'function' && define.amd)
+		define("ReactFullpage", ["React"], factory);
+	else if(typeof exports === 'object')
+		exports["ReactFullpage"] = factory(require("React"));
+	else
+		root["ReactFullpage"] = factory(root["React"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -96,7 +105,7 @@ module.exports =
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = require("React");
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
@@ -770,3 +779,4 @@ case'onLeave':state=makeState(fromArgs(['origin','destination','direction']));br
 
 /***/ })
 /******/ ]);
+});
