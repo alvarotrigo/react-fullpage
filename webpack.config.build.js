@@ -19,8 +19,8 @@ const shared = {
 
   externals: {
     // Don't bundle react or react-dom
-    react: 'react',
-    'react-dom': 'react-dom',
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
 };
 
@@ -32,14 +32,6 @@ module.exports = [
       library: 'ReactFullpage',
       libraryTarget: 'umd',
       umdNamedDefine: true,
-    },
-  }),
-  merge(webpackConfig, shared, {
-    output: {
-      path: path.join(__dirname, 'dist'),
-      filename: 'react-fullpage-commonjs.js',
-      library: 'ReactFullpage',
-      libraryTarget: 'commonjs2',
     },
   }),
 ];
