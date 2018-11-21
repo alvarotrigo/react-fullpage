@@ -13,3 +13,4 @@ cypress/videos/
 ## Files
 result.xml
 npm-debug.log
+dist/index.html

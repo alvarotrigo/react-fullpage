@@ -49,7 +49,15 @@ If you are creating an open source application under a license compatible with t
 
 ## Usage
 
-This wrapper creates a ```<ReactFullpage />``` component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
+This wrapper creates a `<ReactFullpage />` component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
+
+## UMD
+
+A umd bundle is available for those without a build step
+
+```js
+import ReactFullpage from '@fullpage/react-fullpage-umd'; // will return static version on server and "live" version on client
+```
 
 ## Server Side Rendering
 
@@ -79,7 +87,9 @@ const Fullpage = () => (
         <ReactFullpage.Wrapper>
           <div className="section">
             <p>Section 1 (welcome to fullpage.js)</p>
-            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+            <button onClick={() => fullpageApi.moveSectionDown()}>
+              Click me to move down
+            </button>
           </div>
           <div className="section">
             <p>Section 2</p>
@@ -98,7 +108,7 @@ Fullpage.js Extension Example:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'fullpage.js/vendors/scrolloverflow' // Optional. When using the fullPage.js option scrollOverflow:true
+import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using the fullPage.js option scrollOverflow:true
 
 // Optional. When using add-on fullpage extensions
 //import './fullpage.scrollHorizontally.min'
@@ -112,7 +122,9 @@ const Fullpage = () => (
         <ReactFullpage.Wrapper>
           <div className="section">
             <p>Section 1 (welcome to fullpage.js)</p>
-            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+            <button onClick={() => fullpageApi.moveSectionDown()}>
+              Click me to move down
+            </button>
           </div>
           <div className="section">
             <p>Section 2</p>
@@ -134,7 +146,7 @@ The wrapper maintains state in accordance to the latest version of fullpage.js [
 
 The most recent callback event that triggered a state change will be available as `state.lastEvent`
 
-*NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)*
+_NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)_
 
 ## Props
 
@@ -145,8 +157,6 @@ Props object can contain standard [options](https://github.com/alvarotrigo/fullP
 [Example](https://codesandbox.io/s/8lpo68lp28)
 
 More on callbacks [here](https://github.com/alvarotrigo/react-fullpage#callbacks)
-
-*NOTE: jquery must be passed as a prop ($) if using the v2 API*
 
 ## Methods
 

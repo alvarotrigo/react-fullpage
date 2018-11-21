@@ -30,6 +30,14 @@ module.exports = [
       path: path.join(__dirname, 'dist'),
       filename: 'react-fullpage.js',
       library: 'ReactFullpage',
+      libraryTarget: 'commonjs2',
+    },
+  }),
+  merge(webpackConfig, shared, {
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: 'react-fullpage-umd.js',
+      library: 'ReactFullpage',
       libraryTarget: 'umd',
       umdNamedDefine: true,
     },
