@@ -16,16 +16,15 @@ const shared = {
   },
 
   plugins: [new CleanWebpackPlugin(['dist'])],
-
-  externals: {
-    // Don't bundle react or react-dom
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
 };
 
 module.exports = [
   merge(webpackConfig, shared, {
+    // node module aliases
+    externals: {
+      react: 'react',
+      'react-dom': 'react-dom',
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'react-fullpage.js',
@@ -34,6 +33,11 @@ module.exports = [
     },
   }),
   merge(webpackConfig, shared, {
+    externals: {
+      // window aliases
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'react-fullpage-umd.js',
