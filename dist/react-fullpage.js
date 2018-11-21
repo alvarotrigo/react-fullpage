@@ -1,5 +1,5 @@
 /*!
- * @fullpage/react-fullpage 0.1.3
+ * @fullpage/react-fullpage 0.1.4
  * https://github.com/alvarotrigo/react-fullpage
  * @license https://github.com/alvarotrigo/react-fullpage#license
  *
@@ -96,7 +96,7 @@ module.exports =
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = require("React");
+module.exports = require("react");
 
 /***/ }),
 /* 1 */
@@ -119,12 +119,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(0);
-var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(0);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
 // CONCATENATED MODULE: ./components/Wrapper/index.js
-/* eslint-disable import/no-extraneous-dependencies */var Wrapper_Wrapper=function Wrapper(_ref){var children=_ref.children;return external_React_default.a.createElement(external_React_["Fragment"],null,children);};/* harmony default export */ var components_Wrapper = (Wrapper_Wrapper);
+/* eslint-disable import/no-extraneous-dependencies */var Wrapper_Wrapper=function Wrapper(_ref){var children=_ref.children;return external_react_default.a.createElement(external_react_["Fragment"],null,children);};/* harmony default export */ var components_Wrapper = (Wrapper_Wrapper);
 // CONCATENATED MODULE: ./components/index.js
 /* eslint-disable *//* harmony default export */ var components = __webpack_exports__["default"] = ((function(){var exported=void 0;if(typeof window!=='undefined'){exported=__webpack_require__(9).default;}else{// NOTE: SSR support
 exported=__webpack_require__(3).default;}exported.Wrapper=components_Wrapper;return exported;})());
