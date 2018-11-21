@@ -1,17 +1,17 @@
 /* eslint-disable */
-import Wrapper from './Wrapper';
+import Wrapper from './Wrapper'
 
 export default (() => {
-  let exported;
+    let exported
 
-  if (typeof window !== 'undefined') {
-    exported = require('./ReactFullpage').default;
-  } else {
-    // NOTE: SSR support
-    exported = require('./ReactFullpageShell').default;
-  }
+    if (typeof window !== 'undefined') {
+        exported = require('./ReactFullpage').default
+    } else {
+        // NOTE: SSR support
+        exported = require('./ReactFullpageShell').default
+    }
 
-  exported.Wrapper = Wrapper;
+    exported.Wrapper = Wrapper
 
-  return exported;
-})();
+    return exported
+})()

@@ -72,20 +72,16 @@ class ReactFullpage extends React.Component {
 
   getSectionCount() {
     const { sectionSelector = '.section' } = this.props;
-    return document
-      .querySelectorAll(sectionSelector)
-      .length;
+    return document.querySelectorAll(sectionSelector).length;
   }
 
   getSlideCount() {
     const { slideSelector = '.slide' } = this.props;
-    return document
-      .querySelectorAll(slideSelector)
-      .length;
+    return document.querySelectorAll(slideSelector).length;
   }
 
   init(opts) {
-    new Fullpage('#fullpage', opts); // eslint-disable-line
+        new Fullpage('#fullpage', opts) // eslint-disable-line
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
@@ -94,9 +90,7 @@ class ReactFullpage extends React.Component {
   destroy() {
     // NOTE: need to check for init to support SSR
     if (typeof window !== 'undefined') {
-      this
-        .fullpageApi
-        .destroy('all');
+      this.fullpageApi.destroy('all');
     }
   }
 
@@ -109,18 +103,14 @@ class ReactFullpage extends React.Component {
   }
 
   buildOptions() {
-    const filterCb = key => !!Object
-      .keys(this.props)
-      .find(cb => cb === key);
+    const filterCb = key => !!Object.keys(this.props).find(cb => cb === key);
     const registered = fullpageCallbacks.filter(filterCb);
     const listeners = registered.reduce((result, key) => {
       const agg = {
         ...result,
       };
       agg[key] = (...args) => {
-        const newArgs = [
-          key, ...args,
-        ];
+        const newArgs = [key, ...args];
         this.update(...newArgs);
       };
 
@@ -146,11 +136,12 @@ class ReactFullpage extends React.Component {
       lastEvent,
     });
 
-    const fromArgs = argList => argList.reduce((result, key, i) => {
-      const value = args[i];
-      result[key] = value; // eslint-disable-line
-      return result;
-    }, {});
+    const fromArgs = argList =>
+      argList.reduce((result, key, i) => {
+        const value = args[i];
+                result[key] = value // eslint-disable-line
+        return result;
+      }, {});
 
     // NOTE: remapping callback args to v3
     // https://github.com/alvarotrigo/fullPage.js#callbacks
@@ -169,16 +160,26 @@ class ReactFullpage extends React.Component {
         break;
 
       case 'afterSlideLoad':
-        state = makeState(fromArgs(['section', 'origin', 'destination', 'direction']));
+        state = makeState(
+          fromArgs(['section', 'origin', 'destination', 'direction'])
+        );
         break;
 
-        // On-*
+      // On-*
       case 'onLeave':
         state = makeState(fromArgs(['origin', 'destination', 'direction']));
         break;
 
       case 'onSlideLeave':
-        state = makeState(fromArgs(['section', 'origin', 'slideIndex', 'destination', 'direction']));
+        state = makeState(
+          fromArgs([
+            'section',
+            'origin',
+            'slideIndex',
+            'destination',
+            'direction',
+          ])
+        );
         break;
 
       default:
@@ -191,11 +192,7 @@ class ReactFullpage extends React.Component {
   }
 
   render() {
-    return (
-      <div id="fullpage">
-        {this.props.render(this)}
-      </div>
-    );
+    return <div id="fullpage">{this.props.render(this)}</div>;
   }
 }
 
