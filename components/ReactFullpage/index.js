@@ -106,17 +106,15 @@ class ReactFullpage extends React.Component {
     const filterCb = key => !!Object.keys(this.props).find(cb => cb === key);
     const registered = fullpageCallbacks.filter(filterCb);
     const listeners = registered.reduce((result, key) => {
-      const agg = {
+      return {
         ...result,
+        [key]: (...args) => {
+          return this.update(...[key, ...args]);
+        },
       };
-      agg[key] = (...args) => {
-        const newArgs = [key, ...args];
-        this.update(...newArgs);
-      };
-
-      return agg;
     }, {});
 
+    // NOTE: override passed in callbacks w/  wrapped listeners
     return {
       ...this.props,
       ...listeners,
@@ -127,7 +125,7 @@ class ReactFullpage extends React.Component {
     let state = {
       ...this.state,
       sectionCount: this.getSectionCount(),
-      getSlideCount: this.getSlideCount(),
+      slideCount: this.getSlideCount(),
     };
 
     const makeState = callbackParameters => ({
@@ -186,9 +184,9 @@ class ReactFullpage extends React.Component {
         break;
     }
 
-    this.setState(state, () => {
-      this.props[lastEvent](...args);
-    });
+    const returned = this.props[lastEvent](...args);
+    this.setState(state);
+    return returned;
   }
 
   render() {
