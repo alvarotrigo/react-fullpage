@@ -69,6 +69,10 @@ When using SSR or a framework such as next.js, the component adjusts itself dyna
 import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
 ```
 
+SSR Examples:
+[gatsby](https://github.com/cmswalker/react-fullpage-gatsby-setup)
+[next.js](https://github.com/cmswalker/react-fullpage-next-example)
+
 ## Examples
 
 In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/example)
