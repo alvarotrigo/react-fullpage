@@ -5,8 +5,17 @@
  *
  * Copyright (C) 2018 alvarotrigo.com - A project by Alvaro Trigo & Michael Walker
  */
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("React"));
+	else if(typeof define === 'function' && define.amd)
+		define("ReactFullpage", ["React"], factory);
+	else if(typeof exports === 'object')
+		exports["ReactFullpage"] = factory(require("React"));
+	else
+		root["ReactFullpage"] = factory(root["React"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -96,7 +105,7 @@ module.exports =
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = require("react");
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
@@ -119,12 +128,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(0);
-var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+// EXTERNAL MODULE: external "React"
+var external_React_ = __webpack_require__(0);
+var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // CONCATENATED MODULE: ./components/Wrapper/index.js
-/* eslint-disable import/no-extraneous-dependencies */var Wrapper_Wrapper=function Wrapper(_ref){var children=_ref.children;return external_react_default.a.createElement(external_react_["Fragment"],null,children);};/* harmony default export */ var components_Wrapper = (Wrapper_Wrapper);
+/* eslint-disable import/no-extraneous-dependencies */var Wrapper_Wrapper=function Wrapper(_ref){var children=_ref.children;return external_React_default.a.createElement(external_React_["Fragment"],null,children);};/* harmony default export */ var components_Wrapper = (Wrapper_Wrapper);
 // CONCATENATED MODULE: ./components/index.js
 /* eslint-disable *//* harmony default export */ var components = __webpack_exports__["default"] = ((function(){var exported=void 0;if(typeof window!=='undefined'){exported=__webpack_require__(9).default;}else{// NOTE: SSR support
 exported=__webpack_require__(3).default;}exported.Wrapper=components_Wrapper;return exported;})());
@@ -770,3 +779,4 @@ case'onLeave':state=makeState(fromArgs(['origin','destination','direction']));br
 
 /***/ })
 /******/ ]);
+});

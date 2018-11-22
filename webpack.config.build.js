@@ -16,30 +16,34 @@ const shared = {
   },
 
   plugins: [new CleanWebpackPlugin(['dist'])],
-
-  externals: {
-    // Don't bundle react or react-dom
-    react: 'react',
-    'react-dom': 'react-dom',
-  },
 };
 
 module.exports = [
   merge(webpackConfig, shared, {
+    // node module aliases
+    externals: {
+      react: 'react',
+      'react-dom': 'react-dom',
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'react-fullpage.js',
       library: 'ReactFullpage',
-      libraryTarget: 'umd',
-      umdNamedDefine: true,
+      libraryTarget: 'commonjs2',
     },
   }),
   merge(webpackConfig, shared, {
+    externals: {
+      // window aliases
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: 'react-fullpage-commonjs.js',
+      filename: 'react-fullpage-umd.js',
       library: 'ReactFullpage',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
     },
   }),
 ];
