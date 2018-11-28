@@ -112,15 +112,17 @@ Fullpage.js Extension Example:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using the fullPage.js option scrollOverflow:true
-
-// Optional. When using add-on fullpage extensions
-//import './fullpage.scrollHorizontally.min'
-
 import ReactFullpage from '@fullpage/react-fullpage';
+
+// NOTE: if using fullpage extensions/plugins put them here and pass it as props
+const pluginWrapper = () => {
+  require('fullpage.js/vendors/scrolloverflow');
+  require('./statics/fullpage.scrollHorizontally.min');
+};
 
 const Fullpage = () => (
   <ReactFullpage
+    pluginWrapper
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
