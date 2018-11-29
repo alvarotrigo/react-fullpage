@@ -1,10 +1,12 @@
 /* eslint-disable */
 import Wrapper from './Wrapper'
 
+const windowExists = () => typeof window !== 'undefined';
+
 export default (() => {
     let exported
 
-    if (typeof window !== 'undefined') {
+    if (windowExists()) {
         exported = require('./ReactFullpage').default
     } else {
         // NOTE: SSR support

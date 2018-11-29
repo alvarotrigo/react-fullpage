@@ -1,8 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Fullpage from 'fullpage.js/dist/fullpage.extensions.min';
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
+
+import Logger from '../Logger';
+
+let Fullpage;
 
 const isFunc = val => typeof val === 'function';
 const fullpageCallbacks = [
@@ -19,11 +22,22 @@ const fullpageCallbacks = [
 class ReactFullpage extends React.Component {
   constructor(props) {
     super(props);
-    const { render } = this.props;
+    const { render, pluginWrapper } = this.props;
 
     if (!isFunc(render)) {
       throw new Error('must provide render prop to <ReactFullpage />');
     }
+
+    this.log = Logger(this.props.debug, 'ReactFullpage');
+    this.log('Building component');
+
+    if (pluginWrapper) {
+      this.log('Calling plugin wrapper');
+      pluginWrapper();
+    }
+
+    this.log('Requiring fullpage.js');
+    Fullpage = require('fullpage.js/dist/fullpage.extensions.min');
 
     this.state = {
       initialized: false,
@@ -44,13 +58,9 @@ class ReactFullpage extends React.Component {
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
 
-    /* TODO: add a list of fullpage.js specific props to subscribe too
-      similar to how callbacks are handled)
-    */
-
+    // NOTE: if fullpage props have changed we need to rebuild
     if (this.props.sectionsColor !== prevProps.sectionsColor) {
-      console.log('rebuilding due to a change in fullpage.js props');
-      // NOTE: if fullpage props have changed we need to rebuild
+      this.log('rebuilding due to a change in fullpage.js props');
       this.destroy();
       this.init(this.buildOptions());
       return;
@@ -60,8 +70,8 @@ class ReactFullpage extends React.Component {
       return;
     }
 
-    console.log('rebuilding due to a change in fullpage.js sections/slides');
-    // NOTE: if sections have changed we need to rebuild
+    // NOTE: if sections/slides have changed we need to rebuild
+    this.log('rebuilding due to a change in fullpage.js sections/slides');
     this.destroy();
     this.init(this.buildOptions());
   }
@@ -81,20 +91,20 @@ class ReactFullpage extends React.Component {
   }
 
   init(opts) {
-        new Fullpage('#fullpage', opts) // eslint-disable-line
+    this.log('Reinitializing fullpage with options', opts);
+    new Fullpage('#fullpage', opts) // eslint-disable-line
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
   }
 
   destroy() {
-    // NOTE: need to check for init to support SSR
-    if (typeof window !== 'undefined') {
-      this.fullpageApi.destroy('all');
-    }
+    this.log('Destroying fullpage instance');
+    this.fullpageApi.destroy('all');
   }
 
   markInitialized() {
+    this.log('Marking initialized');
     this.setState({
       initialized: true,
       sectionCount: this.getSectionCount(),
@@ -106,28 +116,30 @@ class ReactFullpage extends React.Component {
     const filterCb = key => !!Object.keys(this.props).find(cb => cb === key);
     const registered = fullpageCallbacks.filter(filterCb);
     const listeners = registered.reduce((result, key) => {
-      const agg = {
+      return {
         ...result,
+        [key]: (...args) => {
+          return this.update(...[key, ...args]);
+        },
       };
-      agg[key] = (...args) => {
-        const newArgs = [key, ...args];
-        this.update(...newArgs);
-      };
-
-      return agg;
     }, {});
 
-    return {
+    // NOTE: override passed in callbacks w/  wrapped listeners
+    const options = {
       ...this.props,
       ...listeners,
     };
+
+    this.log('Building fullpage.js options: ', options);
+    return options;
   }
 
   update(lastEvent, ...args) {
+    this.log('Event trigger: ', lastEvent);
     let state = {
       ...this.state,
       sectionCount: this.getSectionCount(),
-      getSlideCount: this.getSlideCount(),
+      slideCount: this.getSlideCount(),
     };
 
     const makeState = callbackParameters => ({
@@ -186,12 +198,15 @@ class ReactFullpage extends React.Component {
         break;
     }
 
-    this.setState(state, () => {
-      this.props[lastEvent](...args);
-    });
+    const returned = this.props[lastEvent](...args);
+    this.log('Called callback: Returning => ', returned);
+    this.log('Updating State => ', state);
+    this.setState(state);
+    return returned;
   }
 
   render() {
+    this.log('<== Rendering ==>');
     return <div id="fullpage">{this.props.render(this)}</div>;
   }
 }

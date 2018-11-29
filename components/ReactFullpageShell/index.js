@@ -3,11 +3,15 @@
 
 import React from 'react';
 
+import Logger from '../Logger';
+
 // NOTE: SSR support
 class ReactFullpageShell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.log = Logger(this.props.debug, 'ReactFullpageShell');
+    this.log('Building component');
   }
 
   render() {
