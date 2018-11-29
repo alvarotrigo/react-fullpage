@@ -1,6 +1,6 @@
 {
   "name": "@fullpage/react-fullpage",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -56,6 +56,6 @@
     "webpack-merge": "4.1.2"
   },
   "dependencies": {
-    "fullpage.js": "^3.0.3"
+    "fullpage.js": "^3.0.4"
   }
 }
