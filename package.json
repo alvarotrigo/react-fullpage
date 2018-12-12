@@ -1,6 +1,6 @@
 {
   "name": "@fullpage/react-fullpage",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build:dev": "npx webpack --progress --mode development --config webpack.config.dev.js",
-    "build": "webpack -p --progress --mode production --config webpack.config.build.js",
+    "build": "NODE_ENV=prod webpack -p --progress --mode production --config webpack.config.build.js",
     "test": "npx cypress run --spec 'cypress/integration/*'",
     "cypress:open": "cypress open"
   },
