@@ -4,6 +4,7 @@ import React from 'react';
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
 
 import Logger from '../Logger';
+import { MAIN_SELECTOR, ID_SELECTOR, DEFAULT_SECTION, DEFAULT_SLIDE } from '../selectors';
 
 let Fullpage;
 
@@ -41,11 +42,14 @@ class ReactFullpage extends React.Component {
 
     this.state = {
       initialized: false,
+      sectionCount: 0,
+      slideCount: 0,
     };
   }
 
   componentDidMount() {
     const opts = this.buildOptions();
+    this.log('React Lifecycle: componentDidMount()');
 
     if (Fullpage) {
       this.init(opts);
@@ -54,6 +58,7 @@ class ReactFullpage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.log('React Lifecycle: componentDidUpdate()');
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
@@ -81,18 +86,20 @@ class ReactFullpage extends React.Component {
   }
 
   getSectionCount() {
-    const { sectionSelector = '.section' } = this.props;
-    return document.querySelectorAll(sectionSelector).length;
+    const { sectionSelector = DEFAULT_SECTION } = this.props;
+    const { length } = document.querySelectorAll(sectionSelector);
+    return length;
   }
 
   getSlideCount() {
-    const { slideSelector = '.slide' } = this.props;
-    return document.querySelectorAll(slideSelector).length;
+    const { slideSelector = DEFAULT_SLIDE } = this.props;
+    const { length } = document.querySelectorAll(slideSelector);
+    return length;
   }
 
   init(opts) {
     this.log('Reinitializing fullpage with options', opts);
-    new Fullpage('#fullpage', opts) // eslint-disable-line
+    new Fullpage(ID_SELECTOR, opts) // eslint-disable-line
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
@@ -207,7 +214,7 @@ class ReactFullpage extends React.Component {
 
   render() {
     this.log('<== Rendering ==>');
-    return <div id="fullpage">{this.props.render(this)}</div>;
+    return <div id={MAIN_SELECTOR}>{this.props.render(this)}</div>;
   }
 }
 
