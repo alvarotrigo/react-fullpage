@@ -12,7 +12,6 @@ describe('react-fullage.js', () => {
 
     it('Displays the proper structure', () => {
       cy.get('#fullpage');
-      cy.get('#fullpage-wrapper');
       cy.wait(WAIT);
     });
   });
@@ -21,28 +20,7 @@ describe('react-fullage.js', () => {
     it('Auto scrolls on window location change', () => {
       cy.visit(`${host}#secondPage`);
       cy.wait(WAIT);
-      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.1');
       cy.url().should('eq', `${host}#secondPage`);
-    });
-
-    it('Scrolls Vertically on click', () => {
-      cy.visit(`${host}#firstPage`);
-      cy.wait(WAIT);
-      cy.get('button').click();
-      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.1');
-      cy.url().should('eq', `${host}#secondPage`);
-    });
-
-    it('Scrolls horizontally on click', () => {
-      cy.get('.fp-next').click();
-      cy.wait(WAIT);
-      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.2');
-      cy.url().should('eq', `${host}#secondPage/1`);
-
-      cy.get('.fp-next').click();
-      cy.wait(WAIT);
-      cy.get('.active > .fp-tableCell > h3').contains('Slide 2.3');
-      cy.url().should('eq', `${host}#secondPage/2`);
     });
   });
 });
