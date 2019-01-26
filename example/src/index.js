@@ -107,6 +107,7 @@ class App extends React.Component {
         <ReactFullpage
           debug /* Debug logging */
           navigation
+          anchors={['firstPage', 'secondPage', 'thirdPage']}
           sectionSelector={SECTION_SEL}
           onLeave={this.onLeave.bind(this)}
           sectionsColor={this.state.sectionsColor}
