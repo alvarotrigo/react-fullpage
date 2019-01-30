@@ -4,6 +4,7 @@
 import React from 'react';
 
 import Logger from '../Logger';
+import { MAIN_SELECTOR } from '../selectors';
 
 // NOTE: SSR support
 class ReactFullpageShell extends React.Component {
@@ -16,7 +17,7 @@ class ReactFullpageShell extends React.Component {
 
   render() {
     return (
-      <div id="fullpage">
+      <div id={MAIN_SELECTOR}>
         {/* prettier-ignore */}
         {this.props.render(this)}
       </div>

@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../components';
 
+const SEL = 'custom-section';
+const SECTION_SEL = `.${SEL}`;
+
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props
 const pluginWrapper = () => {
   /**
@@ -103,15 +106,16 @@ class App extends React.Component {
         <Menu />
         <ReactFullpage
           debug /* Debug logging */
-          scrollOverflow
           navigation
+          anchors={['firstPage', 'secondPage', 'thirdPage']}
+          sectionSelector={SECTION_SEL}
           onLeave={this.onLeave.bind(this)}
           sectionsColor={this.state.sectionsColor}
           pluginWrapper={pluginWrapper}
           render={comp => (
             <ReactFullpage.Wrapper>
               {fullpages.map(({ text }) => (
-                <div key={text} className="section">
+                <div key={text} className={SEL}>
                   <h1>{text}</h1>
                 </div>
               ))}
