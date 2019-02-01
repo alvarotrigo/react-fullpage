@@ -47,7 +47,6 @@ If you are creating an open source application under a license compatible with t
 
 [Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
-
 ## Usage
 
 This wrapper creates a `<ReactFullpage />` component. It exposes a render-prop API so markup can remain the same across fullpage.js libraries. The render prop accepts 1 parameter in its callback which contains the component's react properties state, context, etc.
