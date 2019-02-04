@@ -8,8 +8,10 @@
     "alvarotrigo"
   ],
   "main": "./dist/react-fullpage.js",
-  "license": "MIT",
-  "homepage": "https://github.com/alvarotrigo/react-fullpage",
+  "license": {
+    "license": "GPL-3.0",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },  "homepage": "https://github.com/alvarotrigo/react-fullpage",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build:dev": "npx webpack --progress --mode development --config webpack.config.dev.js",
