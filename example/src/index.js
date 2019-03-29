@@ -26,6 +26,9 @@ class App extends React.Component {
         {
           text: 'section 2',
         },
+        {
+          text: 'section 3',
+        }
       ],
     };
   }
