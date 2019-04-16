@@ -122,7 +122,9 @@ const pluginWrapper = () => {
 
 const Fullpage = () => (
   <ReactFullpage
-    pluginWrapper
+    pluginWrapper = {pluginWrapper}
+    scrollingSpeed = {1000} /* Options here */
+    scrollHorizontally = {true}  /* Because we are using the extension */
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
