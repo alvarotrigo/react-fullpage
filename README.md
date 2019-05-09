@@ -70,7 +70,7 @@ import ReactFullpage from '@fullpage/react-fullpage'; // will return static vers
 ```
 
 SSR Examples:
-[gatsby](https://github.com/cmswalker/react-fullpage-gatsby-setup)
+[gatsby](https://github.com/cmswalker/gatsby_react-fullPage_Invariant-Violation-130/tree/gatsby-fix)
 [next.js](https://github.com/cmswalker/react-fullpage-next-example)
 
 ## Examples
