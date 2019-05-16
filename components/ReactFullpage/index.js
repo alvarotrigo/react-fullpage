@@ -63,8 +63,14 @@ class ReactFullpage extends React.Component {
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
 
+    //comparing sectionColors array option
+    var areSameSectionColors = true;
+    this.props.sectionsColor.forEach(function(item, index){
+      areSameSectionColors = item === prevProps.sectionsColor[index] && areSameSectionColors;     
+    });
+
     // NOTE: if fullpage props have changed we need to rebuild
-    if (this.props.sectionsColor !== prevProps.sectionsColor) {
+    if (!areSameSectionColors) {
       this.log('rebuilding due to a change in fullpage.js props');
       this.destroy();
       this.init(this.buildOptions());
