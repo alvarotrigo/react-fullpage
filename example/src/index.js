@@ -109,7 +109,7 @@ class App extends React.Component {
         <Menu />
         <ReactFullpage
           debug /* Debug logging */
-          licenseKey = {'YOUR_KEY_HERE'}
+          licenseKey={'YOUR_KEY_HERE'}
           navigation
           anchors={['firstPage', 'secondPage', 'thirdPage']}
           sectionSelector={SECTION_SEL}
