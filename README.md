@@ -135,10 +135,11 @@ const Fullpage = () => (
     pluginWrapper = {pluginWrapper}
 
     //fullpage options
+    licenseKey = {'YOUR_KEY_HERE'}
     scrollingSpeed = {1000} /* Options here */
     scrollHorizontally = {true}  /* Because we are using the extension */
     scrollHorizontallyKey = {'YOUR KEY HERE'}
-    
+
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
