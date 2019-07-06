@@ -126,7 +126,6 @@ import ReactFullpage from '@fullpage/react-fullpage';
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props
 const pluginWrapper = () => {
-  require('fullpage.js/vendors/scrolloverflow');
   require('./statics/fullpage.scrollHorizontally.min');
 };
 
@@ -161,7 +160,7 @@ const Fullpage = () => (
 ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
 ```
 
-Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.
+Notice that when using any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll pass the `pluginWrapper` function prop to include the file for those features before the `react-fullpage` component mounted.  
 
 ## State
 

@@ -4,7 +4,12 @@ import React from 'react';
 import fullpageStyles from 'fullpage.js/dist/fullpage.min.css'; // eslint-disable-line no-unused-vars
 
 import Logger from '../Logger';
-import { MAIN_SELECTOR, ID_SELECTOR, DEFAULT_SECTION, DEFAULT_SLIDE } from '../selectors';
+import {
+  MAIN_SELECTOR,
+  ID_SELECTOR,
+  DEFAULT_SECTION,
+  DEFAULT_SLIDE,
+} from '../selectors';
 
 let Fullpage;
 
@@ -31,6 +36,9 @@ class ReactFullpage extends React.Component {
 
     this.log = Logger(this.props.debug, 'ReactFullpage');
     this.log('Building component');
+
+    this.log('Importing vendor files');
+    this.importVendors();
 
     if (pluginWrapper) {
       this.log('Calling plugin wrapper');
@@ -65,8 +73,9 @@ class ReactFullpage extends React.Component {
 
     //comparing sectionColors array option
     var areSameSectionColors = true;
-    this.props.sectionsColor.forEach(function(item, index){
-      areSameSectionColors = item === prevProps.sectionsColor[index] && areSameSectionColors;     
+    this.props.sectionsColor.forEach(function(item, index) {
+      areSameSectionColors =
+        item === prevProps.sectionsColor[index] && areSameSectionColors;
     });
 
     // NOTE: if fullpage props have changed we need to rebuild
@@ -101,6 +110,16 @@ class ReactFullpage extends React.Component {
     const { slideSelector = DEFAULT_SLIDE } = this.props;
     const { length } = document.querySelectorAll(slideSelector);
     return length;
+  }
+
+  importVendors() {
+    const { scrollOverflow, easing } = this.props;
+    if (scrollOverflow) {
+      require('fullpage.js/vendors/scrolloverflow.min');
+    }
+    if (easing) {
+      require('fullpage.js/vendors/easings.min');
+    }
   }
 
   init(opts) {
