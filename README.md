@@ -92,6 +92,10 @@ import ReactFullpage from '@fullpage/react-fullpage';
 
 const Fullpage = () => (
   <ReactFullpage
+    //fullpage options
+    licenseKey = {'YOUR_KEY_HERE'}
+    scrollingSpeed = {1000} /* Options here */
+
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
@@ -129,8 +133,12 @@ const pluginWrapper = () => {
 const Fullpage = () => (
   <ReactFullpage
     pluginWrapper = {pluginWrapper}
+
+    //fullpage options
     scrollingSpeed = {1000} /* Options here */
     scrollHorizontally = {true}  /* Because we are using the extension */
+    scrollHorizontallyKey = {'YOUR KEY HERE'}
+    
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
