@@ -5,7 +5,7 @@
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/react--fullpage-v0.1.14-brightgreen.svg" alt="react-fullpage version" />
+  <img src="https://img.shields.io/badge/react--fullpage-v0.1.15-brightgreen.svg" alt="react-fullpage version" />
 </p>
 
 - [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
