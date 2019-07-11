@@ -76,6 +76,7 @@ import ReactFullpage from '@fullpage/react-fullpage'; // will return static vers
 ```
 
 SSR Examples:
+You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/gatsby/) and a [Next.js](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/next/) examples in the ["examples" folder](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). But here you have others too:
 [gatsby](https://github.com/cmswalker/gatsby_react-fullPage_Invariant-Violation-130)
 [next.js](https://github.com/cmswalker/react-fullpage-next-example)
 
