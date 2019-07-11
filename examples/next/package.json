@@ -1,0 +1,19 @@
+{
+  "name": "react-fullpage-next-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "cmswalker",
+  "license": "ISC",
+  "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.15",
+    "next": "^7.0.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
