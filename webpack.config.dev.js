@@ -7,6 +7,6 @@ module.exports = merge(webpackConfig, {
   output: {
     pathinfo: true,
     filename: '[name].js',
-    path: path.resolve(__dirname, './example/dist')
+    path: path.resolve(__dirname, './examples/react/dist')
   },
 });

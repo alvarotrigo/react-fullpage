@@ -5,7 +5,7 @@
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/react--fullpage-v0.1.14-brightgreen.svg" alt="react-fullpage version" />
+  <img src="https://img.shields.io/badge/react--fullpage-v0.1.15-brightgreen.svg" alt="react-fullpage version" />
 </p>
 
 - [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
@@ -76,7 +76,8 @@ import ReactFullpage from '@fullpage/react-fullpage'; // will return static vers
 ```
 
 SSR Examples:
-[gatsby](https://github.com/cmswalker/react-fullpage-gatsby-setup)
+You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/gatsby/) and a [Next.js](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/next/) examples in the ["examples" folder](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). But here you have others too:
+[gatsby](https://github.com/cmswalker/gatsby_react-fullPage_Invariant-Violation-130)
 [next.js](https://github.com/cmswalker/react-fullpage-next-example)
 
 ## Examples
@@ -92,6 +93,10 @@ import ReactFullpage from '@fullpage/react-fullpage';
 
 const Fullpage = () => (
   <ReactFullpage
+    //fullpage options
+    licenseKey = {'YOUR_KEY_HERE'}
+    scrollingSpeed = {1000} /* Options here */
+
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
@@ -122,13 +127,19 @@ import ReactFullpage from '@fullpage/react-fullpage';
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props
 const pluginWrapper = () => {
-  require('fullpage.js/vendors/scrolloverflow');
   require('./statics/fullpage.scrollHorizontally.min');
 };
 
 const Fullpage = () => (
   <ReactFullpage
-    pluginWrapper
+    pluginWrapper = {pluginWrapper}
+
+    //fullpage options
+    licenseKey = {'YOUR_KEY_HERE'}
+    scrollingSpeed = {1000} /* Options here */
+    scrollHorizontally = {true}  /* Because we are using the extension */
+    scrollHorizontallyKey = {'YOUR KEY HERE'}
+
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
@@ -150,7 +161,7 @@ const Fullpage = () => (
 ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
 ```
 
-Notice that when using the option `scrollOverflow:true` or any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll have to include the file for those features before the `react-fullpage` component.
+Notice that when using any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll pass the `pluginWrapper` function prop to include the file for those features before the `react-fullpage` component mounted.  
 
 ## State
 

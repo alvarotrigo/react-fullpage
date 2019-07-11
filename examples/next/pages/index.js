@@ -1,18 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactFullpage from '../../components';
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactFullpage from "@fullpage/react-fullpage";
+import Head from 'next/head'
 
-const SEL = 'custom-section';
-const SECTION_SEL = `.${SEL}`;
+// import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
 
-// NOTE: if using fullpage extensions/plugins put them here and pass it as props
-const pluginWrapper = () => {
-  /**
-   * require('fullpage.js/vendors/scrolloverflow'); // Optional. When using scrollOverflow:true
-   */
-};
-
-const originalColors = ['#282c34', '#ff5f45', '#0798ec'];
+const originalColors = ['#ff5f45', '#0798ec', '#fc6c7c', '#435b71', 'orange', 'blue', 'purple', 'yellow'];
 
 class App extends React.Component {
   constructor(props) {
@@ -21,31 +14,31 @@ class App extends React.Component {
       sectionsColor: [...originalColors],
       fullpages: [
         {
-          text: 'section 1',
+          text: "Section 1"
         },
         {
-          text: 'section 2',
+          text: "Section 2"
         },
         {
-          text: 'section 3',
+          text: 'Section 3',
         }
-      ],
+      ]
     };
   }
 
   onLeave(origin, destination, direction) {
-    console.log('onLeave', { origin, destination, direction });
+    console.log("onLeave", { origin, destination, direction });
     // arguments are mapped in order of fullpage.js callback arguments do something
     // with the event
   }
 
   handleChangeColors() {
     const newColors =
-      this.state.sectionsColor[0] === 'yellow'
+      this.state.sectionsColor[0] === "yellow"
         ? [...originalColors]
-        : ['yellow', 'blue', 'white'];
+        : ["yellow", "blue", "white"];
     this.setState({
-      sectionsColor: newColors,
+      sectionsColor: newColors
     });
   }
 
@@ -55,11 +48,11 @@ class App extends React.Component {
       const { length } = fullpages;
       fullpages.push({
         text: `section ${length + 1}`,
-        id: Math.random(),
+        id: Math.random()
       });
 
       return {
-        fullpages: [...fullpages],
+        fullpages: [...fullpages]
       };
     });
   }
@@ -74,6 +67,10 @@ class App extends React.Component {
     });
   }
 
+  moveSectionDown(){
+    fullpage_api.moveSectionDown();
+  }
+
   render() {
     const { fullpages } = this.state;
 
@@ -85,19 +82,22 @@ class App extends React.Component {
       <div
         className="menu"
         style={{
-          position: 'fixed',
+          position: "fixed",
           top: 0,
-          zIndex: 100,
+          zIndex: 100
         }}
       >
-        <ul>
+        <ul className="actions">
           <li>
-            <button onClick={() => this.handleAddSection()}>+ Section</button>
+            <button onClick={() => this.handleAddSection()}>Add Section</button>
             <button onClick={() => this.handleRemoveSection()}>
-              - Section
+              Remove Section
             </button>
             <button onClick={() => this.handleChangeColors()}>
-              Change colors
+              Change background colors
+            </button>
+            <button onClick={() => this.moveSectionDown()}>
+              Move Section Down
             </button>
           </li>
         </ul>
@@ -105,30 +105,32 @@ class App extends React.Component {
     );
 
     return (
+
       <div className="App">
+        <Head>
+          <title>My styled page</title>
+          <link href="/static/styles.css" rel="stylesheet" />
+        </Head>
         <Menu />
         <ReactFullpage
-          debug /* Debug logging */
           navigation
-          anchors={['firstPage', 'secondPage', 'thirdPage']}
-          sectionSelector={SECTION_SEL}
           onLeave={this.onLeave.bind(this)}
           sectionsColor={this.state.sectionsColor}
-          pluginWrapper={pluginWrapper}
-          render={comp => (
-            <ReactFullpage.Wrapper>
-              {fullpages.map(({ text }) => (
-                <div key={text} className={SEL}>
-                  <h1>{text}</h1>
-                </div>
-              ))}
-            </ReactFullpage.Wrapper>
-          )}
+          render={comp =>
+            console.log("render prop change") || (
+              <ReactFullpage.Wrapper>
+                {fullpages.map(({ text }) => (
+                  <div key={text} className="section">
+                    <h1>{text}</h1>
+                  </div>
+                ))}
+              </ReactFullpage.Wrapper>
+            )
+          }
         />
       </div>
     );
   }
 }
 
-const rootElement = document.getElementById('react-root');
-ReactDOM.render(<App />, rootElement);
+export default App;
