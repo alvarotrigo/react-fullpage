@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../components';
+import Styles from './styles.css';
 
 const SEL = 'custom-section';
 const SECTION_SEL = `.${SEL}`;
 
-// NOTE: if using fullpage extensions/plugins put them here and pass it as props
+// NOTE: if using fullpage extensions/plugins put them here and pass it as props.
+// This is no longer required for the scrollOverflow option.
 const pluginWrapper = () => {
-  /**
-   * require('fullpage.js/vendors/scrolloverflow'); // Optional. When using scrollOverflow:true
-   */
+  /*
+  * require('./fullpage.fadingEffect.min'); // Optional. Required when using the "fadingEffect" extension.
+  */
 };
 
-const originalColors = ['#282c34', '#ff5f45', '#0798ec'];
+const originalColors = ['#ff5f45', '#0798ec', '#fc6c7c', '#435b71', 'orange', 'blue', 'purple', 'yellow'];
 
 class App extends React.Component {
   constructor(props) {
@@ -21,13 +23,13 @@ class App extends React.Component {
       sectionsColor: [...originalColors],
       fullpages: [
         {
-          text: 'section 1',
+          text: 'Section 1',
         },
         {
-          text: 'section 2',
+          text: 'Section 2',
         },
         {
-          text: 'section 3',
+          text: 'Section 3',
         }
       ],
     };
@@ -74,6 +76,10 @@ class App extends React.Component {
     });
   }
 
+  moveSectionDown() {
+    fullpage_api.moveSectionDown();
+  }
+
   render() {
     const { fullpages } = this.state;
 
@@ -90,14 +96,17 @@ class App extends React.Component {
           zIndex: 100,
         }}
       >
-        <ul>
+        <ul class="actions">
           <li>
-            <button onClick={() => this.handleAddSection()}>+ Section</button>
+            <button onClick={() => this.handleAddSection()}>Add Section</button>
             <button onClick={() => this.handleRemoveSection()}>
-              - Section
+              Remove Section
             </button>
             <button onClick={() => this.handleChangeColors()}>
-              Change colors
+              Change background colors
+            </button>
+            <button onClick={() => this.moveSectionDown()}>
+              Move Section Down
             </button>
           </li>
         </ul>
@@ -109,13 +118,18 @@ class App extends React.Component {
         <Menu />
         <ReactFullpage
           debug /* Debug logging */
-          licenseKey={'YOUR_KEY_HERE'}
+
+          // Required when using extensions
+          pluginWrapper={pluginWrapper}
+
+          // fullpage options
+          licenseKey={'YOUR_KEY_HERE'} // Get one from https://alvarotrigo.com/fullPage/pricing/
           navigation
           anchors={['firstPage', 'secondPage', 'thirdPage']}
           sectionSelector={SECTION_SEL}
           onLeave={this.onLeave.bind(this)}
           sectionsColor={this.state.sectionsColor}
-          pluginWrapper={pluginWrapper}
+
           render={comp => (
             <ReactFullpage.Wrapper>
               {fullpages.map(({ text }) => (
