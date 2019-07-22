@@ -14,6 +14,11 @@ import {
 let Fullpage;
 
 const isFunc = val => typeof val === 'function';
+const isEqualArray = (firstArr, secondArr) => {
+  if (firstArr.length !== secondArr.length) return false;
+
+  return firstArr.find(el => !secondArr.includes(el)) == null;
+};
 const fullpageCallbacks = [
   'afterLoad',
   'afterRender',
@@ -65,18 +70,14 @@ class ReactFullpage extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     this.log('React Lifecycle: componentDidUpdate()');
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
 
-    //comparing sectionColors array option
-    var areSameSectionColors = true;
-    this.props.sectionsColor.forEach(function(item, index) {
-      areSameSectionColors =
-        item === prevProps.sectionsColor[index] && areSameSectionColors;
-    });
+    // comparing sectionColors array option
+    const areSameSectionColors = isEqualArray(prevProps.sectionsColor, this.props.sectionsColor);
 
     // NOTE: if fullpage props have changed we need to rebuild
     if (!areSameSectionColors) {
@@ -124,7 +125,7 @@ class ReactFullpage extends React.Component {
 
   init(opts) {
     this.log('Reinitializing fullpage with options', opts);
-    new Fullpage(ID_SELECTOR, opts) // eslint-disable-line
+    new Fullpage(ID_SELECTOR, opts); // eslint-disable-line
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
@@ -241,6 +242,10 @@ class ReactFullpage extends React.Component {
     this.log('<== Rendering ==>');
     return <div id={MAIN_SELECTOR}>{this.props.render(this)}</div>;
   }
+}
+
+ReactFullpage.defaultProps = {
+  sectionsColor: []
 }
 
 export default ReactFullpage;
