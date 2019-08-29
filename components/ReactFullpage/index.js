@@ -57,6 +57,7 @@ class ReactFullpage extends React.Component {
       initialized: false,
       sectionCount: 0,
       slideCount: 0,
+      slideContent: [],
     };
   }
 
@@ -74,7 +75,8 @@ class ReactFullpage extends React.Component {
     this.log('React Lifecycle: componentDidUpdate()');
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
-    const { sectionCount, slideCount } = this.state;
+    const newSlideContent = this.getSlideContent();
+    const { sectionCount, slideCount, slideContent } = this.state;
 
     // comparing sectionColors array option
     const areSameSectionColors = isEqualArray(prevProps.sectionsColor, this.props.sectionsColor);
@@ -87,7 +89,10 @@ class ReactFullpage extends React.Component {
       return;
     }
 
-    if (sectionCount === newSectionCount && slideCount === newSlideCount) {
+    // compare old slide content vs new slide content
+    const slidesContainSameContent = (slideContent.length === newSlideContent.length && slideContent.every(function(value, index) { return value === newSlideContent[index]}));
+
+    if (sectionCount === newSectionCount && slideCount === newSlideCount && slidesContainSameContent) {
       return;
     }
 
@@ -113,6 +118,14 @@ class ReactFullpage extends React.Component {
     return length;
   }
 
+  getSlideContent() {
+    const { slideSelector = DEFAULT_SLIDE } = this.props;
+    const contentArray = [...document.querySelectorAll(slideSelector)].map(slide => {
+      return slide.innerHTML
+    });
+    return contentArray;
+  }
+
   importVendors() {
     const { scrollOverflow, easing } = this.props;
     if (scrollOverflow) {
@@ -129,6 +142,7 @@ class ReactFullpage extends React.Component {
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
+    this.markInitialized();
   }
 
   destroy() {
@@ -142,6 +156,7 @@ class ReactFullpage extends React.Component {
       initialized: true,
       sectionCount: this.getSectionCount(),
       slideCount: this.getSlideCount(),
+      slideContent: this.getSlideContent(),
     });
   }
 
