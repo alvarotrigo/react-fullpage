@@ -90,7 +90,7 @@ class ReactFullpage extends React.Component {
     }
 
     // compare old slide content vs new slide content
-    const slidesContainSameContent = (slideContent.length === newSlideContent.length && slideContent.every(function(value, index) { return value === newSlideContent[index]}));
+    const slidesContainSameContent = (slideContent.length > 0 && slideContent.length === newSlideContent.length && slideContent.every(function(value, index) { return value === newSlideContent[index]}));
 
     if (sectionCount === newSectionCount && slideCount === newSlideCount && slidesContainSameContent) {
       return;
