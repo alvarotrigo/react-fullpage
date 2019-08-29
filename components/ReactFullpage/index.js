@@ -82,7 +82,7 @@ class ReactFullpage extends React.Component {
     // NOTE: if fullpage props have changed we need to rebuild
     if (!areSameSectionColors) {
       this.log('rebuilding due to a change in fullpage.js props');
-      this.reBuild();
+      this.reRender();
       return;
     }
 
@@ -92,7 +92,7 @@ class ReactFullpage extends React.Component {
 
     // NOTE: if sections/slides have changed we need to rebuild
     this.log('rebuilding due to a change in fullpage.js sections/slides');
-    this.reBuild();
+    this.reRender();
   }
 
   componentWillUnmount() {
@@ -134,7 +134,7 @@ class ReactFullpage extends React.Component {
     this.fullpageApi.destroy('all');
   }
 
-  reBuild() {
+  reRender() {
     this.destroy();
     this.init(this.buildOptions());
   }
