@@ -82,7 +82,7 @@ You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/maste
 
 ## Examples
 
-In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/example)
+In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). You can start with the [React Example](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/react).
 
 Quickstart Example:
 
