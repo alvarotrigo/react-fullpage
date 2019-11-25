@@ -5,7 +5,7 @@
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/react--fullpage-v0.1.16-brightgreen.svg" alt="react-fullpage version" />
+  <img src="https://img.shields.io/badge/react--fullpage-v0.1.17-brightgreen.svg" alt="react-fullpage version" />
 </p>
 
 - [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
@@ -82,7 +82,7 @@ You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/maste
 
 ## Examples
 
-In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/example)
+In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). You can start with the [React Example](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/react).
 
 Quickstart Example:
 

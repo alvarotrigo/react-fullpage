@@ -8,7 +8,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.16",
+    "@fullpage/react-fullpage": "^0.1.17",
     "gatsby": "^2.0.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1"
