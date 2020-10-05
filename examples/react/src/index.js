@@ -96,7 +96,7 @@ class App extends React.Component {
           zIndex: 100,
         }}
       >
-        <ul class="actions">
+        <ul className="actions">
           <li>
             <button onClick={() => this.handleAddSection()}>Add Section</button>
             <button onClick={() => this.handleRemoveSection()}>
