@@ -2,6 +2,7 @@
 .idea
 .DS_Store
 .sass-cache
+.vscode/
 
 ## Directories
 log/
