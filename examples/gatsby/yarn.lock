@@ -697,12 +697,12 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@fullpage/react-fullpage@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@fullpage/react-fullpage/-/react-fullpage-0.1.17.tgz#9beed867b0709cd1106e7e5fa98e0d18c58ac2de"
+"@fullpage/react-fullpage@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@fullpage/react-fullpage/-/react-fullpage-0.1.18.tgz#cdc26ba731d38824e0d234cd2e1153b68bba7786"
   dependencies:
     "@babel/polyfill" "^7.2.5"
-    fullpage.js "^3.0.8"
+    fullpage.js "^3.0.9"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -3850,9 +3850,9 @@ fsevents@^1.0.0, fsevents@^1.2.2:
     nan "^2.9.2"
     node-pre-gyp "^0.10.0"
 
-fullpage.js@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.0.8.tgz#4d89a87d36c30c0866c3dfec5e6cb363902f97b2"
+fullpage.js@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.0.9.tgz#fc7dba41d521f020a51e9c00fb0fee0d2e11d552"
 
 function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
@@ -5834,8 +5834,8 @@ object-keys@^1.0.12:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.12.tgz#09c53855377575310cca62f55bb334abff7b3ed2"
 
 object-path@^0.11.2:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
 
 object-visit@^1.0.0:
   version "1.0.1"
