@@ -3,7 +3,14 @@ import ReactDOM from "react-dom";
 import ReactFullpage from "@fullpage/react-fullpage";
 import Head from 'next/head'
 
-// import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverflow:true
+// NOTE: if using fullpage extensions/plugins put them here and pass it as props.
+// This is no longer required for the scrollOverflow option.
+const pluginWrapper = () => {
+  /*
+  * require('../static/fullpage.scrollHorizontally.min.js'); // Optional. Required when using the "scrollHorizontally" extension.
+  */
+};
+
 
 const originalColors = ['#ff5f45', '#0798ec', '#fc6c7c', '#435b71', 'orange', 'blue', 'purple', 'yellow'];
 
@@ -114,7 +121,9 @@ class App extends React.Component {
         <Menu />
         <ReactFullpage
           navigation
+          pluginWrapper={pluginWrapper}
           onLeave={this.onLeave.bind(this)}
+          // scrollHorizontally = {true}
           sectionsColor={this.state.sectionsColor}
           render={comp =>
             console.log("render prop change") || (
