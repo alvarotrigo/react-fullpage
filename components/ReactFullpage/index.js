@@ -70,29 +70,46 @@ class ReactFullpage extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    this.log('React Lifecycle: componentDidUpdate()');
+  isReRenderNecessary(prevProps){
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
+    let isReRenderNecessary =
+      sectionCount !== newSectionCount || slideCount !== newSlideCount;
 
-    // comparing sectionColors array option
-    const areSameSectionColors = isEqualArray(prevProps.sectionsColor, this.props.sectionsColor);
+    const propertiesThatNeedReRender = [
+      'sectionsColor',
+      'navigationTooltips',
+      'navigationPosition',
+      'navigation',
+      'scrollBar',
+    ];
+
+    propertiesThatNeedReRender.forEach(property => {
+      if (typeof prevProps[property] !== 'undefined') {
+        if (Array.isArray(prevProps[property])) {
+          isReRenderNecessary =
+            isReRenderNecessary ||
+            !isEqualArray(prevProps[property], this.props[property]);
+        } else {
+          isReRenderNecessary =
+            isReRenderNecessary || prevProps[property] !== this.props[property];
+        }
+      }
+    });
+
+    return isReRenderNecessary;
+  }
+
+  componentDidUpdate(prevProps) {
+    this.log('React Lifecycle: componentDidUpdate()');
 
     // NOTE: if fullpage props have changed we need to rebuild
-    if (!areSameSectionColors) {
-      this.log('rebuilding due to a change in fullpage.js props');
+    if (this.isReRenderNecessary(prevProps)) {
+      this.log('rebuilding due to a change in fullpage.js props or num sections/slides');
       this.reRender();
       return;
     }
-
-    if (sectionCount === newSectionCount && slideCount === newSlideCount) {
-      return;
-    }
-
-    // NOTE: if sections/slides have changed we need to rebuild
-    this.log('rebuilding due to a change in fullpage.js sections/slides');
-    this.reRender();
   }
 
   componentWillUnmount() {
