@@ -3851,8 +3851,8 @@ fsevents@^1.0.0, fsevents@^1.2.2:
     node-pre-gyp "^0.10.0"
 
 fullpage.js@^3.1.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.1.1.tgz#56dd11f6946c06972b7ed30aa841b46c52157a9c"
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.1.2.tgz#ee6289f52edb2a9f9c25d09c4022043b701d3cc0"
 
 function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
@@ -5838,8 +5838,8 @@ object-keys@^1.0.12:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.12.tgz#09c53855377575310cca62f55bb334abff7b3ed2"
 
 object-path@^0.11.2:
-  version "0.11.5"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.7.tgz#5f211161f34bb395e4b13a5f565b79d933b6f65d"
 
 object-visit@^1.0.0:
   version "1.0.1"
