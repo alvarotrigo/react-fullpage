@@ -24,11 +24,12 @@ module.exports = {
     modules: [dirNode, dirApp, dirAssets],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      NODE_ENV,
-      IS_DEV,
-    }),
+    // // Throws warning: Conflicting values for 'process.env.NODE_ENV' 
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+    //   NODE_ENV,
+    //   IS_DEV,
+    // }),
 
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.ejs'),
