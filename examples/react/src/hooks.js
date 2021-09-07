@@ -79,7 +79,6 @@ const Hooks = () => {
 
   return (
     <div className="App">
-    {alert("hooks")}
       <Menu />
       <ReactFullpage
         debug /* Debug logging */
