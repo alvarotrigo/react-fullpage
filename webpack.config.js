@@ -18,7 +18,9 @@ const { banner } = require('./components/Utils');
  */
 module.exports = {
   entry: {
-    bundle: path.join(dirApp, 'index'),
+    // // defaulted to render hooks, uncomment for classes
+    // bundle: path.join(dirApp, 'index'),
+    bundle: path.join(dirApp, 'hooks'),
   },
   resolve: {
     modules: [dirNode, dirApp, dirAssets],
