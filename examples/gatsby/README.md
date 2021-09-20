@@ -9,4 +9,9 @@ gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
 Or [view the live demo here](https://gatsby-starter-hello-world-demo.netlify.com/).
 
 ## Running in development
-`gatsby develop`
+
+```sh
+npm i
+gatsby develop
+# go to localhost:8000
+```
