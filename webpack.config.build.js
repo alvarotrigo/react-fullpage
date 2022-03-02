@@ -15,7 +15,7 @@ const shared = {
     minimize: false,
   },
 
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [new CleanWebpackPlugin({ cleanStaleWebpackAssets: false })]
 };
 
 module.exports = [
