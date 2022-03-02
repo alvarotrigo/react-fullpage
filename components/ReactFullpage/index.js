@@ -70,29 +70,46 @@ class ReactFullpage extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    this.log('React Lifecycle: componentDidUpdate()');
+  isReRenderNecessary(prevProps){
     const newSectionCount = this.getSectionCount();
     const newSlideCount = this.getSlideCount();
     const { sectionCount, slideCount } = this.state;
+    let isReRenderNecessary =
+      sectionCount !== newSectionCount || slideCount !== newSlideCount;
 
-    // comparing sectionColors array option
-    const areSameSectionColors = isEqualArray(prevProps.sectionsColor, this.props.sectionsColor);
+    const propertiesThatNeedReRender = [
+      'sectionsColor',
+      'navigationTooltips',
+      'navigationPosition',
+      'navigation',
+      'scrollBar',
+    ];
+
+    propertiesThatNeedReRender.forEach(property => {
+      if (typeof prevProps[property] !== 'undefined') {
+        if (Array.isArray(prevProps[property])) {
+          isReRenderNecessary =
+            isReRenderNecessary ||
+            !isEqualArray(prevProps[property], this.props[property]);
+        } else {
+          isReRenderNecessary =
+            isReRenderNecessary || prevProps[property] !== this.props[property];
+        }
+      }
+    });
+
+    return isReRenderNecessary;
+  }
+
+  componentDidUpdate(prevProps) {
+    this.log('React Lifecycle: componentDidUpdate()');
 
     // NOTE: if fullpage props have changed we need to rebuild
-    if (!areSameSectionColors) {
-      this.log('rebuilding due to a change in fullpage.js props');
+    if (this.isReRenderNecessary(prevProps)) {
+      this.log('rebuilding due to a change in fullpage.js props or num sections/slides');
       this.reRender();
       return;
     }
-
-    if (sectionCount === newSectionCount && slideCount === newSlideCount) {
-      return;
-    }
-
-    // NOTE: if sections/slides have changed we need to rebuild
-    this.log('rebuilding due to a change in fullpage.js sections/slides');
-    this.reRender();
   }
 
   componentWillUnmount() {
@@ -123,10 +140,13 @@ class ReactFullpage extends React.Component {
 
   init(opts) {
     this.log('Reinitializing fullpage with options', opts);
+    const originalAnimateAnchor = opts.animateAnchor;
+    opts.animateAnchor = false;
     new Fullpage(ID_SELECTOR, opts); // eslint-disable-line
     this.fullpageApi = window.fullpage_api;
     this.fpUtils = window.fp_utils;
     this.fpEasings = window.fp_easings;
+    window.fullpage_api.getFullpageData().options.animateAnchor = originalAnimateAnchor;
   }
 
   destroy() {
@@ -135,7 +155,22 @@ class ReactFullpage extends React.Component {
   }
 
   reRender() {
+    const slideSelector = this.props.slideSelector || '.slide';
+    const sectionSelector = this.props.sectionSelector || '.section';
+    const activeSection = document.querySelector(sectionSelector + '.active');
+    const activeSectionIndex = activeSection ? this.fpUtils.index(activeSection) : this.state.destination.index - 1;
+    const activeSlide = document.querySelector(sectionSelector + '.active ' + slideSelector + '.active');
+    const activeSlideIndex = activeSlide ? this.fpUtils.index(activeSlide) : -1;
+
     this.destroy();
+
+    if (activeSectionIndex > -1) {
+      this.fpUtils.addClass(document.querySelectorAll(sectionSelector)[activeSectionIndex], 'active');
+    }
+    if (activeSlideIndex > -1) {
+      this.fpUtils.addClass(activeSlide, 'active');
+    }
+
     this.init(this.buildOptions());
   }
 
@@ -149,16 +184,22 @@ class ReactFullpage extends React.Component {
   }
 
   buildOptions() {
-    const filterCb = key => !!Object.keys(this.props).find(cb => cb === key);
-    const registered = fullpageCallbacks.filter(filterCb);
-    const listeners = registered.reduce((result, key) => {
-      return {
-        ...result,
-        [key]: (...args) => {
-          return this.update(...[key, ...args]);
-        },
-      };
-    }, {});
+    let listeners = null;
+    if(!this.state.initialized){
+      const filterCb = key => !!Object.keys(this.props).find((cb) => {
+        return cb === key;
+      });
+      const registered = fullpageCallbacks.filter(filterCb);
+
+      listeners = registered.reduce((result, key) => {
+        return {
+          ...result,
+          [key]: (...args) => {
+            return this.update(...[key, ...args]);
+          },
+        };
+      }, {});
+    }
 
     // NOTE: override passed in callbacks w/  wrapped listeners
     const options = {

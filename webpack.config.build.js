@@ -1,6 +1,6 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const webpackConfig = require('./webpack.config');
 
@@ -15,7 +15,7 @@ const shared = {
     minimize: false,
   },
 
-  plugins: [new CleanWebpackPlugin(['dist'])],
+  plugins: [new CleanWebpackPlugin()],
 };
 
 module.exports = [
