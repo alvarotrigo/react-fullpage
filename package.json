@@ -13,6 +13,7 @@
     "url": "https://www.gnu.org/licenses/gpl-3.0.html"
   },
   "homepage": "https://github.com/alvarotrigo/react-fullpage",
+  "types":"types/index.d.ts",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build:dev": "npx webpack --progress --mode development --config webpack.config.dev.js",
