@@ -5,17 +5,7 @@
  *
  * Copyright (C) 2018 alvarotrigo.com - A project by Alvaro Trigo & Michael Walker
  */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"));
-	else if(typeof define === 'function' && define.amd)
-		define("ReactFullpage", ["React"], factory);
-	else if(typeof exports === 'object')
-		exports["ReactFullpage"] = factory(require("React"));
-	else
-		root["ReactFullpage"] = factory(root["React"]);
-})(self, function(__WEBPACK_EXTERNAL_MODULE__24__) {
-return /******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 271:
@@ -39,9 +29,9 @@ __webpack_require__.d(__webpack_exports__, {
   "Z": () => (/* binding */ components_ReactFullpage)
 });
 
-// EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(24);
-var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(497);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 // EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
 var injectStylesIntoStyleTag = __webpack_require__(379);
 var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
@@ -97,7 +87,7 @@ var Logger = __webpack_require__(271);
 var selectors = __webpack_require__(542);
 ;// CONCATENATED MODULE: ./components/ReactFullpage/index.js
 function ownKeys(object,enumerableOnly){var keys=Object.keys(object);if(Object.getOwnPropertySymbols){var symbols=Object.getOwnPropertySymbols(object);if(enumerableOnly){symbols=symbols.filter(function(sym){return Object.getOwnPropertyDescriptor(object,sym).enumerable;});}keys.push.apply(keys,symbols);}return keys;}function _objectSpread(target){for(var i=1;i<arguments.length;i++){var source=arguments[i]!=null?arguments[i]:{};if(i%2){ownKeys(Object(source),true).forEach(function(key){_defineProperty(target,key,source[key]);});}else if(Object.getOwnPropertyDescriptors){Object.defineProperties(target,Object.getOwnPropertyDescriptors(source));}else{ownKeys(Object(source)).forEach(function(key){Object.defineProperty(target,key,Object.getOwnPropertyDescriptor(source,key));});}}return target;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}/* eslint-disable import/no-extraneous-dependencies */ /* eslint-disable react/prop-types */// eslint-disable-line no-unused-vars
-let Fullpage;const isFunc=val=>typeof val==='function';const isEqualArray=(firstArr,secondArr)=>{if(firstArr.length!==secondArr.length)return false;return firstArr.find(el=>!secondArr.includes(el))==null;};const fullpageCallbacks=['afterLoad','afterRender','afterResize','afterResponsive','afterSlideLoad','onLeave','onSlideLeave'];class ReactFullpage extends (external_React_default()).Component{constructor(props){super(props);const{render,pluginWrapper}=this.props;if(!isFunc(render)){throw new Error('must provide render prop to <ReactFullpage />');}this.log=(0,Logger/* default */.Z)(this.props.debug,'ReactFullpage');this.log('Building component');this.log('Importing vendor files');this.importVendors();if(pluginWrapper){this.log('Calling plugin wrapper');pluginWrapper();}this.log('Requiring fullpage.js');Fullpage=__webpack_require__(933);this.state={initialized:false,sectionCount:0,slideCount:0};}componentDidMount(){const opts=this.buildOptions();this.log('React Lifecycle: componentDidMount()');if(Fullpage){this.init(opts);this.markInitialized();}}isReRenderNecessary(prevProps){const newSectionCount=this.getSectionCount();const newSlideCount=this.getSlideCount();const{sectionCount,slideCount}=this.state;let isReRenderNecessary=sectionCount!==newSectionCount||slideCount!==newSlideCount;const propertiesThatNeedReRender=['sectionsColor','navigationTooltips','navigationPosition','navigation','scrollBar'];propertiesThatNeedReRender.forEach(property=>{if(typeof prevProps[property]!=='undefined'){if(Array.isArray(prevProps[property])){isReRenderNecessary=isReRenderNecessary||!isEqualArray(prevProps[property],this.props[property]);}else{isReRenderNecessary=isReRenderNecessary||prevProps[property]!==this.props[property];}}});return isReRenderNecessary;}componentDidUpdate(prevProps){this.log('React Lifecycle: componentDidUpdate()');// NOTE: if fullpage props have changed we need to rebuild
+let Fullpage;const isFunc=val=>typeof val==='function';const isEqualArray=(firstArr,secondArr)=>{if(firstArr.length!==secondArr.length)return false;return firstArr.find(el=>!secondArr.includes(el))==null;};const fullpageCallbacks=['afterLoad','afterRender','afterResize','afterResponsive','afterSlideLoad','onLeave','onSlideLeave'];class ReactFullpage extends (external_react_default()).Component{constructor(props){super(props);const{render,pluginWrapper}=this.props;if(!isFunc(render)){throw new Error('must provide render prop to <ReactFullpage />');}this.log=(0,Logger/* default */.Z)(this.props.debug,'ReactFullpage');this.log('Building component');this.log('Importing vendor files');this.importVendors();if(pluginWrapper){this.log('Calling plugin wrapper');pluginWrapper();}this.log('Requiring fullpage.js');Fullpage=__webpack_require__(933);this.state={initialized:false,sectionCount:0,slideCount:0};}componentDidMount(){const opts=this.buildOptions();this.log('React Lifecycle: componentDidMount()');if(Fullpage){this.init(opts);this.markInitialized();}}isReRenderNecessary(prevProps){const newSectionCount=this.getSectionCount();const newSlideCount=this.getSlideCount();const{sectionCount,slideCount}=this.state;let isReRenderNecessary=sectionCount!==newSectionCount||slideCount!==newSlideCount;const propertiesThatNeedReRender=['sectionsColor','navigationTooltips','navigationPosition','navigation','scrollBar'];propertiesThatNeedReRender.forEach(property=>{if(typeof prevProps[property]!=='undefined'){if(Array.isArray(prevProps[property])){isReRenderNecessary=isReRenderNecessary||!isEqualArray(prevProps[property],this.props[property]);}else{isReRenderNecessary=isReRenderNecessary||prevProps[property]!==this.props[property];}}});return isReRenderNecessary;}componentDidUpdate(prevProps){this.log('React Lifecycle: componentDidUpdate()');// NOTE: if fullpage props have changed we need to rebuild
 if(this.isReRenderNecessary(prevProps)){this.log('rebuilding due to a change in fullpage.js props or num sections/slides');this.reRender();return;}}componentWillUnmount(){this.destroy();}getSectionCount(){const{sectionSelector=selectors/* DEFAULT_SECTION */.uS}=this.props;const{length}=document.querySelectorAll(sectionSelector);return length;}getSlideCount(){const{slideSelector=selectors/* DEFAULT_SLIDE */.xH}=this.props;const{length}=document.querySelectorAll(slideSelector);return length;}importVendors(){const{scrollOverflow,easing}=this.props;if(scrollOverflow){__webpack_require__(150);}if(easing){__webpack_require__(239);}}init(opts){this.log('Reinitializing fullpage with options',opts);const originalAnimateAnchor=opts.animateAnchor;opts.animateAnchor=false;new Fullpage(selectors/* ID_SELECTOR */.Km,opts);// eslint-disable-line
 this.fullpageApi=window.fullpage_api;this.fpUtils=window.fp_utils;this.fpEasings=window.fp_easings;window.fullpage_api.getFullpageData().options.animateAnchor=originalAnimateAnchor;}destroy(){this.log('Destroying fullpage instance');this.fullpageApi.destroy('all');}reRender(){const slideSelector=this.props.slideSelector||'.slide';const sectionSelector=this.props.sectionSelector||'.section';const activeSection=document.querySelector(sectionSelector+'.active');const activeSectionIndex=activeSection?this.fpUtils.index(activeSection):this.state.destination.index-1;const activeSlide=document.querySelector(sectionSelector+'.active '+slideSelector+'.active');const activeSlideIndex=activeSlide?this.fpUtils.index(activeSlide):-1;this.destroy();if(activeSectionIndex>-1){this.fpUtils.addClass(document.querySelectorAll(sectionSelector)[activeSectionIndex],'active');}if(activeSlideIndex>-1){this.fpUtils.addClass(activeSlide,'active');}this.init(this.buildOptions());}markInitialized(){this.log('Marking initialized');this.setState({initialized:true,sectionCount:this.getSectionCount(),slideCount:this.getSlideCount()});}buildOptions(){let listeners=null;if(!this.state.initialized){const filterCb=key=>!!Object.keys(this.props).find(cb=>{return cb===key;});const registered=fullpageCallbacks.filter(filterCb);listeners=registered.reduce((result,key)=>{return _objectSpread(_objectSpread({},result),{},{[key]:(...args)=>{return this.update(...[key,...args]);}});},{});}// NOTE: override passed in callbacks w/  wrapped listeners
 const options=_objectSpread(_objectSpread({},this.props),listeners);this.log('Building fullpage.js options: ',options);return options;}update(lastEvent,...args){this.log('Event trigger: ',lastEvent);let state=_objectSpread(_objectSpread({},this.state),{},{sectionCount:this.getSectionCount(),slideCount:this.getSlideCount()});const makeState=callbackParameters=>_objectSpread(_objectSpread(_objectSpread({},state),callbackParameters),{},{lastEvent});const fromArgs=argList=>argList.reduce((result,key,i)=>{const value=args[i];result[key]=value;// eslint-disable-line
@@ -105,7 +95,7 @@ return result;},{});// NOTE: remapping callback args to v3
 // https://github.com/alvarotrigo/fullPage.js#callbacks
 switch(lastEvent){// After-*
 case'afterLoad':state=makeState(fromArgs(['origin','destination','direction']));break;case'afterResize':state=makeState(fromArgs(['']));break;case'afterResponsive':state=makeState(fromArgs(['isResponsive']));break;case'afterSlideLoad':state=makeState(fromArgs(['section','origin','destination','direction']));break;// On-*
-case'onLeave':state=makeState(fromArgs(['origin','destination','direction']));break;case'onSlideLeave':state=makeState(fromArgs(['section','origin','slideIndex','destination','direction']));break;default:break;}const returned=this.props[lastEvent](...args);this.log('Called callback: Returning => ',returned);this.log('Updating State => ',state);this.setState(state);return returned;}render(){this.log('<== Rendering ==>');return/*#__PURE__*/external_React_default().createElement("div",{id:selectors/* MAIN_SELECTOR */.W1},this.props.render(this));}}ReactFullpage.defaultProps={sectionsColor:[]};/* harmony default export */ const components_ReactFullpage = (ReactFullpage);
+case'onLeave':state=makeState(fromArgs(['origin','destination','direction']));break;case'onSlideLeave':state=makeState(fromArgs(['section','origin','slideIndex','destination','direction']));break;default:break;}const returned=this.props[lastEvent](...args);this.log('Called callback: Returning => ',returned);this.log('Updating State => ',state);this.setState(state);return returned;}render(){this.log('<== Rendering ==>');return/*#__PURE__*/external_react_default().createElement("div",{id:selectors/* MAIN_SELECTOR */.W1},this.props.render(this));}}ReactFullpage.defaultProps={sectionsColor:[]};/* harmony default export */ const components_ReactFullpage = (ReactFullpage);
 
 /***/ }),
 
@@ -116,7 +106,7 @@ case'onLeave':state=makeState(fromArgs(['origin','destination','direction']));br
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(24);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(497);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(271);
 /* harmony import */ var _selectors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(542);
@@ -544,11 +534,11 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ 24:
+/***/ 497:
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_MODULE__24__;
+module.exports = require("react");
 
 /***/ })
 
@@ -632,17 +622,16 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ components)
 });
 
-// EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(24);
-var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(497);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 ;// CONCATENATED MODULE: ./components/Wrapper/index.js
-/* eslint-disable import/no-extraneous-dependencies */const Wrapper=({children})=>/*#__PURE__*/external_React_default().createElement(external_React_.Fragment,null,children);/* harmony default export */ const components_Wrapper = (Wrapper);
+/* eslint-disable import/no-extraneous-dependencies */const Wrapper=({children})=>/*#__PURE__*/external_react_default().createElement(external_react_.Fragment,null,children);/* harmony default export */ const components_Wrapper = (Wrapper);
 ;// CONCATENATED MODULE: ./components/index.js
 /* eslint-disable */const windowExists=()=>{if(typeof window==='undefined'){return false;}try{const env="production".toLowerCase();return!env.match(/test/);}catch(e){return true;}};/* harmony default export */ const components = ((()=>{let exported;if(windowExists()){exported=__webpack_require__(88)/* ["default"] */ .Z;}else{// NOTE: SSR support
 exported=__webpack_require__(882)/* ["default"] */ .Z;}exported.Wrapper=components_Wrapper;return exported;})());
 })();
 
-/******/ 	return __webpack_exports__;
+module.exports.ReactFullpage = __webpack_exports__;
 /******/ })()
 ;
-});
