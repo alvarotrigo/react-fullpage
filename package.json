@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build:dev": "npx webpack --progress --mode development --config webpack.config.dev.js",
-    "build": "NODE_ENV=prod webpack -p --progress --mode production --config webpack.config.build.js",
+    "build": "NODE_ENV=prod webpack --mode production --progress --mode production --config webpack.config.build.js",
     "test:cypress": "npx cypress run --spec 'cypress/integration/*'",
     "test:jest": "npx jest",
     "cypress:open": "cypress open"
