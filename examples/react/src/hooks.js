@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import ReactFullpage from '../../../components';
 import Styles from './styles.css';

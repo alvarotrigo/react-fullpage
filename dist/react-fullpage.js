@@ -632,6 +632,6 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 exported=__webpack_require__(882)/* ["default"] */ .Z;}exported.Wrapper=components_Wrapper;return exported;})());
 })();
 
-module.exports.ReactFullpage = __webpack_exports__;
+module.exports = __webpack_exports__;
 /******/ })()
 ;
