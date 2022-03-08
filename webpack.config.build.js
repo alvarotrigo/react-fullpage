@@ -28,7 +28,6 @@ module.exports = [
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'react-fullpage.js',
-      library: 'ReactFullpage',
       libraryTarget: 'commonjs2',
     },
   }),
