@@ -1,5 +1,5 @@
 /*!
- * @fullpage/react-fullpage 0.1.21
+ * @fullpage/react-fullpage 0.1.22
  * https://github.com/alvarotrigo/react-fullpage
  * @license https://github.com/alvarotrigo/react-fullpage#license
  *
@@ -632,6 +632,6 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 exported=__webpack_require__(882)/* ["default"] */ .Z;}exported.Wrapper=components_Wrapper;return exported;})());
 })();
 
-module.exports.ReactFullpage = __webpack_exports__;
+module.exports = __webpack_exports__;
 /******/ })()
 ;

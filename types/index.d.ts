@@ -1,6 +1,6 @@
 declare module '@fullpage/react-fullpage' {
 
-    type Item = {
+    export type Item = {
         anchor: string | number,
         index: number,
         item: HTMLElement,
@@ -13,6 +13,22 @@ declare module '@fullpage/react-fullpage' {
     type InterlockedSlides = boolean | Array<number>;
     type bigSectionsDestination = "top" | "bottom" | null;
     type Parallax = boolean | "sections" | "slides";
+    type DropEffect = boolean | "sections" | "slides";
+    type WaterEffect = boolean | "sections" | "slides";
+    type WaterEffectOptions = {
+        animateContent: boolean
+        animateOnMouseMove: boolean
+    };
+    type CardsOptions = {
+        perspective: number
+        fadeContent: boolean
+        fadeBackground: boolean
+    };
+    type ParallaxOptions = {
+        percentage?: number
+        property?: "translate" | "background"
+        type?: "reveal" | "cover"
+    };
 
     export interface fullpageOptions {
         anchors?: string[]
@@ -50,11 +66,7 @@ declare module '@fullpage/react-fullpage' {
         paddingBottom?: string
         paddingTop?: string
         parallax?: Parallax // true, false, 'sections', 'slides'
-        parallaxOptions?: {
-            percentage?: number
-            property?: "translate" | "background"
-            type?: "reveal" | "cover"
-        }
+        parallaxOptions?: ParallaxOptions
         recordHistory?: boolean
         resetSliders?: boolean
         responsive?: number
@@ -68,13 +80,17 @@ declare module '@fullpage/react-fullpage' {
         scrollOverflowOptions?: any
         scrollOverflowReset?: boolean
         scrollingSpeed?: number
-        dropEffect?: true
+        dropEffect?: DropEffect;
         dropEffectOptions?: any;
+        waterEffect?: WaterEffect;
+        waterEffectOptions?: WaterEffectOptions;
+        cards: boolean;
+        cardsOptions: CardsOptions;
         sectionSelector?: string
         sectionsColor?: string[]
         showActiveTooltip?: boolean
         slideSelector?: string
-        slidesNavPosition?: string
+        slidesNavPosition?: "top" | "bottom"
         slidesNavigation?: boolean
         touchSensitivity?: number
         v2compatible?: boolean
