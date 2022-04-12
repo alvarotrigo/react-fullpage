@@ -84,8 +84,8 @@ declare module '@fullpage/react-fullpage' {
         dropEffectOptions?: any;
         waterEffect?: WaterEffect;
         waterEffectOptions?: WaterEffectOptions;
-        cards: boolean;
-        cardsOptions: CardsOptions;
+        cards?: boolean;
+        cardsOptions?: CardsOptions;
         sectionSelector?: string
         sectionsColor?: string[]
         showActiveTooltip?: boolean
