@@ -1,6 +1,6 @@
 {
   "name": "@fullpage/react-fullpage",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -13,11 +13,11 @@
     "url": "https://www.gnu.org/licenses/gpl-3.0.html"
   },
   "homepage": "https://github.com/alvarotrigo/react-fullpage",
-  "types":"types/index.d.ts",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
-    "build:dev": "npx webpack --progress --mode development --config webpack.config.dev.js",
-    "build": "NODE_ENV=prod webpack --mode production --progress --mode production --config webpack.config.build.js",
+    "build:dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && npx webpack --progress --mode development --config webpack.config.dev.js",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && NODE_ENV=prod webpack --mode production --progress --mode production --config webpack.config.build.js",
     "test:cypress": "npx cypress run --spec 'cypress/integration/*'",
     "test:jest": "npx jest",
     "cypress:open": "cypress open"
