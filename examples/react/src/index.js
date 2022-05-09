@@ -7,7 +7,6 @@ const SEL = 'custom-section';
 const SECTION_SEL = `.${SEL}`;
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props.
-// This is no longer required for the scrollOverflow option.
 const pluginWrapper = () => {
   /*
   * require('./fullpage.fadingEffect.min'); // Optional. Required when using the "fadingEffect" extension.

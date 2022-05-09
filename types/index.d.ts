@@ -77,7 +77,6 @@ declare module '@fullpage/react-fullpage' {
         scrollHorizontally?: boolean
         scrollOverflow?: boolean
         scrollOverflowHandler?: any
-        scrollOverflowOptions?: any
         scrollOverflowReset?: boolean
         scrollingSpeed?: number
         dropEffect?: DropEffect;
