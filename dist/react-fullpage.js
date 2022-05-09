@@ -1,5 +1,5 @@
 /*!
- * @fullpage/react-fullpage 0.1.23
+ * @fullpage/react-fullpage 0.1.24
  * https://github.com/alvarotrigo/react-fullpage
  * @license https://github.com/alvarotrigo/react-fullpage#license
  *
