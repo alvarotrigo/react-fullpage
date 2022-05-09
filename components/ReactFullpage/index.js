@@ -129,10 +129,7 @@ class ReactFullpage extends React.Component {
   }
 
   importVendors() {
-    const { scrollOverflow, easing } = this.props;
-    if (scrollOverflow) {
-      require('fullpage.js/vendors/scrolloverflow.min');
-    }
+    const { easing } = this.props;
     if (easing) {
       require('fullpage.js/vendors/easings.min');
     }
