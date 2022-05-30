@@ -68,6 +68,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "fullpage.js": "^4.0.8"
+    "fullpage.js": "^4.0.9"
   }
 }
