@@ -1,6 +1,6 @@
 {
   "name": "@fullpage/react-fullpage",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -68,6 +68,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "fullpage.js": "^4.0.8"
+    "fullpage.js": "^4.0.9"
   }
 }
