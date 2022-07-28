@@ -129,8 +129,8 @@ class ReactFullpage extends React.Component {
   }
 
   importVendors() {
-    const { easing } = this.props;
-    if (easing) {
+    const { easing, css3 } = this.props;
+    if (easing && !css3) {
       require('fullpage.js/vendors/easings.min');
     }
   }
