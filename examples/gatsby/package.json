@@ -1,16 +1,16 @@
 {
   "name": "gatsby-starter-hello-world",
   "description": "Gatsby hello world starter",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve"
+    "develop": "export SET NODE_OPTIONS=--openssl-legacy-provider && gatsby develop",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && gatsby build",
+    "serve": "export SET NODE_OPTIONS=--openssl-legacy-provider && gatsby serve"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.27",
-    "gatsby": "^3.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@fullpage/react-fullpage": "^0.1.28",
+    "gatsby": "^4.22.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }
