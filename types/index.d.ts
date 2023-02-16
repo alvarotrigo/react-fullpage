@@ -30,6 +30,12 @@ declare module '@fullpage/react-fullpage' {
         type?: "reveal" | "cover"
     };
 
+    type Credits = {
+        enabled?: boolean,
+        label?: string,
+        position?: "left" | "right"
+    }
+
     export interface fullpageOptions {
         anchors?: string[]
         animateAnchor?: boolean
@@ -52,6 +58,7 @@ declare module '@fullpage/react-fullpage' {
         keyboardScrolling?: boolean
         lazyLoading?: boolean
         licenseKey?: string
+        credits: Credits
         lockAnchors?: boolean
         loopBottom?: boolean
         loopHorizontal?: boolean
