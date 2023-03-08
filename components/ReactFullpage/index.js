@@ -155,7 +155,7 @@ class ReactFullpage extends React.Component {
     const slideSelector = this.props.slideSelector || '.slide';
     const sectionSelector = this.props.sectionSelector || '.section';
     const activeSection = document.querySelector(sectionSelector + '.active');
-    const activeSectionIndex = activeSection ? this.fpUtils.index(activeSection) : this.state.destination.index - 1;
+    const activeSectionIndex = activeSection ? this.fpUtils.index(activeSection) : this.state.destination ? this.state.destination.index - 1 : 0;
     const activeSlide = document.querySelector(sectionSelector + '.active ' + slideSelector + '.active');
     const activeSlideIndex = activeSlide ? this.fpUtils.index(activeSlide) : -1;
 
