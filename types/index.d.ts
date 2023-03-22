@@ -147,7 +147,7 @@ declare module '@fullpage/react-fullpage' {
         moveSectionUp(): void
         moveSlideLeft(): void
         moveSlideRight(): void
-        moveTo(section: string | number, slide: string | number): void
+        moveTo(section: string | number, slide?: string | number): void
         reBuild(isResizing?: boolean): void
         setAllowScrolling(value: boolean, directions?: string): void
         setAutoScrolling(value: boolean, type?: string): void
