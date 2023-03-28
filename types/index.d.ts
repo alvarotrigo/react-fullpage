@@ -15,6 +15,8 @@ declare module '@fullpage/react-fullpage' {
     type Parallax = boolean | "sections" | "slides";
     type DropEffect = boolean | "sections" | "slides";
     type WaterEffect = boolean | "sections" | "slides";
+    type Trigger = "slideArrow" | "verticalNav" | "horizontalNav" | "keydown" | "wheel" | "menu";
+    type ScrollOverflowReset = boolean | "slides" | "sections";
     type WaterEffectOptions = {
         animateContent: boolean
         animateOnMouseMove: boolean
@@ -45,6 +47,7 @@ declare module '@fullpage/react-fullpage' {
         continuousVertical?: boolean
         controlArrowColor?: string
         controlArrows?: boolean
+        controlArrowsHTML?: string[]
         css3?: boolean
         dragAndMove?: DragAndMove
         easing?: string
@@ -57,6 +60,7 @@ declare module '@fullpage/react-fullpage' {
         interlockedSlides?: InterlockedSlides
         keyboardScrolling?: boolean
         lazyLoading?: boolean
+        observer?: boolean
         licenseKey?: string
         credits: Credits
         lockAnchors?: boolean
@@ -83,8 +87,9 @@ declare module '@fullpage/react-fullpage' {
         scrollBar?: boolean
         scrollHorizontally?: boolean
         scrollOverflow?: boolean
+        scrollOverflowMacStyle?: boolean
         scrollOverflowHandler?: any
-        scrollOverflowReset?: boolean
+        scrollOverflowReset?: ScrollOverflowReset
         scrollingSpeed?: number
         dropEffect?: DropEffect;
         dropEffectOptions?: any;
@@ -99,18 +104,19 @@ declare module '@fullpage/react-fullpage' {
         slidesNavPosition?: "top" | "bottom"
         slidesNavigation?: boolean
         touchSensitivity?: number
-        v2compatible?: boolean
         verticalCentered?: boolean
 
         /* callback and events */
-        afterLoad?(origin: Item, destination: Item, direction: string): void
+        afterLoad?(origin: Item, destination: Item, direction: string, trigger: Trigger): void
         afterRender?(): void
         afterResize?(width: number, height: number): void
         afterReBuild?(): void
         afterResponsive?(isResponsive: boolean): void
-        afterSlideLoad?(section: Item, origin: Item, destination: Item, direction: string): void
-        onLeave?(origin: Item, destination: Item, direction: string): void
-        onSlideLeave?(section: Item, origin: Item, destination: Item, direction: string): void
+        afterSlideLoad?(section: Item, origin: Item, destination: Item, direction: string, trigger: Trigger): void
+        onLeave?(origin: Item, destination: Item, direction: string, trigger: Trigger): void
+        beforeLeave?(origin: Item, destination: Item, direction: string, trigger: Trigger): void
+        onSlideLeave?(section: Item, origin: Item, destination: Item, direction: string, trigger: Trigger): void
+        onScrollOverflow?(section: Item, slide: Item, position: number, direction: string): void
 
         /* keys for extensions */
         fadingEffectKey?: string
@@ -135,7 +141,7 @@ declare module '@fullpage/react-fullpage' {
         resetSliders: boolean
         responsiveSlides: boolean
         scrollHorizontally: boolean
-        scrollOverflowReset: boolean
+        scrollOverflowReset: ScrollOverflowReset
         version: string
         destroy(type?: string): void
         fitToSection(): void
