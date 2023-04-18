@@ -149,6 +149,8 @@ declare module '@fullpage/react-fullpage' {
         getActiveSlide(): Item
         getFullpageData(): any
         landscapeScroll(e?: any, t?: any, n?: any): void
+        getScrollY(): number
+        getScrollX(): number
         moveSectionDown(): void
         moveSectionUp(): void
         moveSlideLeft(): void
