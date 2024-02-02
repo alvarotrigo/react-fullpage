@@ -5,9 +5,9 @@
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
-
-  [![npm version][npm-version-src]][npm-version-href]
-  
+  <a href="https://www.npmjs.com/package/@fullpage/react-fullpage">
+    <img src="https://img.shields.io/npm/v/@fullpage/react-fullpage/latest.svg" alt="react-fullpage version" />
+  </a>
 </p>
 
 - [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
@@ -206,7 +206,3 @@ Found an issue? Have an idea? Check out the [Contributing](https://github.com/al
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
-
-<!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@fullpage/react-fullpage/latest.svg
-[npm-version-href]: https://www.npmjs.com/package/@fullpage/react-fullpage
