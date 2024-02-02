@@ -5,7 +5,9 @@
 <p align="center">Official React wrapper for the <a target="_blank" href="https://github.com/alvarotrigo/fullPage.js/">fullpage.js library</a></p>
 
 <p align="center">
+
   [![npm version][npm-version-src]][npm-version-href]
+  
 </p>
 
 - [Demo online](https://alvarotrigo.com/react-fullpage/) | [CodeSandbox](https://codesandbox.io/s/m34yq5q0qx)
