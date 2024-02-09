@@ -52,7 +52,7 @@
     "jest": "^27.1.0",
     "jest-dom": "^3.0.1",
     "kcd-scripts": "^11.2.0",
-    "node-sass": "6.0.1",
+    "node-sass": "8.0.0",
     "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
     "react": "^17.0.2",
