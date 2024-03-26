@@ -15,7 +15,8 @@ const shared = {
     minimize: false,
   },
 
-  plugins: [new CleanWebpackPlugin({ cleanStaleWebpackAssets: false })]
+  // verbose: true to enable logs
+  plugins: [new CleanWebpackPlugin({ cleanStaleWebpackAssets: false, verbose: false })]
 };
 
 module.exports = [
