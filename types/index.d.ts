@@ -15,6 +15,7 @@ declare module '@fullpage/react-fullpage' {
     type Parallax = boolean | "sections" | "slides";
     type DropEffect = boolean | "sections" | "slides";
     type WaterEffect = boolean | "sections" | "slides";
+    type SkipIntermediateItems = boolean | "sections" | "slides";
     type Trigger = "slideArrow" | "verticalNav" | "horizontalNav" | "keydown" | "wheel" | "menu";
     type ScrollOverflowReset = boolean | "slides" | "sections";
     type WaterEffectOptions = {
@@ -60,6 +61,7 @@ declare module '@fullpage/react-fullpage' {
         interlockedSlides?: InterlockedSlides
         keyboardScrolling?: boolean
         lazyLoading?: boolean
+        lazyLoadThreshold?: number
         observer?: boolean
         licenseKey?: string
         credits: Credits
@@ -90,6 +92,7 @@ declare module '@fullpage/react-fullpage' {
         scrollOverflowMacStyle?: boolean
         scrollOverflowHandler?: any
         scrollOverflowReset?: ScrollOverflowReset
+        skipIntermediateItems?: SkipIntermediateItems
         scrollingSpeed?: number
         dropEffect?: DropEffect;
         dropEffectOptions?: any;
