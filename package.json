@@ -1,6 +1,6 @@
 {
   "name": "@fullpage/react-fullpage",
-  "version": "0.1.45",
+  "version": "0.1.46",
   "description": "Official react wrapper for fullPage.js",
   "author": "cmswalker",
   "contributors": [
@@ -55,8 +55,8 @@
     "node-sass": "6.0.1",
     "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-testing-library": "^5.4.4",
     "sass-loader": "12.1.0",
     "style-loader": "3.2.1",
@@ -68,6 +68,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "fullpage.js": "^4.0.30"
+    "fullpage.js": "^4.0.31"
   }
 }

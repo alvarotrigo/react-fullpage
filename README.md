@@ -90,7 +90,7 @@ Quickstart Example:
 
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import ReactFullpage from '@fullpage/react-fullpage';
 
 const Fullpage = () => (
@@ -117,14 +117,15 @@ const Fullpage = () => (
   />
 );
 
-ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
+const root = ReactDOM.createRoot(document.getElementById('react-root'));
+root.render(<Fullpage />);
 ```
 
 Fullpage.js Extension Example:
 
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import ReactFullpage from '@fullpage/react-fullpage';
 
 // NOTE: if using fullpage extensions/plugins put them here and pass it as props
@@ -160,7 +161,8 @@ const Fullpage = () => (
   />
 );
 
-ReactDOM.render(<Fullpage />, document.getElementById('react-root'));
+const root = ReactDOM.createRoot(document.getElementById('react-root'));
+root.render(<Fullpage />);
 ```
 
 Notice that when using any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll pass the `pluginWrapper` function prop to include the file for those features before the `react-fullpage` component mounted.  

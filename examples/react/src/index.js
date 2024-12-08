@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import ReactFullpage from '../../../components';
 import Styles from './styles.css';
 
@@ -144,5 +144,6 @@ class App extends React.Component {
   }
 }
 
-const rootElement = document.getElementById('react-root');
-ReactDOM.render(<App />, rootElement);
+
+const root = ReactDOM.createRoot(document.getElementById('react-root'));
+root.render(<App />);

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useCallback, useState } from 'react';
+import ReactDOM from 'react-dom/client';
 import ReactFullpage from '../../../components';
 import Styles from './styles.css';
 
@@ -15,12 +15,16 @@ const pluginWrapper = () => {
 
 const
   originalColors = ['#ff5f45', '#0798ec', '#fc6c7c', '#435b71', 'orange', 'blue', 'purple', 'yellow'],
-  originalPages = [{ text: "Section 1" }, { text: "Section 2" }, { text: "Section 3" }];
+  originalPages = [{ text: "Section 1" }],
+  originalSlides = [{ text: "Slide1" }, { text: "Slide2" }, { text: "Slide3" }];
 
 const Hooks = () => {
+  console.warn("....");
+
   const
     [sectionsColor, setsectionsColor] = useState([...originalColors]),
-    [fullpages, setfullpages] = useState([...originalPages]);
+    [fullpages, setfullpages] = useState([...originalPages]),
+    [slides, setSlides] = useState([...originalSlides]);
 
   const
     onLeave = (origin, destination, direction) => {
@@ -52,9 +56,22 @@ const Hooks = () => {
       return setfullpages(newPages)
     },
 
+
     moveSectionDown = () => {
       return fullpage_api.moveSectionDown();
-    }
+    };
+
+    const handleRemoveSlide = useCallback(() => {
+      setSlides((prevSlides) => prevSlides.slice(0, -1));
+    }, [setSlides]);
+
+    
+    const handleAddSlide = useCallback(() => {
+      setSlides((prevSlides) => [
+        ...prevSlides,
+        { text: `Slide${prevSlides.length + 1}` },
+      ]);
+    }, [setSlides]);
 
   const Menu = () => (
     <div
@@ -68,7 +85,9 @@ const Hooks = () => {
       <ul className="actions">
         <li>
           <button onClick={handleAddSection}> Add Section </button>
+          <button onClick={handleAddSlide}> Add Slide </button>
           <button onClick={handleRemoveSection}> Remove Section </button>
+          <button onClick={handleRemoveSlide}> Remove Slide </button>
           <button onClick={handleChangeColors}> Change background colors </button>
           <button onClick={moveSectionDown}> Move Section Down </button>
         </li>
@@ -92,12 +111,18 @@ const Hooks = () => {
         sectionSelector={SECTION_SEL}
         onLeave={onLeave}
         sectionsColor={sectionsColor}
+        slidesNavigation ={true}
+        observer={false}
 
         render={() => (
           <ReactFullpage.Wrapper>
             {fullpages.map(({ text }) => (
               <div key={text} className={SEL}>
-                <h1>{text}</h1>
+                {slides.map(({ text }) => (
+                  <div key={text} className="slide">
+                    <h3>{text}</h3>
+                  </div>
+                ))}
               </div>
             ))}
           </ReactFullpage.Wrapper>
@@ -106,5 +131,6 @@ const Hooks = () => {
     </div>
   );
 }
-const rootElement = document.getElementById('react-root');
-ReactDOM.render(<Hooks />, rootElement);
+
+const root = ReactDOM.createRoot(document.getElementById('react-root'));
+root.render(<Hooks />);
