@@ -1,6 +1,16 @@
-# Example
+# React fullPage.js Example
 
-Please check the [docs for the React component](https://github.com/alvarotrigo/react-fullpage?tab=readme-ov-file#installation).
+This example demonstrates how to use fullPage.js with React. To learn how to use fullPage.js effectively, developers should refer to the relevant documentation:
+
+- [fullPage.js Documentation for React](https://github.com/alvarotrigo/react-fullpage?tab=readme-ov-file#react-fullpage)
+- [fullPage.js Core / API Documentation](https://alvarotrigo.com/fullPage/docs)
+- [fullPage.js Examples](https://alvarotrigo.com/fullPage/examples/)
+- [fullPage.js Extensions](https://alvarotrigo.com/fullPage/extensions/)
+- Questions about fullPage.js for Next.js? Ask on [GitHub issues forum](https://github.com/alvarotrigo/react-fullpage/issues).
+
+If you want use fullPage.js with Next.js or Gatsby, check their examples:
+- [Next.js fullPage.js Example](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/next)
+- [Gatsby fullPage.js Example](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/gatsby)
 
 This document only explains how to run/build the React example.
 
