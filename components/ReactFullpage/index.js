@@ -281,7 +281,7 @@ class ReactFullpage extends React.Component {
 
   render() {
     this.log('<== Rendering ==>');
-    return <div id={MAIN_SELECTOR}>{this.props.render(this)}</div>;
+    return <div id={MAIN_SELECTOR} className={this.props.className}>{this.props.render(this)}</div>;
   }
 }
 
