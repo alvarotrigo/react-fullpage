@@ -58,7 +58,7 @@ If you are creating an open source application under a license compatible with t
 
 <!-- note -->
 **The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
-<!-- note -->
+<!-- /note -->
 
 [Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
