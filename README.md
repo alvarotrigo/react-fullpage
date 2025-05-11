@@ -179,7 +179,7 @@ Notice that when using any [fullPage.js extension](https://alvarotrigo.com/fullP
 
 ## State
 
-The wrapper maintains state in accordance to the latest version of fullpage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
+The wrapper maintains state in accordance to the latest version of fullpage.js [callbacks](https://alvarotrigo.com/fullPage/docs/#callbacks)
 
 The most recent callback event that triggered a state change will be available as `state.lastEvent`
 
@@ -189,17 +189,17 @@ _NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://
 
 ## Props
 
-You can use any [options](https://github.com/alvarotrigo/fullPage.js#options) supported by fullPage.js library as react props.
+You can use any [options](https://alvarotrigo.com/fullPage/docs/#options) supported by fullPage.js library as react props.
 
-Props object can contain standard [options](https://github.com/alvarotrigo/fullPage.js#options) as well as fullPage.js [callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks).
+Props object can contain standard [options](https://alvarotrigo.com/fullPage/docs/#options) as well as fullPage.js [callbacks](https://alvarotrigo.com/fullPage/docs/#callbacks).
 
 [Example](https://codesandbox.io/s/8lpo68lp28)
 
-More on callbacks [here](https://github.com/alvarotrigo/react-fullpage#callbacks)
+More on callbacks [here](https://alvarotrigo.com/fullPage/docs/#callbacks)
 
 ## Methods
 
-fullPage.js contains many [methods](https://github.com/alvarotrigo/fullPage.js#methods).
+fullPage.js contains many [methods](https://alvarotrigo.com/fullPage/docs/#methods).
 You can use any of them. These are made available as properties on the imported `fullpage.js` library once the first render has occured.
 
 ## Callbacks
