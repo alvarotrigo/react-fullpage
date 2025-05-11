@@ -20,6 +20,7 @@
 | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
+<!-- github_only -->
 ## Table of Contents
 
 - [Installation](https://github.com/alvarotrigo/react-fullpage#installation)
@@ -32,6 +33,7 @@
 - [Callbacks](https://github.com/alvarotrigo/react-fullpage#callbacks)
 - [Contributing](https://github.com/alvarotrigo/react-fullpage#contributing)
 - [Resources](https://github.com/alvarotrigo/react-fullpage#resources)
+<!-- /github_only -->
 
 ## Installation
 
@@ -51,7 +53,9 @@ If you want to use react-fullpage to develop non open sourced sites, themes, pro
 
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use fullPage under the terms of the GPLv3.
 
+<!-- note -->
 **The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
+<!-- note -->
 
 [Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -61,15 +65,15 @@ This wrapper creates a `<ReactFullpage />` component. It exposes a render-prop A
 
 ## UMD
 
-A umd bundle is available for those without a build step
+A UMD bundle is available for those without a build step.
 
 ```js
 import ReactFullpage from '@fullpage/react-fullpage-umd'; // will return static version on server and "live" version on client
 ```
 
-## Server Side Rendering
+## Server Side Rendering (SSR)
 
-SSR is supported however the server-rendered html will not be styled, this is because window must be present in order to properly set height + width of slides. So long as you rehydrate your fullpage component in the browser environment, regular styles will be applied.
+SSR is supported however the server-rendered html will not be styled, this is because `window` must be present in order to properly set `height` + `width` of slides. So long as you rehydrate your fullpage component in the browser environment, regular styles will be applied.
 
 When using SSR or a framework such as next.js, the component adjusts itself dynamically according to the presence of `window`
 
@@ -77,7 +81,8 @@ When using SSR or a framework such as next.js, the component adjusts itself dyna
 import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
 ```
 
-SSR Examples:
+### SSR Examples:
+
 You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/gatsby/) and a [Next.js](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/next/) examples in the ["examples" folder](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). But here you have others too:
 [gatsby](https://github.com/cmswalker/gatsby_react-fullPage_Invariant-Violation-130)
 [next.js](https://github.com/cmswalker/react-fullpage-next-example)
@@ -86,7 +91,7 @@ You can find a [Gatsby](https://github.com/alvarotrigo/react-fullpage/tree/maste
 
 In-depth examples can be found [here](https://github.com/alvarotrigo/react-fullpage/tree/master/examples). You can start with the [React Example](https://github.com/alvarotrigo/react-fullpage/tree/master/examples/react).
 
-Quickstart Example:
+### Quickstart Example:
 
 ```jsx
 import React from 'react';
@@ -121,7 +126,7 @@ const root = ReactDOM.createRoot(document.getElementById('react-root'));
 root.render(<Fullpage />);
 ```
 
-Fullpage.js Extension Example:
+### Fullpage.js Extension Example:
 
 ```jsx
 import React from 'react';
@@ -165,7 +170,9 @@ const root = ReactDOM.createRoot(document.getElementById('react-root'));
 root.render(<Fullpage />);
 ```
 
+<!-- note -->
 Notice that when using any [fullPage.js extension](https://alvarotrigo.com/fullPage/extensions/) you'll pass the `pluginWrapper` function prop to include the file for those features before the `react-fullpage` component mounted.  
+<!-- /note -->
 
 ## State
 
@@ -173,7 +180,9 @@ The wrapper maintains state in accordance to the latest version of fullpage.js [
 
 The most recent callback event that triggered a state change will be available as `state.lastEvent`
 
+<!-- note -->
 _NOTE: if the v2 prop is passed, state will be mapped to v2 [callbacks](https://github.com/alvarotrigo/fullPage.js/tree/v.2.9.7#callbacks)_
+<!-- /note -->
 
 ## Props
 
@@ -203,8 +212,10 @@ All fullpage.js styles are loaded from the component via a `<style/>` tag create
 
 Found an issue? Have an idea? Check out the [Contributing](https://github.com/alvarotrigo/react-fullpage/blob/master/CONTRIBUTING.md) guide and open a PR
 
+<!-- github_only -->
 ## Resources
 
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
+<!-- /github_only -->
