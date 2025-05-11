@@ -3,6 +3,7 @@
 .DS_Store
 .sass-cache
 .vscode/
+.history/
 
 ## Directories
 log/
