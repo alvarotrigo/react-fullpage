@@ -18,6 +18,7 @@ declare module '@fullpage/react-fullpage' {
     type SkipIntermediateItems = boolean | "sections" | "slides";
     type Trigger = "slideArrow" | "verticalNav" | "horizontalNav" | "keydown" | "wheel" | "menu";
     type ScrollOverflowReset = boolean | "slides" | "sections";
+    type Effects = boolean | string;
     type WaterEffectOptions = {
         animateContent: boolean
         animateOnMouseMove: boolean
@@ -31,6 +32,41 @@ declare module '@fullpage/react-fullpage' {
         percentage?: number
         property?: "translate" | "background"
         type?: "reveal" | "cover"
+    };
+
+    type EffectsOptions = {
+        scale?: {
+            past?: number,
+            future?: number
+        },
+        offset?: {
+            past?: number,
+            future?: number
+        },
+        opacity?: {
+            past?: number,
+            future?: number
+        },
+        delay?: {
+            past?: number,
+            future?: number
+        },
+        visibility?: {
+            past?: string
+        },
+        rotate?: {
+            past?: string,
+            future?: string
+        },
+        transformOrigin?: {
+            past?: string,
+            future?: string
+        },
+        perspective?: number,
+        zIndex?: string,
+        skew?: number,
+        useShadow?: boolean,
+        shadow?: string
     };
 
     type Credits = {
@@ -80,6 +116,8 @@ declare module '@fullpage/react-fullpage' {
         paddingTop?: string
         parallax?: Parallax // true, false, 'sections', 'slides'
         parallaxOptions?: ParallaxOptions
+        effects?: Effects
+        effectsOptions?: EffectsOptions
         recordHistory?: boolean
         resetSliders?: boolean
         responsive?: number
