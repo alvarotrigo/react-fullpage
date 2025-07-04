@@ -169,6 +169,11 @@ declare module '@fullpage/react-fullpage' {
         offsetSectionsKey?: string
         dragAndMoveKey?: string
         parallaxKey?: string
+        scrollOverflowResetKey?: string
+        effectsKey?: string
+        cardsKey?: string
+        waterEffectKey?: string
+        dropEffectKey?: string
         /* end key sections */
     }
 
